@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "scholarships",
+  "info": {
+    "singularName": "scholarship",
+    "pluralName": "scholarships",
+    "displayName": "scholarship",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "string",
+      "required": true
+    },
+    "content": {
+      "type": "richtext",
+      "required": true
+    },
+    "meteDescription": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "published": {
+      "type": "date"
+    }
+  }
+}

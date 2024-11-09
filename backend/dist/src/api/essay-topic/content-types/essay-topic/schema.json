@@ -1,0 +1,26 @@
+{
+    "kind": "collectionType",
+    "collectionName": "essay_topics",
+    "info": {
+        "singularName": "essay-topic",
+        "pluralName": "essay-topics",
+        "displayName": "essay-topic",
+        "description": ""
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "topic": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "api::essay.essay",
+            "mappedBy": "essay"
+        },
+        "name": {
+            "type": "string",
+            "required": true
+        }
+    }
+}

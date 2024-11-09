@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "essays",
+  "info": {
+    "singularName": "essay",
+    "pluralName": "essays",
+    "displayName": "essay",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "string",
+      "required": true
+    },
+    "metaDescription": {
+      "type": "text",
+      "required": false
+    },
+    "Content": {
+      "type": "richtext",
+      "required": true
+    },
+    "essay": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::essay-topic.essay-topic",
+      "inversedBy": "topic"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "published": {
+      "type": "date"
+    },
+    "comments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::comment.comment",
+      "mappedBy": "essay"
+    }
+  }
+}

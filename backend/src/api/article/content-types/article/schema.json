@@ -1,0 +1,54 @@
+{
+  "kind": "collectionType",
+  "collectionName": "articles",
+  "info": {
+    "singularName": "article",
+    "pluralName": "articles",
+    "displayName": "Article",
+    "description": "Create your blog content"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "cover": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ]
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "articles"
+    },
+    "blocks": {
+      "type": "dynamiczone",
+      "components": [
+        "shared.media",
+        "shared.quote",
+        "shared.rich-text",
+        "shared.slider"
+      ]
+    },
+    "published": {
+      "type": "date"
+    },
+    "metaDescription": {
+      "type": "text"
+    }
+  }
+}

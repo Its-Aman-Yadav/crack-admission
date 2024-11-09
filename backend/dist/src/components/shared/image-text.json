@@ -1,0 +1,27 @@
+{
+    "collectionName": "components_shared_image_texts",
+    "info": {
+        "displayName": "ImageText",
+        "description": ""
+    },
+    "options": {},
+    "attributes": {
+        "Name": {
+            "type": "string"
+        },
+        "School": {
+            "type": "string"
+        },
+        "screenshot": {
+            "type": "media",
+            "multiple": true,
+            "required": true,
+            "allowedTypes": [
+                "images",
+                "files",
+                "videos",
+                "audios"
+            ]
+        }
+    }
+}

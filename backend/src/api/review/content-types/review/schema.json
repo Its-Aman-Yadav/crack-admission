@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "reviews",
+  "info": {
+    "singularName": "review",
+    "pluralName": "reviews",
+    "displayName": "Review",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "VideoSection": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.image-text-section",
+      "required": false
+    },
+    "WhatsappReviews": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.image-text"
+    },
+    "GoogleReview": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "Testimonial": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.testimonial"
+    }
+  }
+}

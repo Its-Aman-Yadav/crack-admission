@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_shared_image_text_sections",
+  "info": {
+    "displayName": "ImageTextSection",
+    "icon": "alien",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Name": {
+      "type": "string",
+      "required": true
+    },
+    "link": {
+      "type": "string",
+      "required": true
+    },
+    "School": {
+      "type": "string"
+    }
+  }
+}

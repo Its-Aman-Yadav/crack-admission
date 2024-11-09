@@ -1,0 +1,35 @@
+{
+    "kind": "collectionType",
+    "collectionName": "comments",
+    "info": {
+        "singularName": "comment",
+        "pluralName": "comments",
+        "displayName": "comment",
+        "description": ""
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "username": {
+            "type": "string",
+            "required": true
+        },
+        "email": {
+            "type": "email",
+            "required": true,
+            "private": true
+        },
+        "text": {
+            "type": "text",
+            "required": true
+        },
+        "essay": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "api::essay.essay",
+            "inversedBy": "comments"
+        }
+    }
+}
