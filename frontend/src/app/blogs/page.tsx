@@ -24,7 +24,12 @@ interface Article {
 }
 
 const fetchArticles = async (): Promise<Article[]> => {
-  const response = await fetch("http://localhost:1337/api/articles?populate=*", { cache: 'no-store' });
+  const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/articles?populate=*`, {
+    headers: {
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
+    },
+    cache: 'no-store',
+  });
   const data = await response.json();
   return data.data.map((article: any) => ({
     id: article.id,
@@ -32,13 +37,14 @@ const fetchArticles = async (): Promise<Article[]> => {
     slug: article.slug,
     publishedAt: article.publishedAt,
     cover: {
-      url: article.cover && article.cover.formats && article.cover.formats.medium 
-        ? `http://localhost:1337${article.cover.formats.medium.url}` 
+      url: article.cover && article.cover.formats && article.cover.formats.medium
+        ? `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${article.cover.formats.medium.url}`
         : '/path/to/default-image.jpg', // Fallback image path
     },
     tags: article.tags ? { name: article.tags.name } : null,
   }));
 };
+
 
 const BlogPage: React.FC = () => {
   const [articles, setArticles] = useState<Article[]>([]);

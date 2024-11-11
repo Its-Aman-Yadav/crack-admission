@@ -118,9 +118,11 @@ const RushHour = () => {
       </div>
 
       {/* Simple button */}
+      <Link href="/payment">
       <button className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-all">
         Apply 30% Discount
       </button>
+      </Link>
     </div>
   );
 };
@@ -162,9 +164,11 @@ export default function Component() {
             <p className="mb-6">
             Admission consultants will review the applicant’s past application to identify its strengths and weaknesses. This analysis helps the applicant to understand what they need to improve in their application to increase their chances of getting admitted to their desired MBA program
             </p>
+            <Link href="/contact-us">
             <button className="bg-white text-blue-500 font-semibold px-4 py-2 rounded-lg hover:bg-blue-100 transition-all">
               GET FREE CONSULTATION
             </button>
+            </Link>
           </div>
         </div>
 

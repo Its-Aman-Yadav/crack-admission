@@ -1,6 +1,6 @@
 'use client';
 
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import MarkdownHTML from '@/components/MarkdownHTML';
 
@@ -20,14 +20,23 @@ export default function ArticlePage() {
 
     const fetchArticle = async () => {
       try {
-        const response = await fetch(`http://localhost:1337/api/scholarships?filters[slug][$eq]=${slug}`);
-        const data = await response.json();
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/scholarships?filters[slug][$eq]=${slug}&populate=*`
+        );
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
 
-        if (data.data.length > 0) {
+        const data = await response.json();
+        console.log("Fetched data:", data); // Log the data to verify its structure
+
+        if (data.data && data.data.length > 0) {
+          const articleData = data.data[0];
           setArticle({
-            title: data.data[0].title,
-            content: data.data[0].content,
-            slug: data.data[0].slug,
+            title: articleData.title,
+            content: articleData.content,
+            slug: articleData.slug,
           });
         } else {
           setError("Article not found");

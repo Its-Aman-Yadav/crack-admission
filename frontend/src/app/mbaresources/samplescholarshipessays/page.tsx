@@ -1,9 +1,18 @@
 'use client';
+
 import { useState, useEffect } from 'react';
 import { FaSearch } from 'react-icons/fa';
 
+interface Scholarship {
+  id: number;
+  title: string;
+  description: string;
+  slug: string;
+  createdAt: string;
+}
+
 export default function ScholarshipList() {
-  const [scholarships, setScholarships] = useState<any[]>([]);
+  const [scholarships, setScholarships] = useState<Scholarship[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -12,17 +21,25 @@ export default function ScholarshipList() {
     const fetchScholarships = async () => {
       setLoading(true);
       try {
-        const response = await fetch('http://localhost:1337/api/scholarships?populate=*');
+        const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/scholarships?populate=*`);
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json();
         console.log("Fetched Scholarships:", data); // Verify the structure of fetched data
         
-        // Sort scholarships by `createdAt` in descending order
-        const sortedScholarships = data.data.sort((a: any, b: any) => 
-          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-        );
+        // Map and sort scholarships by `createdAt` in descending order
+        const sortedScholarships = data.data
+          .map((item: any) => ({
+            id: item.id,
+            title: item.title,
+            description: item.description,
+            slug: item.slug,
+            createdAt: item.createdAt,
+          }))
+          .sort((a: Scholarship, b: Scholarship) => 
+            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+          );
         
         setScholarships(sortedScholarships);
       } catch (error) {
@@ -37,14 +54,10 @@ export default function ScholarshipList() {
   }, []);
 
   // Filter scholarships based on the search query
-  const filteredScholarships = scholarships.filter((scholarship) => {
-    const title = scholarship.title || ''; // Access `title` in `attributes`
-    const description = scholarship.description || ''; // Access `description` in `attributes`
-    return (
-      title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      description.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-  });
+  const filteredScholarships = scholarships.filter((scholarship) =>
+    scholarship.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    scholarship.description.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <>
@@ -86,34 +99,24 @@ export default function ScholarshipList() {
         ) : (
           <div className="mb-8">
             {filteredScholarships.length > 0 ? (
-              filteredScholarships.map((scholarship: any) => {
-                console.log("Scholarship item:", scholarship);
-
-                return (
-                  <div key={scholarship.id} className="mb-8 p-6 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
-                    {scholarship.title ? (
-                      <a href={`/mbaresources/samplescholarshipessays/${scholarship.slug}`} className="block text-2xl font-semibold text-gray-800 hover:text-blue-600 transition-colors duration-200">
-                        {scholarship.title}
-                      </a>
-                    ) : (
-                      <p className="text-red-500">Title not found</p>
-                    )}
-                    {scholarship.description ? (
-                      <p className="mt-2 text-gray-600 leading-relaxed">{scholarship.description}</p>
-                    ) : (
-                      <p className="text-red-500">Description not found</p>
-                    )}
-                    <div className="flex">
-                      <a
-                        href={`/mbaresources/samplescholarshipessays/${scholarship.slug}`}
-                        className="mt-4 text-blue-500 hover:text-blue-700 font-medium transition-colors duration-200"
-                      >
-                        Read More →
-                      </a>
-                    </div>
+              filteredScholarships.map((scholarship) => (
+                <div key={scholarship.id} className="mb-8 p-6 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+                  <a href={`/mbaresources/samplescholarshipessays/${scholarship.slug}`} className="block text-2xl font-semibold text-gray-800 hover:text-blue-600 transition-colors duration-200">
+                    {scholarship.title || "Title not found"}
+                  </a>
+                  <p className="mt-2 text-gray-600 leading-relaxed">
+                    {scholarship.description || "Description not found"}
+                  </p>
+                  <div className="flex">
+                    <a
+                      href={`/mbaresources/samplescholarshipessays/${scholarship.slug}`}
+                      className="mt-4 text-blue-500 hover:text-blue-700 font-medium transition-colors duration-200"
+                    >
+                      Read More →
+                    </a>
                   </div>
-                );
-              })
+                </div>
+              ))
             ) : (
               <p className="text-center text-gray-500">No scholarships found for "{searchQuery}"</p>
             )}

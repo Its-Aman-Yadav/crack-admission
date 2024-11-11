@@ -167,9 +167,11 @@ export default function Component() {
                 </div>
                 <div className="text-sm text-gray-600 mb-4">1$ = 84 INR</div>
               </div>
+              <Link href="/payment">
               <button className={`w-full py-2 px-4 font-semibold rounded ${tier.popular ? "bg-blue-500 text-white" : "border border-gray-300 text-gray-700"}`}>
                 Book Now
               </button>
+              </Link>
               <div className="flex-grow mt-4">
                 <ul className="space-y-2">
                   {tier.features.map((feature, featureIndex) => (

@@ -118,9 +118,11 @@ const RushHour = () => {
       </div>
 
       {/* Simple button */}
+      <Link href="/payment">
       <button className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-all">
         Apply 30% Discount
       </button>
+      </Link>
     </div>
   );
 };
@@ -162,9 +164,11 @@ export default function Component() {
             <p className="mb-6">
             Some MBA programs require applicants to share a presentation or video to introduce themselves to the admission committee and prospective cohort. Think of it like a PPT / Video of an elevator pitch. Our consultants will work with you to identify unique aspects of your profile and stitch them into a narrative that is aligned with the values of the school, and gives a clear indication of how you will be able to add value to your cohort based on specific prior experiences and your personality traits
             </p>
+            <Link href="/contact-us">
             <button className="bg-white text-blue-500 font-semibold px-4 py-2 rounded-lg hover:bg-blue-100 transition-all">
               GET FREE CONSULTATION
             </button>
+            </Link>
           </div>
         </div>
 
@@ -224,7 +228,9 @@ export default function Component() {
                 </td>
                 <td className="px-4 py-3 text-sm text-gray-700">${item.price}</td>
                 <td className="px-4 py-3 text-right">
+                  <Link href="/payment">
                   <button className="text-sm text-blue-600 hover:text-blue-700 font-medium">Choose →</button>
+                  </Link>
                 </td>
               </tr>
             ))}

@@ -68,7 +68,9 @@ export default function Component() {
           <p className="text-lg mb-6">
             Our tailored role plays prepare you for every challenge on the interview panel.
           </p>
+          <Link href="/contact-us">
           <button className="w-full bg-blue-700 hover:bg-blue-800 text-white py-3 rounded-lg">GET FREE CONSULTATION</button>
+          </Link>
         </div>
       </div>
 
@@ -130,7 +132,9 @@ export default function Component() {
                 </td>
                 <td className="px-4 py-3 text-sm text-gray-700 border-l border-gray-200">${item.price}</td>
                 <td className="px-4 py-3 text-right border-l border-gray-200">
+                  <Link href="/payment">
                   <button className="text-sm text-blue-600 hover:text-blue-700 font-medium">Choose →</button>
+                  </Link>
                 </td>
               </tr>
             ))}

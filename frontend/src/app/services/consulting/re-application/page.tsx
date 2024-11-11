@@ -93,9 +93,11 @@ const RushHour = () => {
       </div>
 
       {/* Simple button */}
+      <Link href="/payment">
       <button className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-all">
         Apply 30% Discount
       </button>
+      </Link>
     </div>
   );
 };
@@ -137,9 +139,11 @@ export default function Component() {
             <p className="mb-6">
             It's always tricky to decide the most apt re-applicant strategy — career progression or a different profile altogether. More importantly, should you even re-apply? We have a few tricks up our sleeve for you to answer these very critical questions and for you to emerge victorious on your second attempt. In Margaret Thatcher's words – 'You may have to fight a battle more than once to win it
             </p>
+            <Link href="/contact-us">
             <button className="bg-white text-blue-500 font-semibold px-4 py-2 rounded-lg hover:bg-blue-100 transition-all">
               GET FREE CONSULTATION
             </button>
+            </Link>
           </div>
         </div>
 
@@ -221,7 +225,9 @@ export default function Component() {
                 </td>
                 <td className="px-4 py-3 text-sm text-gray-700">${item.price}</td>
                 <td className="px-4 py-3 text-right">
+                  <Link href="/payment">
                   <button className="text-sm text-blue-600 hover:text-blue-700 font-medium">Choose →</button>
+                  </Link>
                 </td>
               </tr>
             ))}

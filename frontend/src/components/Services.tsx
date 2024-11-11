@@ -22,7 +22,7 @@ const services: Service[] = [
     title: "Mock Interviews",
     description:
       "2 in depth mock interviews by MBA alums will give you a first-hand experience of how to crack the final piece of the puzzle.",
-    link: "/services/consulting/mock-interviews", // Link to specific service page
+    link: "/services/consulting/mockinterviews", // Link to specific service page
   },
   {
     icon: <FileEdit className="w-12 h-12 text-blue-600" />,

@@ -192,9 +192,11 @@ export default function Component() {
             <p className="mb-6">
               With the All-in-One package, you'll get the one-on-one attention and expert MBA admissions advice you need to stand out in the competitive MBA admissions school. You can speak with us as many times as you need, because we want to make sure you develop the best b-school applications possible. We also ensure your application gets multiple reads from our team of expert MBA admissions consultants so your b-school applications will be fully reviewed.
             </p>
+            <Link href="/contact-us">
             <button className="bg-white text-blue-500 font-semibold px-4 py-2 rounded-lg hover:bg-blue-100 transition-all">
               GET FREE CONSULTATION
             </button>
+            </Link>
           </div>
         </div>
 

@@ -2,8 +2,16 @@
 import { useState, useEffect } from 'react';
 import { FaSearch } from 'react-icons/fa';
 
+interface Scholarship {
+  id: number;
+  title: string;
+  description: string;
+  slug: string;
+  createdAt: string;
+}
+
 export default function ScholarshipList() {
-  const [scholarships, setScholarships] = useState<any[]>([]);
+  const [scholarships, setScholarships] = useState<Scholarship[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -12,18 +20,26 @@ export default function ScholarshipList() {
     const fetchScholarships = async () => {
       setLoading(true);
       try {
-        const response = await fetch('http://localhost:1337/api/lors?populate=*');
+        const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/lors?populate=*`);
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json();
         console.log("Fetched Scholarships:", data); // Verify the structure of fetched data
 
-        // Sort scholarships by `createdAt` in descending order
-        const sortedScholarships = data.data.sort((a: any, b: any) => 
-          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-        );
-        
+        // Map and sort scholarships by `createdAt` in descending order
+        const sortedScholarships = data.data
+          .map((item: any) => ({
+            id: item.id,
+            title: item.title,
+            description: item.description,
+            slug: item.slug,
+            createdAt: item.createdAt,
+          }))
+          .sort((a: Scholarship, b: Scholarship) => 
+            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+          );
+
         setScholarships(sortedScholarships);
       } catch (error) {
         console.error("Error fetching scholarships:", error);
@@ -37,14 +53,10 @@ export default function ScholarshipList() {
   }, []);
 
   // Filter scholarships based on the search query
-  const filteredScholarships = scholarships.filter((scholarship) => {
-    const title = scholarship.title || ''; // Access `title` inside `attributes`
-    const description = scholarship.description || ''; // Access `description` inside `attributes`
-    return (
-      title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      description.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-  });
+  const filteredScholarships = scholarships.filter((scholarship) =>
+    (scholarship.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    scholarship.description.toLowerCase().includes(searchQuery.toLowerCase()))
+  );
 
   return (
     <>
@@ -86,20 +98,14 @@ export default function ScholarshipList() {
         ) : (
           <div className="mb-8">
             {filteredScholarships.length > 0 ? (
-              filteredScholarships.map((scholarship: any) => (
+              filteredScholarships.map((scholarship) => (
                 <div key={scholarship.id} className="mb-8 p-6 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
-                  {scholarship.title ? (
-                    <a href={`/mbaresources/samplelors/${scholarship.slug}`} className="block text-2xl font-semibold text-gray-800 hover:text-blue-600 transition-colors duration-200">
-                      {scholarship.title}
-                    </a>
-                  ) : (
-                    <p className="text-red-500">Title not found</p>
-                  )}
-                  {scholarship.description ? (
-                    <p className="mt-2 text-gray-600 leading-relaxed">{scholarship.description}</p>
-                  ) : (
-                    <p className="text-red-500">Description not found</p>
-                  )}
+                  <a href={`/mbaresources/samplelors/${scholarship.slug}`} className="block text-2xl font-semibold text-gray-800 hover:text-blue-600 transition-colors duration-200">
+                    {scholarship.title || "Title not found"}
+                  </a>
+                  <p className="mt-2 text-gray-600 leading-relaxed">
+                    {scholarship.description || "Description not found"}
+                  </p>
                   <div className="flex">
                     <a
                       href={`/mbaresources/samplelors/${scholarship.slug}`}

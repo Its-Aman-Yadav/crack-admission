@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-import { Linkedin, Globe, Building2 } from "lucide-react";
+import { useState, useEffect } from 'react';
+import { Linkedin, Globe, Building2 } from 'lucide-react';
 
 // Define a type for the profile data
 interface Profile {
@@ -20,9 +20,9 @@ export default function Component() {
   const [selectedSchool, setSelectedSchool] = useState("All");
 
   const programs = ["All", "MBA", "EMBA", "MS", "MBA Summer School", "MS Financial Management", "MS Data Science"];
-  const schools = ["All",
-    "ISB", "NTU", "MBS", "ISB PGPMAx", "Duke Fuqua", "IIM B EPGP", "Chicago Booth", "Fox School of Business", "LBS", 
-    "Asian Institute of Management", "IIM L IPMX", "EDHEC", "INSEAD", "Schulich", "IE", "ISB YLP", "IIM A PGPX", 
+  const schools = [
+    "All", "ISB", "NTU", "MBS", "ISB PGPMAx", "Duke Fuqua", "IIM B EPGP", "Chicago Booth", "Fox School of Business", 
+    "LBS", "Asian Institute of Management", "IIM L IPMX", "EDHEC", "INSEAD", "Schulich", "IE", "ISB YLP", "IIM A PGPX", 
     "MDI", "HEC", "Oxford", "UCD Smurfit", "Emory Goizeuta", "UTD", "IESE", "Richard Ivey", "Olin", "Tepper", 
     "Melbourne Business School", "Wharton", "UBC Sauder", "CKGSB", "Michigan Ross", "USC Marshall", 
     "Australian Graduate School of Management (AGSM)", "ISB PGPPro", "HBS AMP", "UTD Austin", "Harvard Business School", 
@@ -31,16 +31,17 @@ export default function Component() {
   ];
 
   useEffect(() => {
-    // Helper function to fetch profiles with pagination
     const fetchAllProfiles = async () => {
       const allProfiles: Profile[] = [];
       let page = 1;
-      const pageSize = 100; // Adjust page size as needed
+      const pageSize = 100;
       let hasMore = true;
-  
+
       try {
         while (hasMore) {
-          const response = await fetch(`http://localhost:1337/api/success-stories?populate=*&pagination[page]=${page}&pagination[pageSize]=${pageSize}`);
+          const response = await fetch(
+            `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/success-stories?populate=*&pagination[page]=${page}&pagination[pageSize]=${pageSize}`
+          );
           const data = await response.json();
           const profiles = data.data.map((item: any) => {
             const imageUrl = item.image?.formats?.large?.url 
@@ -51,19 +52,19 @@ export default function Component() {
             
             return {
               name: item.name,
-              image: imageUrl.startsWith("/") ? `http://localhost:1337${imageUrl}` : imageUrl,
+              image: imageUrl.startsWith("/") ? `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${imageUrl}` : imageUrl,
               program: (item.program || "MBA").trim(),
               country: item.country || "Unknown",
               school: item.school || "Unknown",
               linkedin: item.linkedin || "#",
             };
           });
-  
+
           allProfiles.push(...profiles);
-          hasMore = profiles.length === pageSize; // If fewer items are returned, we're on the last page
+          hasMore = profiles.length === pageSize;
           page++;
         }
-  
+
         setProfiles(allProfiles);
       } catch (error) {
         console.error("Error fetching profiles:", error);
@@ -71,13 +72,12 @@ export default function Component() {
         setLoading(false);
       }
     };
-  
+
     fetchAllProfiles();
   }, []);
-  
 
   // Filter profiles based on selected program and school
-  const filteredProfiles = profiles.filter(profile => {
+  const filteredProfiles = profiles.filter((profile) => {
     const programMatch = selectedProgram === "All" || profile.program === selectedProgram;
     const schoolMatch = selectedSchool === "All" || profile.school === selectedSchool;
     return programMatch && schoolMatch;
@@ -101,6 +101,7 @@ export default function Component() {
           </div>
         </div>
       </div>
+
       <div className="flex flex-col lg:flex-row gap-8 p-4 md:p-6">
         {loading ? (
           <p>Loading profiles...</p>
@@ -146,6 +147,8 @@ export default function Component() {
                 ))}
               </div>
             </div>
+
+            {/* Filters */}
             <div className="lg:w-64 space-y-6">
               <div className="space-y-4">
                 <h3 className="font-semibold text-gray-700">Program Type</h3>
@@ -153,10 +156,7 @@ export default function Component() {
                   {programs.map((program) => (
                     <button
                       key={program}
-                      onClick={() => {
-                        setSelectedProgram(program);
-                        console.log("Selected Program:", program); // Log selected program for debugging
-                      }}
+                      onClick={() => setSelectedProgram(program)}
                       className={`${
                         selectedProgram === program ? "bg-blue-500 text-white" : "border border-gray-300 text-gray-600"
                       } rounded-full px-4 py-1 text-sm`}
@@ -172,10 +172,7 @@ export default function Component() {
                   {schools.map((school) => (
                     <button
                       key={school}
-                      onClick={() => {
-                        setSelectedSchool(school);
-                        console.log("Selected School:", school); // Log selected school for debugging
-                      }}
+                      onClick={() => setSelectedSchool(school)}
                       className={`${
                         selectedSchool === school ? "bg-blue-500 text-white" : "border border-gray-300 text-gray-600"
                       } rounded-full px-4 py-1 text-sm`}

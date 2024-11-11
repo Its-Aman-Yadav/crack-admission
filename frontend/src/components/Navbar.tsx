@@ -88,7 +88,7 @@ const Navbar: FC = () => {
                   <Link href="/about-us/your-team" className="text-gray-800 hover:text-blue-500 whitespace-nowrap">
                     Your Team
                   </Link>
-                  <Link href="/about-us/sucess-recipe" className="text-gray-800 hover:text-blue-500 whitespace-nowrap">
+                  <Link href="/about-us/success-recipe" className="text-gray-800 hover:text-blue-500 whitespace-nowrap">
                     Success Recipe
                   </Link>
                 </div>

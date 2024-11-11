@@ -20,16 +20,20 @@ export default function ArticlePage() {
 
     const fetchArticle = async () => {
       try {
-        const response = await fetch(`http://localhost:1337/api/lors?filters[slug][$eq]=${slug}`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/lors?filters[slug][$eq]=${slug}&populate=*`);
+        if (!response.ok) {
+          throw new Error(`Failed to fetch data: ${response.statusText}`);
+        }
         const data = await response.json();
         
         console.log("Fetched data:", data);
 
         if (data.data && data.data.length > 0) {
+          const articleData = data.data[0];
           setArticle({
-            title: data.data[0].title,
-            content: data.data[0].content,
-            slug: data.data[0].slug,
+            title: articleData.title,
+            content: articleData.content,
+            slug: articleData.slug,
           });
         } else {
           setError("Article not found");

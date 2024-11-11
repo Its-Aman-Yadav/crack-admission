@@ -111,9 +111,11 @@ const RushHour = () => {
       </div>
 
       {/* Simple button */}
+      <Link href="/payment">
       <button className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-all">
         Apply 30% Discount
       </button>
+      </Link>
     </div>
   );
 };
@@ -155,9 +157,11 @@ export default function Component() {
             <p className="mb-6">
             The age-old dilemma to unravel whose words matter the most – the CEO whose designation carries weight or your manager who would highlight your qualifications, achievements, leadership skills, and what not. We will work with you to zero down on that recommender who replays the exact same story that you have outlined through your essays and resume. What’s more is that we will work with the recommenders to ensure this story comes out.
             </p>
+            <Link href="/payment">
             <button className="bg-white text-blue-500 font-semibold px-4 py-2 rounded-lg hover:bg-blue-100 transition-all">
               GET FREE CONSULTATION
             </button>
+            </Link>
           </div>
         </div>
 
@@ -219,7 +223,9 @@ export default function Component() {
                 </td>
                 <td className="px-4 py-3 text-sm text-gray-700">${item.price}</td>
                 <td className="px-4 py-3 text-right">
+                  <Link href="/payment">
                   <button className="text-sm text-blue-600 hover:text-blue-700 font-medium">Choose →</button>
+                  </Link>
                 </td>
               </tr>
             ))}

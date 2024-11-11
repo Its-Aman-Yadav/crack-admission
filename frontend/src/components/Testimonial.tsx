@@ -1,53 +1,61 @@
-'use client'
+'use client';
 
-import { useEffect, useState } from 'react'
-import { Star } from "lucide-react"
+import { useEffect, useState } from 'react';
+import { Star } from "lucide-react";
 
 interface Testimonial {
-  id: number
-  Service: string
-  School: string
-  Review: string
-  Course: string
-  GMAT: string
+  id: number;
+  Service: string;
+  School: string;
+  Review: string;
+  Course: string;
+  GMAT: string;
 }
 
 interface Review {
-  id: number
-  Testimonial: Testimonial[]
+  id: number;
+  Testimonial: Testimonial[];
 }
 
 interface ReviewsResponse {
-  data: Review[]
+  data: Review[];
 }
 
 export default function TestimonialSection() {
-  const [testimonials, setTestimonials] = useState<Testimonial[]>([])
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
 
   useEffect(() => {
     const fetchTestimonials = async () => {
       try {
-        const response = await fetch('http://localhost:1337/api/reviews?populate[Testimonial][populate]=*')
-        const data: ReviewsResponse = await response.json()
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/reviews?populate[Testimonial][populate]=*`
+        );
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data: ReviewsResponse = await response.json();
         
         // Extract Testimonial data from the response
-        const testimonials = data.data.flatMap((review) => review.Testimonial)
-        setTestimonials(testimonials)
+        const testimonials = data.data.flatMap((review: Review) => review.Testimonial);
+        setTestimonials(testimonials);
       } catch (error) {
-        console.error('Error fetching testimonials:', error)
+        console.error('Error fetching testimonials:', error);
       }
-    }
+    };
 
-    fetchTestimonials()
-  }, [])
+    fetchTestimonials();
+  }, []);
 
   return (
     <section className="py-16 bg-gradient-to-br from-blue-50 to-indigo-100">
       <div className="container mx-auto px-4">
-      <h2 className="text-3xl font-bold text-blue-600 mb-8">Testimonials</h2>
+        <h2 className="text-3xl font-bold text-blue-600 mb-8">Testimonials</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {testimonials.map((testimonial) => (
-            <div key={testimonial.id} className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
+            <div
+              key={testimonial.id}
+              className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
+            >
               <div className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white p-6">
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-indigo-600 font-semibold">
@@ -62,9 +70,13 @@ export default function TestimonialSection() {
               <div className="p-6">
                 <p className="text-gray-700 mb-4">{testimonial.Review}</p>
                 <div className="flex items-center space-x-2 mb-2">
-                  <span className="bg-blue-100 text-blue-600 text-xs font-medium px-2 py-1 rounded">{testimonial.Course}</span>
+                  <span className="bg-blue-100 text-blue-600 text-xs font-medium px-2 py-1 rounded">
+                    {testimonial.Course}
+                  </span>
                   {testimonial.GMAT && (
-                    <span className="bg-gray-100 text-gray-600 text-xs font-medium px-2 py-1 rounded"> {testimonial.GMAT}</span>
+                    <span className="bg-gray-100 text-gray-600 text-xs font-medium px-2 py-1 rounded">
+                      {testimonial.GMAT}
+                    </span>
                   )}
                 </div>
                 <div className="flex items-center space-x-1 text-yellow-400">
@@ -81,5 +93,5 @@ export default function TestimonialSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

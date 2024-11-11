@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import MarkdownHTML from '@/components/MarkdownHTML';
 
 interface Article {
+  id: number;
   title: string;
   content: string;
   slug: string;
@@ -23,14 +24,18 @@ export default function ArticlePage() {
 
     const fetchArticle = async () => {
       try {
-        const response = await fetch(`http://localhost:1337/api/essays?filters[slug][$eq]=${slug}`);
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/essays?filters[slug][$eq]=${slug}&populate=*`
+        );
         const data = await response.json();
 
         if (data.data.length > 0) {
+          const fetchedArticle = data.data[0];
           setArticle({
-            title: data.data[0].title,
-            content: data.data[0].Content,
-            slug: data.data[0].slug,
+            id: data.data[0].id,
+            title: fetchedArticle.title,
+            content: fetchedArticle.Content,
+            slug: fetchedArticle.slug,
           });
         } else {
           setError("Article not found");
@@ -43,9 +48,16 @@ export default function ArticlePage() {
 
     const fetchAdjacentArticles = async () => {
       try {
-        const response = await fetch(`http://localhost:1337/api/essays?sort=publishedAt:asc`);
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/essays?sort=publishedAt:asc&populate=*`
+        );
         const data = await response.json();
-        const articles = data.data;
+        const articles = data.data.map((item: any) => ({
+          id: item.id,
+          title: item.title,
+          slug: item.slug,
+          content: item.content,
+        }));
         const currentIndex = articles.findIndex((a: Article) => a.slug === slug);
 
         if (currentIndex > 0) setPrevArticle(articles[currentIndex - 1]);

@@ -33,7 +33,14 @@ interface Article {
 
 // Fetch article by slug
 const fetchArticleBySlug = async (slug: string): Promise<Article | null> => {
-  const response = await fetch(`http://localhost:1337/api/articles?filters[slug][$eq]=${slug}&populate=*`);
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/articles?filters[slug][$eq]=${slug}&populate=*`,
+    {
+      headers: {
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
+      },
+    }
+  );
   const data = await response.json();
   const article = data.data.length ? data.data[0] : null;
   return article;
@@ -62,17 +69,17 @@ const BlogPost: React.FC<BlogPostProps> = async ({ params }) => {
         <meta property="og:description" content={article.metaDescription || "Default blog description"} />
         <meta property="og:type" content="article" />
         <meta property="og:url" content={`https://yourwebsite.com/blogs/${article.slug}`} />
-        <meta property="og:image" content={`http://localhost:1337${article.cover.url}`} />
+        <meta property="og:image" content={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${article.cover.url}`} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={article.title} />
         <meta name="twitter:description" content={article.metaDescription || "Default blog description"} />
-        <meta name="twitter:image" content={`http://localhost:1337${article.cover.url}`} />
+        <meta name="twitter:image" content={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${article.cover.url}`} />
       </Head>
 
       <article className="max-w-4xl mx-auto">
         <header className="relative w-screen h-[300px] mb-8 left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
           <Image
-            src={`http://localhost:1337${article.cover.url}`}
+            src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${article.cover.url}`}
             alt="Blog post header image"
             layout="fill"
             objectFit="cover"
@@ -92,13 +99,12 @@ const BlogPost: React.FC<BlogPostProps> = async ({ params }) => {
               </h1>
               {/* Display tags */}
               <div className="flex flex-wrap justify-center mt-2">
-  {tagsArray.map((tag, index) => (
-    <span key={index} className="bg-gray-200 text-gray-700 px-3 py-1 text-sm font-semibold rounded-full mx-1">
-      Tags: {tag.name}
-    </span>
-  ))}
-</div>
-
+                {tagsArray.map((tag, index) => (
+                  <span key={index} className="bg-gray-200 text-gray-700 px-3 py-1 text-sm font-semibold rounded-full mx-1">
+                    {tag.name}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         </header>

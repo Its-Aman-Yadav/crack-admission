@@ -1,4 +1,5 @@
-'use client'
+'use client';
+
 import { useEffect, useState } from 'react';
 
 interface ScreenshotFormat {
@@ -18,7 +19,7 @@ interface WhatsappReview {
   id: number;
   Name: string;
   School: string;
-  screenshot: Screenshot[];  // Changed to an array to match the response
+  screenshot: Screenshot[];
 }
 
 interface Review {
@@ -36,11 +37,16 @@ export default function WhatsappReviewsSection() {
   useEffect(() => {
     const fetchWhatsappReviews = async () => {
       try {
-        const response = await fetch('http://localhost:1337/api/reviews?populate[WhatsappReviews][populate]=*');
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/reviews?populate[WhatsappReviews][populate]=*`
+        );
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
         const data: ReviewsResponse = await response.json();
-        
+
         // Extract WhatsappReviews from the response
-        const reviews = data.data.flatMap((review) => review.WhatsappReviews);
+        const reviews = data.data.flatMap((review: Review) => review.WhatsappReviews);
         setWhatsappReviews(reviews);
       } catch (error) {
         console.error('Error fetching WhatsApp reviews:', error);
@@ -56,24 +62,22 @@ export default function WhatsappReviewsSection() {
         <h2 className="text-3xl font-bold text-blue-600 mb-8">WhatsApp Reviews</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {whatsappReviews.map((review) => {
-            // Access the first item in the screenshot array
-            const screenshot = review.screenshot && review.screenshot[0];
-            // Construct the image URL with a fallback
+            const screenshot = review.screenshot?.[0];
             const imageUrl = screenshot
-              ? `http://localhost:1337${screenshot.formats?.medium?.url || screenshot.url}`
+              ? `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${screenshot.formats?.medium?.url || screenshot.url}`
               : null;
 
-            // Log the image URL to verify
-            console.log("Image URL:", imageUrl);
-
             return (
-              <div key={review.id} className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
+              <div
+                key={review.id}
+                className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
+              >
                 <div className="w-full aspect-[9/16] overflow-hidden rounded-md">
                   {imageUrl ? (
                     <img
                       src={imageUrl}
                       alt={review.Name}
-                      className="w-full h-full object-contain" // Changed to object-contain
+                      className="w-full h-full object-contain"
                     />
                   ) : (
                     <p className="text-gray-500 text-center">Image not available</p>

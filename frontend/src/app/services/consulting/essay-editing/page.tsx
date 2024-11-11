@@ -156,9 +156,11 @@ export default function Component() {
               second set of eyes that will polish, reframe, add pointers, and do 
               whatever is necessary to make your essay stellar.
             </p>
+            <Link href="contact-us">
             <button className="w-full bg-gray-100 hover:bg-gray-200 text-blue-500 font-semibold py-2 rounded">
               GET FREE CONSULTATION
             </button>
+            </Link>
           </div>
         </div>
 
@@ -214,7 +216,9 @@ export default function Component() {
                 </td>
                 <td className="px-4 py-3 text-sm text-gray-700">${item.price}</td>
                 <td className="px-4 py-3 text-right">
+                  <Link href="/payment">
                   <button className="text-sm text-blue-600 hover:text-blue-700 font-medium">Choose →</button>
+                  </Link>
                 </td>
               </tr>
             ))}

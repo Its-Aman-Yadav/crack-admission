@@ -7,6 +7,7 @@ const HeroSection: React.FC = () => {
     <section className="relative h-screen bg-gray-900">
       {/* Background image */}
       <div className="absolute inset-0 z-0">
+        <Link href="/">
         <Image
           src="/images/bgImage.jpg" // Replace with the correct path to your local image
           alt="Background"
@@ -14,7 +15,8 @@ const HeroSection: React.FC = () => {
           objectFit="cover"
           objectPosition="center"
           priority
-        />
+          />
+          </Link>
         <div className="absolute inset-0 bg-black opacity-40"></div>
       </div>
 

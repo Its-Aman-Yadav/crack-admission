@@ -1,27 +1,41 @@
-'use client'
+'use client';
 import { useState, useEffect } from 'react';
 import { FaSearch } from 'react-icons/fa';
 
+interface Article {
+  id: number;
+  title: string;
+  description: string;
+  slug: string;
+  createdAt: string;
+}
+
 export default function Component() {
-  const [searchQuery, setSearchQuery] = useState<string>("");
-  const [articles, setArticles] = useState<any[]>([]);
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [articles, setArticles] = useState<Article[]>([]);
   const [fetchError, setFetchError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:1337/api/essays?populate=*');
+        const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/essays?populate=*`);
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json();
-        console.log("Fetched data:", data); // Log raw data to confirm its structure
+        console.log('Fetched data:', data); // Log raw data to confirm its structure
 
-        // Sort articles by `createdAt` in descending order
-        const sortedArticles = data.data.sort((a: any, b: any) => 
-          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-        );
-        
+        // Map and sort articles by `createdAt` in descending order
+        const sortedArticles = data.data
+          .map((item: any) => ({
+            id: item.id,
+            title: item.title,
+            description: item.description,
+            slug: item.slug,
+            createdAt: item.createdAt,
+          }))
+          .sort((a: Article, b: Article) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+
         setArticles(sortedArticles); // Set sorted articles to state
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -33,9 +47,10 @@ export default function Component() {
   }, []);
 
   // Filter articles based on the search query
-  const filteredArticles = articles.filter((article) =>
-    article.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    article.description?.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredArticles = articles.filter(
+    (article) =>
+      article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      article.description.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
@@ -75,14 +90,20 @@ export default function Component() {
         ) : (
           <div className="mb-8">
             {filteredArticles.length > 0 ? (
-              filteredArticles.map((article: any, index: number) => (
-                <div key={index} className="mb-8 p-6 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
-                  <a href={`/mbaresources/sample-essays/${article.slug}`} className="block text-2xl font-semibold text-gray-800 hover:text-blue-600 transition-colors duration-200">
+              filteredArticles.map((article) => (
+                <div key={article.id} className="mb-8 p-6 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+                  <a
+                    href={`/mbaresources/sample-essays/${article.slug}`}
+                    className="block text-2xl font-semibold text-gray-800 hover:text-blue-600 transition-colors duration-200"
+                  >
                     {article.title}
                   </a>
                   <p className="mt-2 text-gray-600 leading-relaxed">{article.description}</p>
                   <div className="flex">
-                    <a href={`/mbaresources/sample-essays/${article.slug}`} className="mt-4 text-blue-500 hover:text-blue-700 font-medium transition-colors duration-200">
+                    <a
+                      href={`/mbaresources/sample-essays/${article.slug}`}
+                      className="mt-4 text-blue-500 hover:text-blue-700 font-medium transition-colors duration-200"
+                    >
                       Read More →
                     </a>
                   </div>

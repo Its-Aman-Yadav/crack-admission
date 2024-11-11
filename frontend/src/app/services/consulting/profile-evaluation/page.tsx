@@ -117,9 +117,11 @@ const RushHour = () => {
       </div>
 
       {/* Simple button */}
+      <Link href="/payment">
       <button className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-all">
         Apply 30% Discount
       </button>
+      </Link>
     </div>
   );
 };
@@ -161,9 +163,11 @@ export default function Component() {
             <p className="mb-6">
             Applicants spend a lot of time figuring out answers to questions such as – which strengths and weaknesses should I portray, where do I fit in, which school is the most appropriate for me, should I retake the GMAT, what chances do I have for getting a scholarship. Our admission experts are here to answer such questions and more through an in-depth assessment of your overall profile
             </p>
+            <Link href="/contact-us">
             <button className="bg-white text-blue-500 font-semibold px-4 py-2 rounded-lg hover:bg-blue-100 transition-all">
               GET FREE CONSULTATION
             </button>
+            </Link>
           </div>
         </div>
 
@@ -220,7 +224,9 @@ export default function Component() {
                 </td>
                 <td className="px-4 py-3 text-sm text-gray-700">${item.price}</td>
                 <td className="px-4 py-3 text-right">
+                  <Link href="/payment">
                   <button className="text-sm text-blue-600 hover:text-blue-700 font-medium">Choose →</button>
+                  </Link>
                 </td>
               </tr>
             ))}
