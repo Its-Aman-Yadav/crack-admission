@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'], // Added comma here
+        sans: ['Inter', 'sans-serif'],
       },
       colors: {
         background: "var(--background)",
@@ -18,7 +18,7 @@ const config: Config = {
     },
   },
   plugins: [
-    require('@tailwindcss/typography')
+    require('@tailwindcss/typography'),
   ],
 };
 
