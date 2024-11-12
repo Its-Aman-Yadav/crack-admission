@@ -19,7 +19,7 @@ interface Article {
 
 // Fetch the data
 const fetchArticles = async (): Promise<Article[]> => {
-  const response = await fetch("http://localhost:1337/api/articles?populate=* ", { cache: 'no-store' });
+  const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/articles?populate=*`, { cache: 'no-store' });
   const data = await response.json();
   return data.data; // Assuming data.data is an array of articles
 };
@@ -61,7 +61,7 @@ const BlogSection: React.FC = () => {
             >
               {/* Image */}
               <img
-                src={`http://localhost:1337${post.cover.url}`}
+                src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${post.cover.url}`}
                 alt={post.title}
                 className="w-full h-80 object-cover transform group-hover:scale-105 transition-transform duration-300"
               />
