@@ -6,6 +6,8 @@ services:
     restart: always
     ports:
       - "3000:3000"
+    depends_on:
+      - backend
 
   backend:
     build:
@@ -16,9 +18,11 @@ services:
       - "1337:1337"
     environment:
       DATABASE_CLIENT: "sqlite"
-      DATABASE_FILENAME: "./data.db"
+      DATABASE_FILENAME: "/srv/data.db" # Specify the path in the container
       NODE_ENV: "production"
-  
+    volumes:
+      - strapi-data:/srv # Mount the /srv folder in the container to a persistent volume
+
   nginx:
     image: nginx:latest
     container_name: nginx
@@ -30,3 +34,7 @@ services:
     depends_on:
       - frontend
       - backend
+
+volumes:
+  strapi-data:
+    driver: local
