@@ -21,7 +21,8 @@ services:
       DATABASE_FILENAME: "/srv/data.db" # Specify the path in the container
       NODE_ENV: "production"
     volumes:
-      - strapi-data:/srv # Mount the /srv folder in the container to a persistent volume
+      - ./strapi-app:/srv/app
+      - ./data:/srv/app/.tmp 
 
   nginx:
     image: nginx:latest
