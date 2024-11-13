@@ -7,7 +7,7 @@ exports.default = [
     {
         name: 'strapi::cors',
         config: {
-            origin: ['http://13.235.104.162:8080/'], // Allow requests from your frontend
+            origin: ['http://13.235.104.162:8080'], // Allow requests from your frontend
             methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
             headers: ['Content-Type', 'Authorization', 'Origin', 'Accept'],
         },
