@@ -1,3 +1,7 @@
+networks:
+  my_network:
+    driver: bridge
+
 services:
   frontend:
     build:
@@ -6,8 +10,8 @@ services:
     restart: always
     ports:
       - "3000:3000"
-    depends_on:
-      - backend
+    networks:
+      - my_network
 
   backend:
     build:
@@ -18,11 +22,10 @@ services:
       - "1337:1337"
     environment:
       DATABASE_CLIENT: "sqlite"
-      DATABASE_FILENAME: "/srv/data.db" # Specify the path in the container
+      DATABASE_FILENAME: "./data.db"
       NODE_ENV: "production"
-    volumes:
-      - ./strapi-app:/srv/app
-      - ./data:/srv/app/.tmp 
+    networks:
+      - my_network
 
   nginx:
     image: nginx:latest
@@ -32,10 +35,5 @@ services:
       - "8080:80"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
-    depends_on:
-      - frontend
-      - backend
-
-volumes:
-  strapi-data:
-    driver: local
+    networks:
+      - my_network
