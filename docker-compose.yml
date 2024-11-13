@@ -1,3 +1,5 @@
+version: "3"
+
 services:
   # Frontend (Next.js)
   frontend:
@@ -15,7 +17,8 @@ services:
   # Backend (Strapi)
   backend:
     container_name: strapi
-    build: ./backend
+    build:
+      context: ./backend
     image: strapi:latest
     restart: unless-stopped
     env_file: ./backend/.env
@@ -56,8 +59,6 @@ services:
       MYSQL_DATABASE: ${DATABASE_NAME}
     volumes:
       - strapi-data:/var/lib/mysql
-    ports:
-      - "3306:3306"
     networks:
       - app_network
 
