@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { FaFacebook, FaTwitter, FaInstagram, FaYoutube, FaLinkedin } from 'react-icons/fa';
+import { FaFacebook, FaTwitter, FaInstagram, FaYoutube, FaLinkedin, FaComments } from 'react-icons/fa';
 
 const Footer: React.FC = () => {
   return (
@@ -95,6 +95,9 @@ const Footer: React.FC = () => {
               </Link>
               <Link href="https://www.linkedin.com/company/crackadmission/posts/?feedView=all" aria-label="LinkedIn" className="text-white">
                 <FaLinkedin className="h-6 w-6" />
+              </Link>
+              <Link href="https://gmatclub.com/forum/members/member-661571.html" aria-label="GMAT Club" className="text-white">
+                <FaComments className="h-6 w-6" />
               </Link>
             </div>
           </div>
