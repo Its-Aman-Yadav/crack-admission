@@ -143,6 +143,7 @@ export default function Component() {
 
       {/* Sample Resume Button */}
       <div className="text-center">
+        <Link href="/mbaresources/samplecvs"></Link>
         <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg mt-6">
           SAMPLE RESUME
         </button>

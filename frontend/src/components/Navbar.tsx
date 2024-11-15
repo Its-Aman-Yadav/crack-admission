@@ -84,7 +84,7 @@ const Navbar: FC = () => {
               {isMobileMenuOpen ? (
                 <FiX className="block h-6 w-6" aria-hidden="true" />
               ) : (
-                <FiMenu className="block h-6 w-6" aria-hidden="true" />
+                <FiMenu className="block h-6 w-6 text-blue-500" aria-hidden="true" />
               )}
             </button>
           </div>

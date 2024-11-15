@@ -148,7 +148,9 @@ export default function Component() {
         </div>
 
         <div className="flex justify-center mt-8">
+          <Link href="/mbaresources/sample-essays">
           <button className="bg-blue-500 mb-10 text-white font-semibold px-4 py-2 rounded-lg hover:bg-blue-600 transition-all">SAMPLE ESSAYS</button>
+          </Link>
         </div>
 
         {/* How it Works Section */}

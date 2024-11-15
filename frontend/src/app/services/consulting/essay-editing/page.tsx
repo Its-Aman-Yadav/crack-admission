@@ -165,6 +165,7 @@ export default function Component() {
         </div>
 
         <div className="text-center mt-6">
+          <Link href="/mbaresources/sample-essays"></Link>
           <button className="bg-blue-500 hover:bg-blue-600 mt-10 mb-10 text-white font-semibold py-2 px-8 rounded">
             SAMPLE ESSAYS
           </button>

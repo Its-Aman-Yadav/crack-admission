@@ -75,6 +75,7 @@ export default function Component() {
       </div>
 
       <div className="text-center">
+        <Link href="/mbaresources/sampleinterviewquestions"></Link>
         <button className="bg-blue-500 mt-10 mb-10 hover:bg-blue-600 text-white py-3 px-6 rounded-lg">SAMPLE INTERVIEW DEBRIEFS</button>
       </div>
 
