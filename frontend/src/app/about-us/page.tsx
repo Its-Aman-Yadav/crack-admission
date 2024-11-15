@@ -47,7 +47,7 @@ const successStories: SuccessStory[] = [
     image: "/images/success/Ammar.png",
     school: {
       name: "Ross",
-      logo: "/images/success/mross"
+      logo: "/images/success/mross.png"
     }
   }
 ];
@@ -170,6 +170,7 @@ export default function Component() {
             </p>
 
             <div className="grid md:grid-cols-2 gap-8 mb-12">
+              <Link href="https://www.linkedin.com/in/arijit-biswas-86507119/">
               <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                 <div className="p-6">
                   <div className="w-32 h-32 mx-auto mb-4">
@@ -186,7 +187,9 @@ export default function Component() {
                 </div>
                 <div className="h-2 bg-blue-500"></div>
               </div>
-
+              </Link>
+              
+              <Link href="https://www.linkedin.com/in/shruti-s-15697316/">
               <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                 <div className="p-6">
                   <div className="w-32 h-32 mx-auto mb-4">
@@ -203,6 +206,7 @@ export default function Component() {
                 </div>
                 <div className="h-2 bg-blue-500"></div>
               </div>
+              </Link>
             </div>
             <div className="text-center">
                <Link href='/about-us/your-team'>

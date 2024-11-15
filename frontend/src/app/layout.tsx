@@ -32,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/favicon.ico" />
+      <link rel="icon" href="/favicon.ico" sizes="any" />
         <title>Crack Admission</title>
         <meta name="description" content="Common Dream, Unique Journeys ... With over 6 years of work experience. Stanford has been his lifelong dream, but, he does not want to be type casted as the ..." />
       </head>

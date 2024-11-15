@@ -4,12 +4,15 @@ import Link from 'next/link';
 import { FC, useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { FiChevronDown } from 'react-icons/fi';
+import {  FiMenu, FiX } from 'react-icons/fi';
 
 const Navbar: FC = () => {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,7 +34,8 @@ const Navbar: FC = () => {
 
   // Reset dropdown visibility on route change
   useEffect(() => {
-    setIsVisible(true); // Reset navbar visibility on route change
+    setIsVisible(true);   // Reset navbar visibility on route change
+    setIsMobileMenuOpen(false);  
   }, [pathname]);
 
   const isHomePage = pathname === '/';
@@ -46,6 +50,8 @@ const Navbar: FC = () => {
         ? 'text-white'
         : 'text-gray-600'
     }`;
+
+  
 
   return (
     <nav
@@ -121,7 +127,7 @@ const Navbar: FC = () => {
       <Link href="/services/consulting/recommendation" className="text-gray-800 hover:text-blue-500 whitespace-nowrap">
         Recommendation Letter
       </Link>
-      <Link href="/services/consulting/scholarshipessay" className="text-gray-800 hover:text-blue-500 whitespace-nowrap">
+      <Link href="/services/consulting/scholarships" className="text-gray-800 hover:text-blue-500 whitespace-nowrap">
         Scholarship Essay
       </Link>
       <Link href="/services/consulting/re-application" className="text-gray-800 hover:text-blue-500 whitespace-nowrap">

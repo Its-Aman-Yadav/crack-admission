@@ -1,5 +1,5 @@
 import Image from 'next/image';
-
+import Link from 'next/link';
 interface SuccessStory {
     name: string;
     field: string;
@@ -79,6 +79,7 @@ export default function TeamShowcase() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           {consultants.map((consultant, index) => (
             <div key={index} className="flex flex-col items-center p-4 border rounded-lg shadow-sm">
+               <Link href={consultant.linkedin}>
               <Image
                 src={consultant.image}
                 alt={consultant.name}
@@ -86,6 +87,7 @@ export default function TeamShowcase() {
                 height={100}
                 className="rounded-full mb-4"
               />
+              </Link>
               <h3 className="font-semibold text-black text-lg mb-1">{consultant.name}</h3>
               <p className="text-sm font-semibold text-gray-600 mb-4">{consultant.expertise}</p>
               <Image
@@ -149,6 +151,7 @@ export default function TeamShowcase() {
           ].map((item, index) => (
             <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden">
               <div className="w-full">
+             
                 <Image
                   src={item.image}
                   alt={item.title}
@@ -179,6 +182,7 @@ export default function TeamShowcase() {
                 <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden">
                   <div className="p-6">
                     <div className="w-24 h-24 mx-auto mb-4">
+                     
                       <Image
                         src={story.image}
                         alt={story.name}
@@ -213,48 +217,57 @@ const consultants = [
     name: "Arijit Biswas",
     expertise: "Tech Entrepreneurship",
     image: "/images/team/Arijit.png",
-    school: { name: "ISB", logo: "/images/success/ISB.png" }
+    school: { name: "ISB", logo: "/images/success/ISB.png" },
+    linkedin: "https://www.linkedin.com/in/arijit-biswas-86507119/"
   },
   {
     name: "Shruti Sharma",
     expertise: "Alliances and Partnerships",
     image: "/images/team/Shruti.jpeg",
-    school: { name: "ISB", logo: "/images/success/ISB.png" }
+    school: { name: "ISB", logo: "/images/success/ISB.png" },
+    linkedin: "https://www.linkedin.com/in/shruti-sharma-15697316/"
   },
   {
     name: "Mudit Gupta",
     expertise: "Product Management",
     image: "/images/team/Mudit.png",
-    school: { name: "INSEAD", logo: "/images/team/insead.png" }
+    school: { name: "INSEAD", logo: "/images/team/insead.png" },
+    linkedin: "https://www.linkedin.com/in/muditgupta/"
   },
   {
     name: "Ruchi Somaiya",
     expertise: "Business Development",
     image: "/images/team/Ruchi.png",
-    school: { name: "ISB", logo: "/images/success/ISB.png"}
+    school: { name: "ISB", logo: "/images/success/ISB.png" },
+    linkedin: "https://www.linkedin.com/in/ruchisomaiya/"
   },
   {
-    name: "Arjun Agrawal",
+    name: "Arjun Agarwala",
     expertise: "Strategy Consulting",
     image: "/images/team/Arjun.png",
-    school: { name: "Other", logo: "/images/team/emory.png"}
+    school: { name: "Other", logo: "/images/team/emory.png" },
+    linkedin: "https://www.linkedin.com/in/arjun-agarwala-902b7081/"
   },
   {
-    name: "Ashustosh",
+    name: "Ashutosh",
     expertise: "Product Management",
     image: "/images/team/Ashutosh.png",
-    school: { name: "Other", logo: "/images/philosophy/IIM.png" }
+    school: { name: "Other", logo: "/images/philosophy/IIM.png" },
+    linkedin: "https://www.linkedin.com/in/ashutosh-kumar-iimb/"
   },
   {
     name: "Nitish Barbaria",
     expertise: "Program Management",
     image: "/images/team/Nitish.png",
-    school: { name: "ISB", logo: "/images/success/ISB.png"}
+    school: { name: "ISB", logo: "/images/success/ISB.png" },
+    linkedin: "https://www.linkedin.com/in/nitish-barbaria-331a5650/"
   },
   {
     name: "Raghav Dasson",
     expertise: "Product Management",
     image: "/images/team/Raghav.png",
-    school: { name: "ISB", logo:"/images/success/ISB.png" }
+    school: { name: "ISB", logo: "/images/success/ISB.png" },
+    linkedin: "https://www.linkedin.com/in/raghavdasson/"
   }
 ];
+

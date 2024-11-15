@@ -105,21 +105,30 @@ export default function CombinedPage() {
 
       {/* Strategic Plan Section */}
       <div className="max-w-6xl mt-10 mb-10 mx-auto px-4 py-8">
-        <div className="bg-blue-500 text-white p-4 mb-8 text-center">
-          <p className="text-lg">
-            We maximize your chances of success by executing a strategic plan, which we call "Doing Things"
-          </p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 mt-20 lg:grid-cols-3 gap-8">
-          {features.map((feature, index) => (
-            <div key={index} className="flex flex-col items-start">
-              <feature.icon className="w-12 h-12 text-blue-400 mb-4" />
-              <h3 className="text-xl text-gray-600 font-semibold mb-2">{feature.title}</h3>
-              <p className="text-gray-600 text-sm">{feature.description}</p>
-            </div>
-          ))}
-        </div>
+  {/* Header Section */}
+  <div className="bg-blue-500 text-white p-6 rounded-lg mb-8 text-center">
+    <p className="text-base md:text-lg">
+      We maximize your chances of success by executing a strategic plan, which we call "Doing Things"
+    </p>
+  </div>
+
+  {/* Features Section */}
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
+    {features.map((feature, index) => (
+      <div
+        key={index}
+        className="flex flex-col items-center md:items-start text-center md:text-left p-4 border rounded-lg shadow-sm bg-white"
+      >
+        <feature.icon className="w-12 h-12 text-blue-400 mb-4" />
+        <h3 className="text-lg md:text-xl text-gray-600 font-semibold mb-2">
+          {feature.title}
+        </h3>
+        <p className="text-gray-600 text-sm">{feature.description}</p>
       </div>
+    ))}
+  </div>
+</div>
+
 
       <section className="bg-gray-50 py-16 px-4">
           <div className="max-w-6xl mx-auto">

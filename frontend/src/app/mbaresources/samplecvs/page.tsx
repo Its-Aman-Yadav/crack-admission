@@ -98,71 +98,99 @@ export default function Component() {
         </div>
       </div>
 
-      <div className="flex min-h-screen mb-10 flex-col">
-        <header className="sticky top-0 bg-white">
-          <div className="container flex h-14 items-center gap-4">
-            <button className="shrink-0 p-2 border md:hidden">
-              <Menu className="h-5 w-5" />
-              <span className="sr-only">Toggle menu</span>
-            </button>
-          </div>
-        </header>
-        <div className="container flex-1 flex flex-col items-center py-4">
-          <div className="flex gap-2 mb-6 border-b">
-            {Object.keys(categories).map((key) => (
-              <button
-                key={key}
-                onClick={() => setActiveCategory(key as CategoryKey)}
-                className={`px-4 py-2 text-black font-semibold ${
-                  activeCategory === key ? "border-b-2 border-blue-600" : "border-transparent"
-                }`}
-              >
-                {categories[key as CategoryKey].title}
-              </button>
-            ))}
-          </div>
-          <div className="space-y-6 w-full max-w-4xl">
-            <div>
-              <h2 className="text-2xl text-black font-bold tracking-tight">{categories[activeCategory].title}</h2>
-              {/* <p className="text-gray-800">{categories[activeCategory].description}</p> */}
-            </div>
-            <div className="flex gap-4 my-4">
-              <span className="font-semibold text-gray-700">Filter by Experience:</span>
-              {yearFilters.map((filter) => (
-                <button
-                  key={filter.value}
-                  onClick={() => setSelectedYears(filter.value)}
-                  className={`px-4 py-2 rounded-full ${
-                    selectedYears === filter.value ? 'bg-blue-600 text-white' : 'bg-gray-200 text-black'
-                  }`}
-                >
-                  {filter.label}
-                </button>
-              ))}
-            </div>
-            <hr className="my-4" />
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {categories[activeCategory].documents
-                .filter((doc) => selectedYears === "all" || doc.years === selectedYears)
-                .map((document) => (
-                  <div key={document.id} className="p-4 border rounded-lg flex flex-col justify-between">
-                    <div>
-                      <h3 className="flex items-center text-black gap-2 font-semibold text-lg">
-                        <FileDown className="h-5 text-blue-800 w-5" />
-                        {categories[activeCategory].title} Sample
-                      </h3>
-                      <p className="text-gray-900 ml-6">{document.years} Years Experience</p>
-                    </div>
-                    <button className="mt-4 flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-                      <Download className="h-4 w-4" />
-                      Download
-                    </button>
-                  </div>
-                ))}
-            </div>
-          </div>
-        </div>
+      <div className="flex min-h-screen mb-10 flex-col bg-gray-50">
+  {/* Header */}
+  <header className="sticky top-0 bg-white z-10 shadow-sm">
+    <div className="container mx-auto flex h-14 items-center justify-between gap-4 px-4">
+      <button className="shrink-0 p-2 border rounded-md md:hidden">
+        <Menu className="h-5 w-5" />
+        <span className="sr-only">Toggle menu</span>
+      </button>
+    </div>
+  </header>
+
+  {/* Main Content */}
+  <div className="container mx-auto flex-1 flex flex-col items-center py-4 px-4">
+    {/* Category Buttons */}
+    <div className="w-full px-4">
+  <div className="flex gap-2 mb-6 overflow-x-auto border-b pb-2 scrollbar-hide justify-center md:justify-start">
+    {Object.keys(categories).map((key) => (
+      <button
+        key={key}
+        onClick={() => setActiveCategory(key as CategoryKey)}
+        className={`px-4 py-2 text-sm md:text-base font-semibold whitespace-nowrap transition-colors duration-200 ${
+          activeCategory === key
+            ? 'border-b-2 border-blue-600 text-blue-600'
+            : 'text-gray-700 hover:text-blue-600'
+        }`}
+      >
+        {categories[key as CategoryKey].title}
+      </button>
+    ))}
+  </div>
+</div>
+
+
+
+    {/* Category Content */}
+    <div className="space-y-6 w-full max-w-4xl">
+      {/* Category Title */}
+      <div className="mb-4">
+  <h2 className="text-base sm:text-lg md:text-2xl font-bold text-black tracking-tight text-center md:text-left">
+    {categories[activeCategory].title}
+  </h2>
+</div>
+
+
+      {/* Filter Buttons */}
+      <div className="flex flex-wrap gap-2 items-center justify-center md:justify-start my-4">
+        <span className="font-semibold text-gray-700 text-sm md:text-base">Filter by Experience:</span>
+        {yearFilters.map((filter) => (
+          <button
+            key={filter.value}
+            onClick={() => setSelectedYears(filter.value)}
+            className={`px-3 py-2 rounded-full text-xs md:text-sm ${
+              selectedYears === filter.value
+                ? 'bg-blue-600 text-white'
+                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+            }`}
+          >
+            {filter.label}
+          </button>
+        ))}
       </div>
+      <hr className="my-4" />
+
+      {/* Documents Grid */}
+      <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        {categories[activeCategory].documents
+          .filter((doc) => selectedYears === 'all' || doc.years === selectedYears)
+          .map((document) => (
+            <div
+              key={document.id}
+              className="p-4 border rounded-lg flex flex-col justify-between bg-white shadow-sm"
+            >
+              <div>
+                <h3 className="flex items-center text-black gap-2 font-semibold text-sm md:text-base">
+                  <FileDown className="h-5 w-5 text-blue-800" />
+                  {categories[activeCategory].title} Sample
+                </h3>
+                <p className="text-gray-900 ml-6 text-xs md:text-sm">
+                  {document.years} Years Experience
+                </p>
+              </div>
+              <button className="mt-4 flex items-center justify-center gap-2 px-3 py-2 bg-blue-600 text-white rounded-md text-xs md:text-sm hover:bg-blue-700">
+                <Download className="h-4 w-4" />
+                Download
+              </button>
+            </div>
+          ))}
+      </div>
+    </div>
+  </div>
+</div>
+
+
     </>
   );
 }
