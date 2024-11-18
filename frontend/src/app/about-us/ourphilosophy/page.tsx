@@ -1,4 +1,7 @@
+"use client"
 import Image from 'next/image';
+import Head from 'next/head';
+import { useEffect } from 'react';
 
 interface SuccessStory {
     name: string;
@@ -50,8 +53,26 @@ const successStories: SuccessStory[] = [
   ];
 
 export default function OurPhilosophy() {
+  useEffect(() => {
+    document.title = "Our Philosophy";
+  }, []);
+
   return (
+    
     <div className="bg-gray-100 min-h-screen"> {/* Added padding-top to make room for the navbar */}
+
+    <Head>
+        <title>Our Philosophy</title>
+        <meta name="description" content="Explore the core philosophy of Crack Admission. Learn about our approach to brand building, success obsession, and honesty in MBA admissions consulting." />
+        <meta name="keywords" content="Our Philosophy, Crack Admission, MBA admissions, brand building, success stories, admissions consulting" />
+        <meta property="og:title" content="Our Philosophy | Crack Admission" />
+        <meta property="og:description" content="Discover Crack Admission's philosophy: building brands, achieving high success rates, and fostering trust in MBA admissions." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://crackadmission.com/about-us/ourphilosophy" />
+
+      </Head>
+
+
       <div className="max-w-6xl mx-auto px-4 py-12">
       <div className="bg-blue-100 w-full py-12 mb-10">
       <div className="max-w-4xl mx-auto">

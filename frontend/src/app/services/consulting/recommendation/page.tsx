@@ -4,6 +4,7 @@ import { Compass, Users, MonitorPlay, FileEdit, FileText, FileCheck, GraduationC
 import { FaUserTie, FaListUl, FaPenAlt, FaThumbsUp } from 'react-icons/fa';
 import { useState, useEffect } from "react"; // Import React hooks for the timer
 import Link from "next/link";
+import Head from "next/head";
 
 const successStories = [
   {
@@ -121,7 +122,27 @@ const RushHour = () => {
 };
 
 export default function Component() {
+  useEffect(() => {
+    document.title = "Recommendation";
+  }, []);
   return (
+    <>
+    <Head>
+    <title>Re-Application</title>
+    <meta
+      name="description"
+      content="Receive expert feedback and guidance to improve your MBA application. Strategize, refine, and reapply with confidence."
+    />
+    <meta name="keywords" content="Re-Application, MBA Applications, Feedback, Ding Analysis, Crack Admission" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="Re-Application | Crack Admission" />
+    <meta
+      property="og:description"
+      content="Get personalized strategies for improving your MBA application. Learn how to address weaknesses and highlight changes in your profile effectively."
+    />
+    <meta property="og:url" content="https://crackadmission.com/services/consulting/re-application" />
+    <meta property="og:type" content="website" />
+  </Head>
     <div className="w-full">
       {/* Philosophy Section */}
       <div className="bg-blue-50 py-12 mb-10 px-4">
@@ -157,7 +178,7 @@ export default function Component() {
             <p className="mb-6">
             The age-old dilemma to unravel whose words matter the most – the CEO whose designation carries weight or your manager who would highlight your qualifications, achievements, leadership skills, and what not. We will work with you to zero down on that recommender who replays the exact same story that you have outlined through your essays and resume. What’s more is that we will work with the recommenders to ensure this story comes out.
             </p>
-            <Link href="/payment">
+            <Link href="/contact-us">
             <button className="bg-white text-blue-500 font-semibold px-4 py-2 rounded-lg hover:bg-blue-100 transition-all">
               GET FREE CONSULTATION
             </button>
@@ -302,5 +323,6 @@ export default function Component() {
 
       </div>
     </div>
+    </>
   );
 }

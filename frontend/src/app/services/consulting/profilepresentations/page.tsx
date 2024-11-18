@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Compass, Users, MonitorPlay, FileEdit, FileText, FileCheck, GraduationCap, RefreshCw, PenTool, BarChart2, ClipboardList, ChevronDown, Check } from "lucide-react";
 import { FaUserCheck,FaShareAlt, FaLaptop, FaUsers, FaSchool, FaPen, FaEdit, FaFileAlt, FaHandshake, FaComments, FaLinkedin } from "react-icons/fa";
 import { useState, useEffect } from "react"; // Import React hooks for the timer
+import Head from "next/head";
 
 const successStories = [
     {
@@ -128,7 +129,29 @@ const RushHour = () => {
 };
 
 export default function Component() {
+  useEffect(() => {
+    document.title = "Profile Presentations";
+  }, []);
   return (
+
+    <>
+      <Head>
+        <title>Profile Presentations</title>
+        <meta
+          name="description"
+          content="Crack Admission helps applicants prepare presentations and videos required for MBA applications. Showcase your unique profile and personality effectively!"
+        />
+        <meta name="keywords" content="Profile Presentations, MBA Applications, Elevator Pitch, Video Presentation, Crack Admission" />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="Profile Presentations | Crack Admission" />
+        <meta
+          property="og:description"
+          content="Get tailored assistance for your MBA profile presentations and videos. Impress the admissions committee with unique narratives and clear value propositions."
+        />
+        <meta property="og:url" content="https://crackadmission.com/services/consulting/profilepresentations" />
+        <meta property="og:type" content="website" />
+      </Head>
+      
     <div className="w-full">
       {/* Philosophy Section */}
       <div className="bg-blue-50 py-12 mb-10 px-4">
@@ -306,5 +329,6 @@ export default function Component() {
 
       </div>
     </div>
+    </>
   );
 }

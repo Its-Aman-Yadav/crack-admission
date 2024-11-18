@@ -6,6 +6,8 @@ import { Users,Compass, MonitorPlay, FileEdit, FileText, FileCheck, GraduationCa
 import { motion } from 'framer-motion'
 import Link from 'next/link';
 import RushHour from '@/components/RushHour';
+import { useEffect } from 'react';
+import Head from 'next/head';
 
 const services = [
   { icon: Compass, title: "Comprehensive Consulting", description: "Consultants assist in drafting school-specific essays from scratch", url: "/services/comprehensive-consulting" },
@@ -90,7 +92,28 @@ const steps = [
   ];
 
 export default function Component() {
+  useEffect(() => {
+    document.title = "Resume";
+  }, []);
+
   return (
+    <>
+    <Head>
+        <title>Resume Consulting | Crack Admission</title>
+        <meta
+          name="description"
+          content="Get professional help to craft an impactful resume. Highlight your leadership and experiences with precision through expert guidance from Crack Admission."
+        />
+        <meta name="keywords" content="Resume Consulting, MBA Resume, Crack Admission, Resume Guidance, Professional Resume Help" />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="Resume Consulting | Crack Admission" />
+        <meta
+          property="og:description"
+          content="Showcase your career achievements with a professional resume. Get expert insights to make your resume stand out."
+        />
+        <meta property="og:url" content="https://crackadmission.com/services/consulting/resume" />
+        <meta property="og:type" content="website" />
+      </Head>
     <div className="max-w-full mx-auto p-4 space-y-6">
       
       {/* Quote Component */}
@@ -288,5 +311,6 @@ export default function Component() {
         </div>
       </section>
     </div>
+    </>
   )
 }

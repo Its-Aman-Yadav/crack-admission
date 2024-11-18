@@ -1,5 +1,8 @@
+"use client"
 import { Users, BarChart2, CheckCircle, Network, DollarSign, UserCheck } from 'lucide-react';
 import Image from 'next/image';
+import Head from 'next/head';
+import { useEffect } from 'react';
 
 const features = [
   {
@@ -85,7 +88,31 @@ interface SuccessStory {
 
 
 export default function CombinedPage() {
+  useEffect(() => {
+    document.title = "Success Recipe";
+  }, []);
   return (
+    <> 
+    <Head>
+    <title>Success Recipe</title>
+    <meta
+      name="description"
+      content="Discover Crack Admission's success recipe to help MBA aspirants achieve their goals through strategic planning, dedicated teams, and tailored approaches."
+    />
+    <meta
+      name="keywords"
+      content="Success Recipe, Crack Admission, MBA admissions, alumni network, customer experience, ROI, admission consultants"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="Success Recipe | Crack Admission" />
+    <meta
+      property="og:description"
+      content="Explore how Crack Admission helps MBA aspirants succeed with a strategic plan, dedicated team, and proven ROI."
+    />
+    <meta property="og:url" content="https://crackadmission.com/about-us/success-recipe" />
+    <meta property="og:type" content="website" />
+  </Head>
+
     <div className="pt-20"> {/* Added padding-top to make room for the navbar */}
       {/* Philosophy Header */}
       <div className="bg-blue-50 py-12 px-4">
@@ -169,6 +196,7 @@ export default function CombinedPage() {
         </section>
       
     </div>
+    </>
     
   );
 }

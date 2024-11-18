@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Compass, Users, MonitorPlay, FileEdit, FileText, FileCheck, GraduationCap, RefreshCw, PenTool, BarChart2, ClipboardList, ChevronDown, Check } from "lucide-react";
 import { FaUserCheck, FaSchool, FaPen, FaEdit, FaFileAlt, FaHandshake, FaComments, FaLinkedin } from "react-icons/fa";
 import { useState, useEffect } from "react"; // Import React hooks for the timer
+import Head from "next/head";
 
 const successStories = [
     {
@@ -103,7 +104,28 @@ const RushHour = () => {
 };
 
 export default function Component() {
+  useEffect(() => {
+    document.title = "Re-Application";
+  }, []);
   return (
+    <>
+    <Head>
+      <title>Re-Application</title>
+      <meta
+        name="description"
+        content="Receive expert feedback and guidance to improve your MBA application. Strategize, refine, and reapply with confidence."
+      />
+      <meta name="keywords" content="Re-Application, MBA Applications, Feedback, Ding Analysis, Crack Admission" />
+      <meta name="robots" content="index, follow" />
+      <meta property="og:title" content="Re-Application | Crack Admission" />
+      <meta
+        property="og:description"
+        content="Get personalized strategies for improving your MBA application. Learn how to address weaknesses and highlight changes in your profile effectively."
+      />
+      <meta property="og:url" content="https://crackadmission.com/services/consulting/re-application" />
+      <meta property="og:type" content="website" />
+    </Head>
+    
     <div className="w-full">
       {/* Philosophy Section */}
       <div className="bg-blue-50 py-12 mb-10 px-4">
@@ -305,5 +327,6 @@ export default function Component() {
 
       </div>
     </div>
+    </>
   );
 }

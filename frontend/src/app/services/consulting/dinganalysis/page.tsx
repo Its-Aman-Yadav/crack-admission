@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Compass, Users, MonitorPlay, FileEdit, FileText, FileCheck, GraduationCap, RefreshCw, PenTool, BarChart2, ClipboardList, ChevronDown, Check } from "lucide-react";
 import {FaEnvelope, FaLightbulb, FaPhone, FaUserFriends } from "react-icons/fa";
 import { useState, useEffect } from "react"; // Import React hooks for the timer
+import Head from "next/head";
 
 const successStories = [
     {
@@ -128,7 +129,31 @@ const RushHour = () => {
 };
 
 export default function Component() {
+  useEffect(() => {
+    document.title = "Ding Analysis";
+  }, []);
   return (
+    <>
+    <Head>
+        <title>Ding Analysis | Crack Admission</title>
+        <meta
+          name="description"
+          content="Explore Crack Admission's Ding Analysis service to identify gaps in your MBA application and strategize for success. Expert guidance tailored to your needs."
+        />
+        <meta
+          name="keywords"
+          content="Ding Analysis, MBA application review, admission consulting, application improvement, MBA services"
+        />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="Ding Analysis | Crack Admission" />
+        <meta
+          property="og:description"
+          content="Discover how Crack Admission's Ding Analysis helps MBA aspirants identify and address gaps in their applications for greater success."
+        />
+        <meta property="og:url" content="https://crackadmission.com/services/ding-analysis" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="/images/og-image-ding-analysis.png" />
+      </Head>
     <div className="w-full">
       {/* Philosophy Section */}
       <div className="bg-blue-50 py-12 mb-10 px-4">
@@ -300,5 +325,6 @@ export default function Component() {
 
       </div>
     </div>
+    </>
   );
 }

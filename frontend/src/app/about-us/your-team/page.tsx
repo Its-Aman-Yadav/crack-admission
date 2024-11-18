@@ -1,5 +1,9 @@
+"use client"
 import Image from 'next/image';
 import Link from 'next/link';
+import Head from 'next/head';
+import { useEffect } from 'react';
+
 interface SuccessStory {
     name: string;
     field: string;
@@ -52,8 +56,32 @@ interface SuccessStory {
 
 
 export default function TeamShowcase() {
+  useEffect(() => {
+    document.title = "Your Team";
+  }, []);
+
   return (
     <>
+    <Head>
+        <title>Your Team</title>
+        <meta
+          name="description"
+          content="Meet the team of top consultants and experts from premier B-schools who are dedicated to helping you achieve success in MBA admissions."
+        />
+        <meta
+          name="keywords"
+          content="Meet the team, Crack Admission, MBA consultants, admission experts, top business schools"
+        />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="Meet the Team | Crack Admission" />
+        <meta
+          property="og:description"
+          content="Get to know the team of MBA admission consultants and experts from premier B-schools, ready to guide you to success."
+        />
+        <meta property="og:url" content="https://crackadmission.com/about-us/your-team" />
+        <meta property="og:type" content="website" />
+      </Head>
+
        <div className="bg-blue-50 py-12 px-4 pt-20"> {/* Added pt-20 for top margin */}
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold text-blue-500 mb-8">Your Team</h1>

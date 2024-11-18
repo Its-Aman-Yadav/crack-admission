@@ -4,6 +4,7 @@ import { Compass, Users, MonitorPlay, FileEdit, FileText, FileCheck, GraduationC
 import { FaUserCheck, FaSchool, FaPen, FaEdit, FaFileAlt, FaHandshake, FaComments, FaLinkedin } from "react-icons/fa";
 import Link from "next/link";
 import { useState, useEffect } from "react"; // Import React hooks for the timer
+import Head from "next/head";
 
 const successStories = [
     {
@@ -150,7 +151,31 @@ const RushHour = () => {
 };
 
 export default function Component() {
+  useEffect(() => {
+    document.title = "Scholarship";
+  }, []);
+
   return (
+    <>
+    <Head>
+      <title>Scholarship Essay Writing | Crack Admission</title>
+      <meta
+        name="description"
+        content="Get professional assistance to craft compelling scholarship essays. Maximize your chances of securing a scholarship with expert guidance."
+      />
+      <meta
+        name="keywords"
+        content="Scholarship Essays, Scholarship Guidance, MBA Scholarship, Crack Admission, Essay Writing Help"
+      />
+      <meta name="robots" content="index, follow" />
+      <meta property="og:title" content="Scholarship Essay Writing | Crack Admission" />
+      <meta
+        property="og:description"
+        content="Craft a scholarship essay that stands out. Let us help you create a compelling reasoning for your waiver eligibility."
+      />
+      <meta property="og:url" content="https://crackadmission.com/services/consulting/scholarships" />
+      <meta property="og:type" content="website" />
+    </Head>
     <div className="w-full">
       {/* Philosophy Section */}
       <div className="bg-blue-50 py-12 mb-10 px-4">
@@ -353,5 +378,6 @@ export default function Component() {
 
       </div>
     </div>
+    </>
   );
 }

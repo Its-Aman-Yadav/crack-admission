@@ -2,6 +2,8 @@
 import { Globe, Target, Users, User, FileSearch, Laptop, TrendingUp, GraduationCap, UserPlus } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import Head from 'next/head';
+import { useEffect } from 'react';
 
 interface SuccessStory {
   name: string;
@@ -12,6 +14,8 @@ interface SuccessStory {
     logo: string;
   };
 }
+
+
 
 const successStories: SuccessStory[] = [
   {
@@ -53,8 +57,25 @@ const successStories: SuccessStory[] = [
 ];
 
 export default function Component() {
+  useEffect(() => {
+    document.title = "About Us";
+  }, []);
+
   return (
     <div>
+
+       <Head>
+        <title>About Us</title>
+        <meta name="description" content="Learn about Crack Admission - a team of B-school graduates dedicated to ensuring your success in MBA admissions with tested strategies and a global network." />
+        <meta name="keywords" content="about Crack Admission, MBA admissions, global MBA network, essay specialists, admission consulting" />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="About Us - Crack Admission" />
+        <meta property="og:description" content="Discover how Crack Admission's team of experts helps MBA aspirants achieve success through tested strategies and personalized guidance." />
+        <meta property="og:url" content="https://crackadmission.com/about-us" />
+        <meta property="og:type" content="website" />
+      </Head>
+      
+
       <div className="bg-gray-50 p-8 max-w-full font-sans">
         {/* About Us Section */}
         <div className="bg-blue-100 p-10 w-full">

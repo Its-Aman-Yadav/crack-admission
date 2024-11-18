@@ -5,6 +5,8 @@ import { ElementType } from 'react';
 import { Compass, Users, MonitorPlay, FileEdit, FileText, FileCheck, GraduationCap, RefreshCw, PenTool, BarChart2, ClipboardList, ChevronDown, Check } from "lucide-react";
 import { LightbulbIcon, UserIcon, FileTextIcon, HandIcon } from 'lucide-react';
 import RushHour from '@/components/RushHour';
+import Head from 'next/head';
+import { useEffect } from 'react';
 
 const successStories = [
     {
@@ -129,8 +131,32 @@ function Quote() {
 }
 
 export default function Component() {
+  useEffect(() => {
+    document.title = "Essay Editing";
+  }, []);
+
   return (
     <>
+     <Head>
+        <title>Essay Editing</title>
+        <meta
+          name="description"
+          content="Refine your MBA application essays with Crack Admission's professional Essay Editing service. Transform your story into a stellar narrative."
+        />
+        <meta
+          name="keywords"
+          content="Essay Editing, MBA application, story refinement, professional editing, Crack Admission"
+        />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="Essay Editing | Crack Admission" />
+        <meta
+          property="og:description"
+          content="Elevate your MBA essays with expert editing and storytelling refinement. Tailored to make your application stand out."
+        />
+        <meta property="og:url" content="https://crackadmission.com/services/consulting/essay-editing" />
+        <meta property="og:type" content="website" />
+      </Head>
+
       <Quote />
       <div className="max-w-4xl mx-auto space-y-6">
         <div className="bg-blue-500 text-white p-4 text-center">
@@ -156,7 +182,7 @@ export default function Component() {
               second set of eyes that will polish, reframe, add pointers, and do 
               whatever is necessary to make your essay stellar.
             </p>
-            <Link href="contact-us">
+            <Link href="/contact-us">
             <button className="w-full bg-gray-100 hover:bg-gray-200 text-blue-500 font-semibold py-2 rounded">
               GET FREE CONSULTATION
             </button>

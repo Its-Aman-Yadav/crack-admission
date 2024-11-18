@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Compass, Users, MonitorPlay, FileEdit, FileText, FileCheck, GraduationCap, RefreshCw, PenTool, BarChart2, ClipboardList, ChevronDown, Check } from "lucide-react";
 import { FaUserCheck,FaUserFriends,FaQuestionCircle, FaSchool, FaPen, FaEdit, FaFileAlt, FaHandshake, FaComments, FaLinkedin } from "react-icons/fa";
 import { useState, useEffect } from "react"; // Import React hooks for the timer
+import Head from "next/head";
 
 const successStories = [
     {
@@ -127,7 +128,27 @@ const RushHour = () => {
 };
 
 export default function Component() {
+  useEffect(() => {
+    document.title = "Profile Evaluation";
+  }, []);
   return (
+    <>
+    <Head>
+    <title>Profile Evaluation</title>
+    <meta
+      name="description"
+      content="Discover your MBA fit with Crack Admission's Profile Evaluation service. Align your strengths, goals, and experiences with top MBA programs."
+    />
+    <meta name="keywords" content="Profile Evaluation, MBA Admission, Crack Admission, MBA Services, School Selection" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="Profile Evaluation | Crack Admission" />
+    <meta
+      property="og:description"
+      content="Get personalized insights and guidance on your MBA profile. Maximize your chances with Crack Admission's expert consultants."
+    />
+    <meta property="og:url" content="https://crackadmission.com/services/consulting/profile-evaluation" />
+    <meta property="og:type" content="website" />
+  </Head>
     <div className="w-full">
       {/* Philosophy Section */}
       <div className="bg-blue-50 py-12 mb-10 px-4">
@@ -301,5 +322,6 @@ export default function Component() {
 
       </div>
     </div>
+    </>
   );
 }

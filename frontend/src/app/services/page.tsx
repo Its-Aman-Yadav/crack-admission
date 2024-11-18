@@ -1,6 +1,9 @@
+"use client"
 import { Compass, Users, MonitorPlay, FileEdit, FileText, FileCheck, GraduationCap, RefreshCw, PenTool, BarChart2, ClipboardList, ChevronDown, Check } from "lucide-react";
 import Image from 'next/image';
 import Link from "next/link";
+import Head from "next/head";
+import { useEffect } from "react";
 
 interface SuccessStory {
     name: string;
@@ -106,7 +109,33 @@ const services = [
 
 
 function PhilosophyHeader() {
+
+  useEffect(() => {
+    document.title = "Services";
+  }, []);
+
   return (
+    <>
+    <Head>
+    <title>Services</title>
+    <meta
+      name="description"
+      content="Explore the array of services Crack Admission offers, including comprehensive consulting, essay editing, mock interviews, and more to help you succeed in your MBA application."
+    />
+    <meta
+      name="keywords"
+      content="MBA services, admission consulting, essay editing, mock interviews, scholarship assistance, comprehensive consulting"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="Services | Crack Admission" />
+    <meta
+      property="og:description"
+      content="Explore Crack Admission's specialized services designed to maximize your MBA application success rate."
+    />
+    <meta property="og:url" content="https://crackadmission.com/services" />
+    <meta property="og:type" content="website" />
+  </Head>
+
     <div className="bg-blue-50 py-12 mb-10 px-4">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl md:text-5xl font-bold text-center text-blue-500 mb-8">Services</h1>
@@ -119,6 +148,7 @@ function PhilosophyHeader() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 
@@ -247,5 +277,6 @@ export default function Component() {
 
       </div>
     </div>
+    
   );
 }

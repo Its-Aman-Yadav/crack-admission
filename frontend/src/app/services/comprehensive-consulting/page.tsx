@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Compass, Users, MonitorPlay, FileEdit, FileText, FileCheck, GraduationCap, RefreshCw, PenTool, BarChart2, ClipboardList, ChevronDown, Check } from "lucide-react";
 import { FaUserCheck, FaSchool, FaPen, FaEdit, FaFileAlt, FaHandshake, FaComments, FaLinkedin } from "react-icons/fa";
 import { useState, useEffect } from "react"; // Import React hooks for the timer
+import Head from "next/head";
 
 const successStories = [
     {
@@ -123,6 +124,7 @@ const RushHour = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft((prevTime) => (prevTime > 0 ? prevTime - 1 : 0));
+      document.title = "Comprehensive Consulting";
     }, 1000);
 
     return () => clearInterval(timer); // Cleanup timer on component unmount
@@ -136,6 +138,26 @@ const RushHour = () => {
   };
 
   return (
+    <>
+    <Head>
+    <title>Comprehensive Consulting</title>
+    <meta
+      name="description"
+      content="Get expert guidance for your MBA application with Crack Admission's Comprehensive Consulting services. Tailored strategies, essay support, interview prep, and more!"
+    />
+    <meta
+      name="keywords"
+      content="Comprehensive Consulting, MBA Application, Essay Editing, Interview Preparation, Resume Editing, Recommendation Letters"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="Comprehensive Consulting | Crack Admission" />
+    <meta
+      property="og:description"
+      content="Explore Crack Admission's Comprehensive Consulting services to maximize your MBA application success. Tailored support for every stage of your application."
+    />
+    <meta property="og:url" content="https://crackadmission.com/services/comprehensive-consulting" />
+    <meta property="og:type" content="website" />
+  </Head>
     <div className="mt-8 p-6 bg-gray-50 rounded-lg text-center">
       <h2 className="text-2xl font-bold text-gray-800 mb-4">Get 30% Off!</h2>
       <p className="text-gray-600 mb-4">Hurry up! This offer is valid for the next:</p>
@@ -152,6 +174,7 @@ const RushHour = () => {
       </button>
       </Link>
     </div>
+    </>
   );
 };
 

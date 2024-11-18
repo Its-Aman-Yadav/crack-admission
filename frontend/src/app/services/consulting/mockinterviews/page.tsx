@@ -1,10 +1,11 @@
 'use client'
-
 import Image from 'next/image'
 import { Users,Compass, MonitorPlay, FileEdit, FileText, FileCheck, GraduationCap, RefreshCw, PenTool, BarChart2, ClipboardList, Video } from "lucide-react";
 import { motion } from 'framer-motion'
 import Link from 'next/link';
 import RushHour from '@/components/RushHour';
+import Head from "next/head";
+import { useEffect } from 'react';
 
 const services = [
   { icon: Compass, title: "Comprehensive Consulting", description: "Consultants assist in drafting school-specific essays from scratch", url: "/services/comprehensive-consulting" },
@@ -39,7 +40,31 @@ const steps = [
 ];
 
 export default function Component() {
+  useEffect(() => {
+    document.title = "Mock Interview";
+  }, []);
   return (
+    <>
+    <Head>
+    <title>Mock Interviews | Crack Admission</title>
+    <meta
+      name="description"
+      content="Master your MBA interviews with Crack Admission's Mock Interview services. Personalized role plays, feedback, and debriefs for success."
+    />
+    <meta
+      name="keywords"
+      content="Mock Interviews, MBA Interview Preparation, Role Plays, MBA Admission, Crack Admission"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="Mock Interviews | Crack Admission" />
+    <meta
+      property="og:description"
+      content="Enhance your MBA interview skills with Crack Admission's tailored mock interview sessions. Prepare, practice, and succeed."
+    />
+    <meta property="og:url" content="https://crackadmission.com/services/consulting/mockinterviews" />
+    <meta property="og:type" content="website" />
+  </Head>
+
     <div className="max-w-full mx-auto p-4 space-y-6">
       
       {/* Quote Component */}
@@ -210,5 +235,6 @@ export default function Component() {
         </div>
       </section>
     </div>
+    </>
   )
 }

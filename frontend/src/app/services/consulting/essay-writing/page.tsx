@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Compass, Users, MonitorPlay, FileEdit, FileText, FileCheck, GraduationCap, RefreshCw, PenTool, BarChart2, ClipboardList, ChevronDown, Check } from "lucide-react";
 import { FaUserCheck, FaSchool,FaLightbulb, FaPen,FaUserFriends, FaEdit, FaFileAlt, FaHandshake, FaComments, FaLinkedin } from "react-icons/fa";
 import { useState, useEffect } from "react"; // Import React hooks for the timer
+import Head from "next/head";
 
 const successStories = [
     {
@@ -129,7 +130,31 @@ const RushHour = () => {
 };
 
 export default function Component() {
+  useEffect(() => {
+    document.title = "Essay Writing";
+  }, []);
   return (
+    <>
+    <Head>
+        <title>Essay Writing</title>
+        <meta
+          name="description"
+          content="Create standout essays with Crack Admission's professional Essay Writing service. From brainstorming to final draft, we've got you covered!"
+        />
+        <meta
+          name="keywords"
+          content="Essay Writing, MBA Application, Essay Drafting, Professional Writing Services, Crack Admission"
+        />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="Essay Writing | Crack Admission" />
+        <meta
+          property="og:description"
+          content="Get personalized help crafting your MBA essays with Crack Admission's Essay Writing services. Make your story stand out."
+        />
+        <meta property="og:url" content="https://crackadmission.com/services/consulting/essay-writing" />
+        <meta property="og:type" content="website" />
+      </Head>
+
     <div className="w-full">
       {/* Philosophy Section */}
       <div className="bg-blue-50 py-12 mb-10 px-4">
@@ -309,5 +334,6 @@ export default function Component() {
 
       </div>
     </div>
+    </>
   );
 }
