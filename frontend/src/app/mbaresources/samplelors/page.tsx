@@ -1,6 +1,7 @@
-'use client';
-import { useState, useEffect } from 'react';
-import { FaSearch } from 'react-icons/fa';
+"use client";
+import { useState, useEffect } from "react";
+import { FaSearch } from "react-icons/fa";
+import Head from "next/head";
 
 interface Scholarship {
   id: number;
@@ -12,15 +13,18 @@ interface Scholarship {
 
 export default function ScholarshipList() {
   const [scholarships, setScholarships] = useState<Scholarship[]>([]);
-  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [searchQuery, setSearchQuery] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    document.title = "Sample LOR";
     const fetchScholarships = async () => {
       setLoading(true);
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/lors?populate=*`);
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/lors?populate=*`
+        );
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -36,8 +40,9 @@ export default function ScholarshipList() {
             slug: item.slug,
             createdAt: item.createdAt,
           }))
-          .sort((a: Scholarship, b: Scholarship) => 
-            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+          .sort(
+            (a: Scholarship, b: Scholarship) =>
+              new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
           );
 
         setScholarships(sortedScholarships);
@@ -53,19 +58,40 @@ export default function ScholarshipList() {
   }, []);
 
   // Filter scholarships based on the search query
-  const filteredScholarships = scholarships.filter((scholarship) =>
-    (scholarship.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    scholarship.description.toLowerCase().includes(searchQuery.toLowerCase()))
+  const filteredScholarships = scholarships.filter(
+    (scholarship) =>
+      scholarship.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      scholarship.description.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
     <>
+      <Head>
+        <title>Sample LOR</title>
+        <meta
+          name="description"
+          content="Explore our curated collection of Sample Letters of Recommendation (LORs) for MBA and professional applications. Gain insights into crafting impactful and personalized LORs."
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+          name="keywords"
+          content="Sample LORs, MBA Letters of Recommendation, Professional LORs, MBA Application LORs, Letters of Recommendation Examples, MBA Preparation, LOR Templates"
+        />
+        <meta name="author" content="CrackAdmission" />
+      </Head>
+
       <div className="bg-blue-50 py-12 mb-10 px-4">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold text-center p-3 mt-5 text-blue-500 mb-8">Sample LORs</h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-center p-3 mt-5 text-blue-500 mb-8">
+            Sample LORs
+          </h1>
           <div className="relative">
-            <div className="absolute -left-4 top-0 text-blue-500 text-6xl">"</div>
-            <div className="absolute -right-4 bottom-0 text-blue-500 text-6xl">"</div>
+            <div className="absolute -left-4 top-0 text-blue-500 text-6xl">
+              "
+            </div>
+            <div className="absolute -right-4 bottom-0 text-blue-500 text-6xl">
+              "
+            </div>
             <div className="border-t border-b border-blue-300 py-4">
               <p className="text-xl md:text-2xl text-gray-700 italic text-center px-8">
                 A well-balanced person has a chip on both shoulders
@@ -99,8 +125,14 @@ export default function ScholarshipList() {
           <div className="mb-8">
             {filteredScholarships.length > 0 ? (
               filteredScholarships.map((scholarship) => (
-                <div key={scholarship.id} className="mb-8 p-6 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
-                  <a href={`/mbaresources/samplelors/${scholarship.slug}`} className="block text-2xl font-semibold text-gray-800 hover:text-blue-600 transition-colors duration-200">
+                <div
+                  key={scholarship.id}
+                  className="mb-8 p-6 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
+                >
+                  <a
+                    href={`/mbaresources/samplelors/${scholarship.slug}`}
+                    className="block text-2xl font-semibold text-gray-800 hover:text-blue-600 transition-colors duration-200"
+                  >
                     {scholarship.title || "Title not found"}
                   </a>
                   <p className="mt-2 text-gray-600 leading-relaxed">
@@ -117,7 +149,9 @@ export default function ScholarshipList() {
                 </div>
               ))
             ) : (
-              <p className="text-center text-gray-500">No LORs found for "{searchQuery}"</p>
+              <p className="text-center text-gray-500">
+                No LORs found for "{searchQuery}"
+              </p>
             )}
           </div>
         )}

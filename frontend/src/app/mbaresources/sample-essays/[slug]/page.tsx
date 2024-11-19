@@ -3,6 +3,7 @@
 import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import MarkdownHTML from '@/components/MarkdownHTML';
+import Head from 'next/head';
 
 interface Article {
   id: number;
@@ -75,6 +76,24 @@ export default function ArticlePage() {
   if (!article) return <p className="text-center mt-8">Loading...</p>;
 
   return (
+    <>
+    <Head>
+  <title>{article?.title || "Sample Essay"} | CrackAdmission</title>
+  <meta
+    name="description"
+    content={
+      article?.content
+        ? `${article.content.substring(0, 150)}...`
+        : "Explore this insightful essay from CrackAdmission's sample essays collection."
+    }
+  />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="keywords"
+    content="MBA essays, sample essays, CrackAdmission, essay examples, application essays"
+  />
+  <meta name="author" content="CrackAdmission" />
+</Head>
     <div className="flex justify-center items-center min-h-screen bg-gray-100 p-4">
       <div className="w-full bg-white rounded-lg shadow-lg overflow-hidden">
         <div className="p-8">
@@ -104,5 +123,6 @@ export default function ArticlePage() {
         </div>
       </div>
     </div>
+    </>
   );
 }

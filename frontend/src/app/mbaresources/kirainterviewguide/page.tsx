@@ -1,4 +1,7 @@
 'use client';
+import { useEffect } from "react";
+import Head from "next/head";
+
 import {
   Briefcase,
   Building2,
@@ -6,6 +9,11 @@ import {
 } from "lucide-react";
 
 export default function Component() {
+
+  useEffect(() => {
+    document.title = "Kira Interview Guide";
+  }, []);
+
   const questions = [
     {
       icon: <GraduationCap className="w-5 h-5" />,
@@ -79,6 +87,19 @@ export default function Component() {
 
   return (
     <>  
+    <Head>
+  <title>KIRA Interview Guide</title>
+  <meta
+    name="description"
+    content="Prepare for your KIRA interview with sample questions, tips to ace your interview, and a comprehensive list of schools that require KIRA interviews."
+  />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="keywords"
+    content="KIRA Interview, MBA Interview Guide, Sample Interview Questions, Interview Tips, MBA Schools, KIRA Preparation"
+  />
+  <meta name="author" content="CrackAdmission" />
+</Head>
       <div className="bg-blue-50 py-12 mb-10 px-4">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold text-center p-3 mt-5 text-blue-500 mb-8">KIRA Interview Guide</h1>

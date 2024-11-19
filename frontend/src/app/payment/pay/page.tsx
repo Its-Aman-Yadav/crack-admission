@@ -1,11 +1,15 @@
 'use client';
 
 import { useState } from 'react';
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { QrCode, CreditCard, Wallet } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Component() {
+  useEffect(() => {
+    document.title = "Payment";
+  }, []);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
 
   const paymentOptions = [

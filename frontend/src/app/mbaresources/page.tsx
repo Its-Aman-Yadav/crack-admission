@@ -1,5 +1,10 @@
+'use client'
 import Image from 'next/image'
 import Link from 'next/link';
+import { useEffect } from 'react';
+import Head from 'next/head';
+
+
 import { 
     FaCompass as Compass, 
     FaUsers as Users, 
@@ -41,8 +46,22 @@ import {
 
 
 export default function Component() {
+  useEffect(() => {
+    document.title = "MBA Resources";
+  }, []);
   return (
     <>
+    <Head>
+  <title>MBA Resources</title>
+  <meta
+    name="description"
+    content="Explore a variety of MBA resources including essays, CVs, recommendations, and more to help you craft a compelling MBA application."
+  />
+  <meta name="keywords" content="MBA resources, MBA essays, MBA CVs, MBA recommendations, business school applications" />
+  <meta name="author" content="Crack Admission" />
+</Head>
+
+
     <div className="bg-blue-50 py-12 mb-10 px-4">
     <div className="max-w-4xl mx-auto">
       <h1 className="text-4xl md:text-5xl font-bold text-center p-3 mt-5 text-blue-500 mb-8">MBA Resources</h1>

@@ -1,5 +1,24 @@
+"use client"
+import { useEffect } from "react"
+import Head from "next/head"
+
 export default function PrivacyPolicy() {
+  useEffect(() => {
+    document.title = "Privacy Policy";
+  }, []);
+
     return (
+      <>
+      <Head>
+        <title>Privacy Policy</title>
+        <meta
+          name="description"
+          content="Learn how CrackAdmission collects, uses, and protects your information. We are committed to safeguarding your privacy and ensuring transparency in our data practices."
+        />
+        <meta name="keywords" content="Privacy Policy, Data Protection, CrackAdmission Privacy, User Information Policy" />
+        <meta name="author" content="CrackAdmission" />
+      </Head>
+
       <div className="container mx-auto px-4 py-16">
         
         {/* Quote Component at the Top */}
@@ -112,6 +131,7 @@ export default function PrivacyPolicy() {
           </address>
         </section>
       </div>
+      </>
     );
   }
   

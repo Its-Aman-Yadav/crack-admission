@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import Link from "next/link";
 import "./globals.css";
-import Navbar from "@/components/Navbar"; // Importing Navbar component
-import Footer from "@/components/Footer"; // Importing Footer component
+import Navbar from "@/components/Navbar"; 
+import Footer from "@/components/Footer"; 
 
 // Custom font configurations
 const geistSans = localFont({
@@ -20,7 +20,10 @@ const geistMono = localFont({
 // Metadata for the site
 export const metadata: Metadata = {
   title: "Crack Admission",
-  description: "Common Dream, Unique Journeys ... With over 6 years of work experience. Stanford has been his lifelong dream, but, he does not want to be type casted as the ...",
+  description:
+    "Achieve your MBA dreams with Crack Admission's personalized consulting services. We specialize in comprehensive application strategies for top business schools like Stanford, INSEAD, Wharton, and more.",
+  keywords:
+    "MBA consulting, business school applications, MBA essays, GMAT, GRE, Stanford, INSEAD, Wharton, Harvard, MBA interview prep, scholarship essays",
 };
 
 // RootLayout component
@@ -32,12 +35,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-      <link rel="icon" href="/favicon.ico" sizes="any" />
-        <title>Crack Admission</title>
-        <meta name="description" content="Common Dream, Unique Journeys ... With over 6 years of work experience. Stanford has been his lifelong dream, but, he does not want to be type casted as the ..." />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <meta name="description" content="Achieve your MBA dreams with Crack Admission's personalized consulting services. We specialize in comprehensive application strategies for top business schools like Stanford, INSEAD, Wharton, and more." />
+        <meta name="keywords" content="MBA consulting, business school applications, MBA essays, GMAT, GRE, Stanford, INSEAD, Wharton, Harvard, MBA interview prep, scholarship essays" />
+        <title>Crack Admission: MBA Consulting Experts</title>
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
         <Navbar /> {/* Navbar included here */}
         {children}
         <Footer />

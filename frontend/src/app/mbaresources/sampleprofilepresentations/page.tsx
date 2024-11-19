@@ -1,9 +1,28 @@
 'use client';
 import { Download } from "lucide-react";
+import { useEffect } from "react";
+import Head from "next/head";
 
 export default function Component() {
+  useEffect(() => {
+    document.title = "Sample Profile Presentation";
+  }, []);
   return (
     <>
+
+<Head>
+  <title>Sample Profile Presentation</title>
+  <meta
+    name="description"
+    content="Explore curated Sample Profile Presentations from HEC, IE, LBS, and more. Gain insights into crafting impactful and personalized presentations to stand out in your applications."
+  />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="keywords"
+    content="Sample Profile Presentations, MBA Applications, HEC Presentations, IE Presentations, LBS Profile, MBA Application Tips, Profile Templates"
+  />
+  <meta name="author" content="CrackAdmission" />
+</Head>
 
     <div className="bg-blue-50 py-12 mb-10 px-4">
     <div className="max-w-4xl mx-auto">

@@ -4,6 +4,7 @@ import GoogleReviewsSection from '@/components/GoogleReview';
 import TestimonialSection from '@/components/Testimonial';
 import WhatsappReviewsSection from '@/components/WhatsappReview';
 import { useEffect, useState } from 'react';
+import Head from 'next/head';
 
 interface Video {
   id: number;
@@ -21,6 +22,7 @@ export default function ReviewSection() {
   const [reviews, setReviews] = useState<Review[]>([]);
 
   useEffect(() => {
+    document.title = "Reviews"
     const fetchReviews = async () => {
       try {
         const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/reviews?populate[VideoSection]=*`);
@@ -55,7 +57,26 @@ export default function ReviewSection() {
   };
 
   return (
-    <>
+     <>
+      <Head>
+        <title>Reviews</title>
+        <meta
+          name="description"
+          content="Explore student reviews, video testimonials, and success stories. See how CrackAdmission has helped students achieve their dreams."
+        />
+        <meta
+          name="keywords"
+          content="CrackAdmission reviews, student testimonials, video reviews, success stories, MBA consulting reviews"
+        />
+        <meta name="author" content="CrackAdmission" />
+        <meta property="og:title" content="Reviews - CrackAdmission" />
+        <meta
+          property="og:description"
+          content="Discover authentic reviews from our students, video testimonials, and their success stories. CrackAdmission delivers unmatched MBA consulting services."
+        />
+        <meta property="og:url" content="https://crackadmission.com/reviews" />
+        <meta property="og:type" content="website" />
+      </Head>
       <div className="bg-blue-50 py-12 mb-10 px-4">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold text-center mt-5 text-blue-500 mb-8">Reviews</h1>

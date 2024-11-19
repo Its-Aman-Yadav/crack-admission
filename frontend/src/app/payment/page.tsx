@@ -2,8 +2,14 @@
 import { useState } from "react";
 import { User, Mail, Phone } from "lucide-react";
 import Link from "next/link";
+import Head from "next/head";
+import { useEffect } from "react";
 
 export default function Component() {
+
+  useEffect(() => {
+    document.title = "Payment";
+  }, []);
   // Define pricing data with correct typing
   const pricingData: {
     basic: { 1: number };
@@ -106,7 +112,27 @@ export default function Component() {
   };
 
   return (
-    <>
+     <>
+      <Head>
+        <title>Payment</title>
+        <meta
+          name="description"
+          content="Choose your personalized consulting packages for MBA applications, resume editing, essay writing, and more. Start your journey to your dream school today."
+        />
+        <meta
+          name="keywords"
+          content="MBA consulting, essay editing, resume editing, scholarship essay, mock interview, recommendation letter, profile evaluation"
+        />
+        <meta name="author" content="CrackAdmission" />
+        <meta property="og:title" content="Payment - CrackAdmission" />
+        <meta
+          property="og:description"
+          content="Select from various MBA consulting services tailored to your needs. Comprehensive packages, mock interviews, essay editing, and more."
+        />
+        <meta property="og:url" content="https://crackadmission.com/payment" />
+        <meta property="og:type" content="website" />
+      </Head>
+
       <div className="bg-blue-50 py-12 mb-10 px-4">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold text-center p-3 mt-5 text-blue-500 mb-8">Payment</h1>

@@ -1,5 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
+import Head from 'next/head';
 
 interface EssayAnalysis {
   id: number;
@@ -16,6 +17,7 @@ const VideoGrid = () => {
   const [videos, setVideos] = useState<EssayAnalysis[]>([]);
 
   useEffect(() => {
+    document.title = "Essay Analysis"
     const fetchVideos = async () => {
       try {
         const response = await fetch(
@@ -65,6 +67,13 @@ videoData.sort((a: EssayAnalysis, b: EssayAnalysis) =>
 
   return (
     <>
+    <Head>
+  <title>Essay Analysis</title>
+  <meta name="description" content="Explore our detailed essay analyses to gain insights and strategies for crafting compelling MBA application essays." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="keywords" content="Essay Analysis, MBA Essays, Application Essays, Essay Strategies, CrackAdmission" />
+  <meta name="author" content="CrackAdmission" />
+</Head>
       <div className="bg-blue-50 py-12 mb-10 px-4">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold text-center p-3 mt-5 text-blue-500 mb-8">

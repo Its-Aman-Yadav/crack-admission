@@ -1,6 +1,7 @@
-'use client';
-import { useState, useEffect } from 'react';
-import { FaSearch } from 'react-icons/fa';
+"use client";
+import { useState, useEffect } from "react";
+import { FaSearch } from "react-icons/fa";
+import Head from "next/head";
 
 interface Article {
   id: number;
@@ -11,19 +12,22 @@ interface Article {
 }
 
 export default function Component() {
-  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [searchQuery, setSearchQuery] = useState<string>("");
   const [articles, setArticles] = useState<Article[]>([]);
   const [fetchError, setFetchError] = useState<string | null>(null);
 
   useEffect(() => {
+    document.title = "Sample Essays"
     const fetchData = async () => {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/essays?populate=*`);
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/essays?populate=*`
+        );
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json();
-        console.log('Fetched data:', data); // Log raw data to confirm its structure
+        console.log("Fetched data:", data); // Log raw data to confirm its structure
 
         // Map and sort articles by `createdAt` in descending order
         const sortedArticles = data.data
@@ -34,12 +38,17 @@ export default function Component() {
             slug: item.slug,
             createdAt: item.createdAt,
           }))
-          .sort((a: Article, b: Article) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+          .sort(
+            (a: Article, b: Article) =>
+              new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+          );
 
         setArticles(sortedArticles); // Set sorted articles to state
       } catch (error) {
-        console.error('Error fetching data:', error);
-        setFetchError('Could not fetch data from the server. Please try again later.');
+        console.error("Error fetching data:", error);
+        setFetchError(
+          "Could not fetch data from the server. Please try again later."
+        );
       }
     };
 
@@ -55,12 +64,32 @@ export default function Component() {
 
   return (
     <>
+      <Head>
+        <title>Sample Essays</title>
+        <meta
+          name="description"
+          content="Explore a wide range of sample MBA essays to guide you through your application process. Search, filter, and find inspiration for crafting impactful essays."
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+          name="keywords"
+          content="MBA essays, sample essays, MBA application, essay writing, MBA resources, application guidance"
+        />
+        <meta name="author" content="CrackAdmission" />
+      </Head>
+
       <div className="bg-blue-50 py-12 mb-10 px-4">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold text-center p-3 mt-5 text-blue-500 mb-8">Sample Essays</h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-center p-3 mt-5 text-blue-500 mb-8">
+            Sample Essays
+          </h1>
           <div className="relative">
-            <div className="absolute -left-4 top-0 text-blue-500 text-6xl">"</div>
-            <div className="absolute -right-4 bottom-0 text-blue-500 text-6xl">"</div>
+            <div className="absolute -left-4 top-0 text-blue-500 text-6xl">
+              "
+            </div>
+            <div className="absolute -right-4 bottom-0 text-blue-500 text-6xl">
+              "
+            </div>
             <div className="border-t border-b border-blue-300 py-4">
               <p className="text-xl md:text-2xl text-gray-700 italic text-center px-8">
                 We make a living by what we get. We make a life by what we give
@@ -91,14 +120,19 @@ export default function Component() {
           <div className="mb-8">
             {filteredArticles.length > 0 ? (
               filteredArticles.map((article) => (
-                <div key={article.id} className="mb-8 p-6 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+                <div
+                  key={article.id}
+                  className="mb-8 p-6 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
+                >
                   <a
                     href={`/mbaresources/sample-essays/${article.slug}`}
                     className="block text-2xl font-semibold text-gray-800 hover:text-blue-600 transition-colors duration-200"
                   >
                     {article.title}
                   </a>
-                  <p className="mt-2 text-gray-600 leading-relaxed">{article.description}</p>
+                  <p className="mt-2 text-gray-600 leading-relaxed">
+                    {article.description}
+                  </p>
                   <div className="flex">
                     <a
                       href={`/mbaresources/sample-essays/${article.slug}`}
@@ -110,7 +144,9 @@ export default function Component() {
                 </div>
               ))
             ) : (
-              <p className="text-center text-gray-500">No articles found for "{searchQuery}"</p>
+              <p className="text-center text-gray-500">
+                No articles found for "{searchQuery}"
+              </p>
             )}
           </div>
         )}
