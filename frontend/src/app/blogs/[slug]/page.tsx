@@ -92,8 +92,8 @@ export default function BlogPost() {
         <header className="relative w-screen h-[300px] mb-8 left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
           <Image
             src={
-              article.cover.formats.medium.url
-                ? `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${article.cover.formats.medium.url}`
+              article.cover?.formats?.medium?.url
+                ? `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${article.cover?.formats?.medium?.url}`
                 : '/fallback-image.jpg'
             }
             alt={article.title}
@@ -112,7 +112,7 @@ export default function BlogPost() {
                   })}
                 </span>
               )}
-              <h1 className="text-4xl font-bold text-white mt-4 px-4">
+              <h1 className="text-4xl font-bold text-black mt-4 px-4">
                 {article.title}
               </h1>
             </div>
