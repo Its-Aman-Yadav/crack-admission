@@ -33,6 +33,18 @@ const fetchArticles = async (): Promise<Article[]> => {
       cache: "no-store",
     }
   );
+
+  if (!response.ok) {
+    throw new Error(`HTTP error! Status: ${response.status}`);
+  }
+
+  console.log(
+    "Authorization Header:",
+    `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`
+  );
+  console.log("API URL:", process.env.NEXT_PUBLIC_STRAPI_API_URL);
+  console.log("API Token:", process.env.NEXT_PUBLIC_STRAPI_API_TOKEN);
+
   const data = await response.json();
   return data.data.map((article: any) => ({
     id: article.id,
