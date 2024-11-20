@@ -35,11 +35,6 @@ interface Article {
 const fetchArticleBySlug = async (slug: string): Promise<Article | null> => {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/articles?filters[slug][$eq]=${slug}&populate=*`,
-    {
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
-      },
-    }
   );
   const data = await response.json();
   const article = data.data.length ? data.data[0] : null;
