@@ -27,9 +27,6 @@ const fetchArticles = async (): Promise<Article[]> => {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/articles?populate=*`,
     {
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
-      },
       cache: "no-store",
     }
   );
