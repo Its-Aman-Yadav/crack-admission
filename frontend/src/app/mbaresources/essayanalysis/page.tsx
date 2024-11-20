@@ -22,11 +22,6 @@ const VideoGrid = () => {
       try {
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/essay-analyses?populate=*`,
-          {
-            headers: {
-              Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
-            },
-          }
         );
         const data = await response.json();
   
