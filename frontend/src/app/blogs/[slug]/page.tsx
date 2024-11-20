@@ -5,6 +5,7 @@ import Head from 'next/head';
 import { notFound } from 'next/navigation';
 import React from 'react';
 import MarkdownHTML from '@/components/MarkdownHTML';
+import { GetServerSideProps } from 'next';
 
 // Define types for the article data
 interface Cover {
@@ -120,5 +121,19 @@ const BlogPost: React.FC<BlogPostProps> = async ({ params }) => {
     </>
   );
 };
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { slug } = context.params!;
+  const article = await fetchArticleBySlug(slug as string);
+
+  if (!article) {
+    return { notFound: true };
+  }
+
+  return {
+    props: { article },
+  };
+};
+
 
 export default BlogPost;
