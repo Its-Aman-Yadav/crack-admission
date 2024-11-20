@@ -30,7 +30,7 @@ const Footer: React.FC = () => {
               <li><Link href="/services/consulting/essay-editing" className="hover:underline">Essay Editing</Link></li>
               <li><Link href="/services/consulting/resume" className="hover:underline">Resume</Link></li>
               <li><Link href="/services/consulting/recommendation" className="hover:underline">Recommendation Letter</Link></li>
-              <li><Link href="/services/consulting/scholarship" className="hover:underline">Scholarship Essay</Link></li>
+              <li><Link href="/services/consulting/scholarships" className="hover:underline">Scholarship Essay</Link></li>
               <li><Link href="/services/consulting/re-application" className="hover:underline">Re-Application</Link></li>
               <li><Link href="/services/consulting/essay-writing" className="hover:underline">Essay Writing</Link></li>
               <li><Link href="/services/consulting/dinganalysis" className="hover:underline">Ding Analysis</Link></li>
