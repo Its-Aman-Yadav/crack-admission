@@ -11,6 +11,7 @@ module.exports = [
   },
   'strapi::security',
   'strapi::poweredBy',
+  'strapi::cors',
   'strapi::logger',
   'strapi::query',
   'strapi::body',
