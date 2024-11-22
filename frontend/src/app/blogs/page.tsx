@@ -50,9 +50,10 @@ const fetchArticles = async (): Promise<Article[]> => {
     publishedAt: article.publishedAt,
     cover: {
       url:
-        article.cover && article.cover.formats && article.cover.formats.medium
-          ? `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${article.cover.formats.medium.url}`
-          : "/path/to/default-image.jpg", // Fallback image path
+      article.cover && article.cover.formats
+      ? `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${article.cover.formats.medium?.url || article.cover.url}`
+      : "/path/to/default-image.jpg", // Fallback image path
+      
     },
     tags: article.tags ? { name: article.tags.name } : null,
   }));
