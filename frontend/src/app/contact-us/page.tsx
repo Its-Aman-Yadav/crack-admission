@@ -47,7 +47,7 @@ export default function Component() {
 };
 
   return (
-    <>
+    <div>
    
       <Head>
         <title>Contact Us</title>
@@ -61,8 +61,8 @@ export default function Component() {
         />
         <meta name="author" content="CrackAdmission" />
       </Head>
-      
-      <form ref={form} onSubmit={handleSubmit} className="space-y-4">
+
+
       <div className="container mx-auto px-4 py-16">
         <div className="bg-blue-50 py-12 px-4">
           <div className="max-w-4xl mx-auto">
@@ -99,11 +99,11 @@ export default function Component() {
           {/* Left Column - Form */}
 
           <div className="space-y-6">
-            <form onSubmit={handleSubmit} className="space-y-4">
+          <form ref={form} onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-4">
                 <input
                   type="text"
-                  name="from_email"
+                  name="from_name"
                   placeholder="Your Name"
                   className="w-full px-4 py-3 text-black rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20 transition-colors duration-200 bg-white/5 backdrop-blur-sm"
                   required
@@ -245,8 +245,7 @@ export default function Component() {
           </div>
         </div>
       </div>
-      </form>
-    </>
+      </div>
 
   );
 }
