@@ -5,23 +5,50 @@ import Link from "next/link";
 import { Send, Mail, Phone, MapPin, MessageCircle } from "lucide-react";
 import Head from "next/head";
 import { useEffect } from "react";
+import emailjs from "emailjs-com"; // Import EmailJS
+import { useRef } from "react";
 
 export default function Component() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const form = useRef<HTMLFormElement>(null);
+   // Create a ref for the form
   useEffect(() => {
     document.title = "Contact Us";
   }, []);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!form.current) {
+      console.error("Form reference is null");
+      return;
+    }
+
     setIsSubmitting(true);
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    setIsSubmitting(false);
-  };
+   
+  try {
+    // Send form data to EmailJS
+    const result = await emailjs.sendForm(
+      process.env.NEXT_PUBLIC_SERVICE_ID as string, // Replace with your EmailJS Service ID
+      process.env.NEXT_PUBLIC_TEMPLATE_ID as string, // Replace with your EmailJS Template ID
+      form.current, // Pass the form reference
+      process.env.NEXT_PUBLIC_PUBLIC_KEY as string // Replace with your EmailJS Public Key
+    );
+    
+
+    console.log("SUCCESS!", result.text);
+    alert("Message sent successfully!");
+  } catch (error) {
+    console.error("FAILED...", error);
+    alert("Failed to send message. Please try again.");
+  }
+
+  setIsSubmitting(false);
+};
 
   return (
     <>
+   
       <Head>
         <title>Contact Us</title>
         <meta
@@ -34,7 +61,8 @@ export default function Component() {
         />
         <meta name="author" content="CrackAdmission" />
       </Head>
-
+      
+      <form ref={form} onSubmit={handleSubmit} className="space-y-4">
       <div className="container mx-auto px-4 py-16">
         <div className="bg-blue-50 py-12 px-4">
           <div className="max-w-4xl mx-auto">
@@ -75,30 +103,35 @@ export default function Component() {
               <div className="space-y-4">
                 <input
                   type="text"
+                  name="from_email"
                   placeholder="Your Name"
                   className="w-full px-4 py-3 text-black rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20 transition-colors duration-200 bg-white/5 backdrop-blur-sm"
                   required
                 />
                 <input
                   type="email"
+                  name="from_email"
                   placeholder="Your Email"
                   className="w-full px-4 py-3 text-black rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20 transition-colors duration-200 bg-white/5 backdrop-blur-sm"
                   required
                 />
                 <input
                   type="tel"
+                  name="mobile_number"
                   placeholder="Mobile Number"
                   className="w-full px-4 py-3 text-black rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20 transition-colors duration-200 bg-white/5 backdrop-blur-sm"
                   required
                 />
                 <input
                   type="text"
+                  name="subject"
                   placeholder="Subject"
                   className="w-full px-4 py-3 text-black rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20 transition-colors duration-200 bg-white/5 backdrop-blur-sm"
                   required
                 />
                 <textarea
                   placeholder="Your Message (optional)"
+                  name="message"
                   rows={4}
                   className="w-full px-4 py-3 text-black rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20 transition-colors duration-200 bg-white/5 backdrop-blur-sm resize-none"
                 />
@@ -119,6 +152,7 @@ export default function Component() {
               </button>
             </form>
           </div>
+          
 
           {/* Right Column - Info */}
           <div className="lg:pl-6 space-y-8">
@@ -211,6 +245,8 @@ export default function Component() {
           </div>
         </div>
       </div>
+      </form>
     </>
+
   );
 }
