@@ -38,9 +38,11 @@ export default function Component() {
 
     console.log("SUCCESS!", result.text);
     alert("Message sent successfully!");
+    setIsSubmitting(false);
   } catch (error) {
     console.error("FAILED...", error);
     alert("Failed to send message. Please try again.");
+    setIsSubmitting(false);
   }
 
  // Prepare data for Google Sheet
