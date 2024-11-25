@@ -1,2 +1,4 @@
 node_modules
 .next
+script.js
+data.json
