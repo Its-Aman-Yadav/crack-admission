@@ -18,13 +18,5 @@ module.exports = [
   'strapi::session',
   'strapi::favicon',
   'strapi::public',
-
-
-  {
-    name: 'strapi::static',
-    config: {
-      path: './public/uploads',
-    },
-  },
   
 ];
