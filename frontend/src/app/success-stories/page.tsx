@@ -202,7 +202,7 @@ export default function Component() {
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity" />
                         <a
                           href={profile.linkedin}
-                          className="absolute bottom-3 right-3 text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity"
+                          className="text-blue-600"
                           target="_blank"
                           rel="noopener noreferrer"
                         >
