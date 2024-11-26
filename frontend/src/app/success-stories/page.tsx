@@ -3,6 +3,14 @@
 import { useState, useEffect } from "react";
 import { Linkedin, Globe, Building2 } from "lucide-react";
 import Head from "next/head";
+import {
+  FaFacebook,
+  FaTwitter,
+  FaInstagram,
+  FaYoutube,
+  FaLinkedin,
+  FaComments,
+} from "react-icons/fa";
 
 // Define a type for the profile data
 interface Profile {
@@ -206,7 +214,11 @@ export default function Component() {
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          <Linkedin className="w-5 h-5" />
+                          <img
+                            src="/linkedin.png" // Ensure you have the LinkedIn logo file in your public directory.
+                            alt="LinkedIn"
+                            className="w-6 h-6"
+                          />
                         </a>
                       </div>
                       <div className="p-4 space-y-2">
