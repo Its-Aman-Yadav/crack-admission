@@ -9,12 +9,6 @@ module.exports = [
             credentials: true,
         },
     },
-    {
-        name: 'strapi::static',
-        config: {
-            path: './public/uploads',
-        },
-    },
     'strapi::security',
     'strapi::poweredBy',
     'strapi::cors',

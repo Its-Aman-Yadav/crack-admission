@@ -193,7 +193,12 @@ export default function Component() {
                           alt={profile.name}
                           className="object-cover w-full h-full"
                           src={profile.image}
+                          onError={(e) => {
+                            (e.target as HTMLImageElement).src =
+                              "/success-holder.jpg";
+                          }}
                         />
+
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity" />
                         <a
                           href={profile.linkedin}
