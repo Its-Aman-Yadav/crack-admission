@@ -206,11 +206,7 @@ export default function Component() {
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          <img
-                            src="/linkedin.png" // Ensure you have the LinkedIn logo file in your public directory.
-                            alt="LinkedIn"
-                            className="w-6 h-6"
-                          />
+                          <Linkedin className="w-5 h-5 text-blue-600" />
                         </a>
                       </div>
                       <div className="p-4 space-y-2">
