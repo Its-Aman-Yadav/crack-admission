@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Head from "next/head";
+import Link from "next/link";
 import {
   Menu,
   Filter,
@@ -20,8 +21,6 @@ type CategoryKey =
   | "marketing"
   | "social";
 
-
-
 export default function Component() {
   useEffect(() => {
     document.title = "Sample CV";
@@ -34,67 +33,163 @@ export default function Component() {
     {
       title: string;
       description: string;
-      documents: { id: string; years: string }[];
+      documents: { id: string; years: string; link: string }[];
     }
   > = {
     it: {
       title: "Information Technology",
       description: "CV templates for IT professionals",
       documents: [
-        { id: "1", years: "2-4" },
-        { id: "2", years: "5-7" },
-        { id: "3", years: "7-10" },
-        { id: "4", years: "10+" },
+        {
+          id: "1",
+          years: "2-4",
+          link: "https://drive.google.com/file/d/1w_ePDKO5WCqxdDIAcegtNtP0wa97-ThJ/view",
+        },
+        {
+          id: "2",
+          years: "5-7",
+          link: "https://drive.google.com/file/d/1s9VqEL3on_cBAWF7uZli4cHTfklNBbv7/view",
+        },
+        {
+          id: "3",
+          years: "7-10",
+          link: "https://drive.google.com/file/d/1jBmYCz9ZbRedDhOx6PEvjaZGjaIbbF6v/view",
+        },
+        {
+          id: "4",
+          years: "10+",
+          link: "https://drive.google.com/file/d/10NYBolZ470UTfuHJ1jPaWC-RlCN1MHaM/view",
+        },
       ],
     },
     finance: {
       title: "Financial Services",
       description: "CV templates for finance professionals",
       documents: [
-        { id: "5", years: "2-4" },
-        { id: "6", years: "5-7" },
-        { id: "7", years: "7-10" },
-        { id: "8", years: "10+" },
+        {
+          id: "5",
+          years: "2-4",
+          link: "https://drive.google.com/file/d/1fyl0GGF25KnUACtw_JiupGJV9_Ejph_1/view",
+        },
+        {
+          id: "6",
+          years: "5-7",
+          link: "https://drive.google.com/file/d/1tID71saRgc8IDm0xfOjkUG1Bf9fmA-XB/view",
+        },
+        {
+          id: "7",
+          years: "7-10",
+          link: "https://drive.google.com/file/d/1cJgtuLULl3u4yPNYP2hFK_Qa4uHRwT9W/view",
+        },
+        {
+          id: "8",
+          years: "10+",
+          link: "https://drive.google.com/file/d/111jThxbhxnyKijtPFPjxGrcjHdSgPyZA/view",
+        },
       ],
     },
     business: {
       title: "Business Development",
       description: "CV templates for business development professionals",
       documents: [
-        { id: "9", years: "2-4" },
-        { id: "10", years: "5-7" },
-        { id: "11", years: "7-10" },
-        { id: "12", years: "10+" },
+        {
+          id: "9",
+          years: "2-4",
+          link: "https://drive.google.com/file/d/1PUvWHjzXy4qJZ7i9QNsXiWlNvlJDtRnS/view",
+        },
+        {
+          id: "10",
+          years: "5-7",
+          link: "https://drive.google.com/file/d/1v0u37rRjgHiwOwUvStPZpmiT_ZpI41L-/view"
+        },
+        // {
+        //   id: "11",
+        //   years: "7-10",
+        //   link: "https://drive.google.com/file/d/yourfileid3",
+        // },
+        // {
+        //   id: "12",
+        //   years: "10+",
+        //   link: "https://drive.google.com/file/d/yourfileid4",
+        // },
       ],
     },
     operations: {
       title: "Operations",
       description: "CV templates for operations professionals",
       documents: [
-        { id: "13", years: "2-4" },
-        { id: "14", years: "5-7" },
-        { id: "15", years: "7-10" },
-        { id: "16", years: "10+" },
+        {
+          id: "13",
+          years: "2-4",
+          link: "https://drive.google.com/file/d/1Z8KDSQAJGOKZa78N1T0AfIk3ftglAc_i/view",
+        },
+        {
+          id: "14",
+          years: "5-7",
+          link: "https://drive.google.com/file/d/1ZXbVm9ID-6qCD-pfH1Icuj2VjDkL5MSu/view",
+        },
+        {
+          id: "15",
+          years: "7-10",
+          link: "https://drive.google.com/file/d/1N01uH_qFxecVX1Hd0oVAalZ2HO-Wvvo7/view",
+        },
+        // {
+        //   id: "16",
+        //   years: "10+",
+        //   link: "https://drive.google.com/file/d/yourfileid4",
+        // },
       ],
     },
     marketing: {
       title: "Brand Marketing",
       description: "CV templates for marketing professionals",
       documents: [
-        { id: "17", years: "2-4" },
-        { id: "18", years: "5-7" },
-        { id: "19", years: "7-10" },
-        { id: "20", years: "10+" },
+        {
+          id: "17",
+          years: "2-4",
+          link: "https://drive.google.com/file/d/1K10ceGvoLbQgc8GOCn6WzxQKQT_sFUDB/view",
+        },
+        {
+          id: "18",
+          years: "5-7",
+          link: "https://drive.google.com/file/d/1rp6lHNx5XfLuazCF9ksI6YrAt-ipYoju/view",
+        },
+        {
+          id: "19",
+          years: "7-10",
+          link: "https://drive.google.com/file/d/1SiJBzEYuT0nnJLHHqsU0ltvuzAVf1qVF/view",
+        },
+        // {
+        //   id: "20",
+        //   years: "10+",
+        //   link: "https://drive.google.com/file/d/yourfileid4",
+        // },
       ],
     },
     social: {
       title: "Social Sector",
       description: "CV templates for social sector professionals",
       documents: [
-        { id: "21", years: "2-4" },
-        { id: "22", years: "5-7" },
-        { id: "23", years: "7-10" },
-        { id: "24", years: "10+" },
+        {
+          id: "21",
+          years: "2-4",
+          link: "https://drive.google.com/file/d/1KSCnn6Jl2DuK7TRxMsFUTRcMAS9CCuwf/view",
+        },
+        {
+          id: "22",
+          years: "5-7",
+          link: "https://drive.google.com/file/d/1p80174z1nvwAi0q5j50Oc5ohrbMdDyq4/view",
+        },
+        // {
+        //   id: "23",
+        //   years: "7-10",
+        //   link: "https://drive.google.com/file/d/yourfileid3",
+        // },
+        // {
+        //   id: "24",
+        //   years: "10+",
+        //   link: "https://drive.google.com/file/d/yourfileid4",
+        // },
       ],
     },
   };
@@ -228,10 +323,15 @@ export default function Component() {
                         {document.years} Years Experience
                       </p>
                     </div>
-                    <button className="mt-4 flex items-center justify-center gap-2 px-3 py-2 bg-blue-600 text-white rounded-md text-xs md:text-sm hover:bg-blue-700">
+                    <a
+                      href={document.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-4 flex items-center justify-center gap-2 px-3 py-2 bg-blue-600 text-white rounded-md text-xs md:text-sm hover:bg-blue-700"
+                    >
                       <Download className="h-4 w-4" />
                       Download
-                    </button>
+                    </a>
                   </div>
                 ))}
             </div>
