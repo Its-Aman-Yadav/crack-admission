@@ -40,7 +40,7 @@ export default function Component() {
     reApplicationEssay: { 1: 150 },
     dingAnalysis: { 1: 150 },
     profileEvaluation: { 1: 100 }, 
-    mbaprofileaccelerator: { 1: 300 },
+    mbaprofileaccelerator: { 1: 100 },
   };
 
   // Define initial form data and state
@@ -60,7 +60,8 @@ export default function Component() {
     packageType: PackageType,
     quantity: Quantity,
     numEssays: NumEssays,
-    wordCount: WordCount
+    wordCount: WordCount,
+    duration?: string 
   ) => {
     const selectedPackage = serviceType === "comprehensive" && schoolCount !== "1" ? "pro" : packageType;
     const count = parseInt(schoolCount, 10);
@@ -82,6 +83,11 @@ export default function Component() {
     }
     else if (serviceType === "mbaprofileaccelerator") {
       amount = pricingData.mbaprofileaccelerator[1];
+      if (duration === "1 Month") {
+        amount = 100; // $100 for 1 month
+      } else if (duration === "3 Months") {
+        amount = 300; // $300 for 3 months
+      }
     }
     else if (serviceType === "essayEditing") {
       amount = (pricingData.essayEditing[words] || 0) * essays;
@@ -220,6 +226,43 @@ export default function Component() {
                       </select>
                     </div>
                   )}
+
+<div className="space-y-2">
+  <label
+    htmlFor="mbaprofileDuration"
+    className="text-sm font-medium text-gray-600 text-muted-foreground"
+  >
+    Duration
+  </label>
+  <select
+    id="mbaprofileDuration"
+    value={formData.serviceType === "mbaprofileaccelerator" ? formData.amount === 100 ? "1 Month" : "3 Months" : ""}
+    onChange={(e) =>
+      updateAmount(
+        formData.serviceType as ServiceType,
+        formData.schoolCount as SchoolCount,
+        formData.packageType as PackageType,
+        formData.quantity as Quantity,
+        formData.numEssays as NumEssays,
+        formData.wordCount as WordCount,
+        e.target.value
+      )
+    }
+    className="w-full p-2 border text-gray-800 border-gray-300 rounded-lg"
+  >
+    <option value="1 Month">1 Month - $100</option>
+    <option value="3 Months">3 Months - $300</option>
+  </select>
+</div>
+{formData.serviceType === "mbaprofileaccelerator" && (
+  <div className="flex justify-between items-center">
+    <span className="text-sm text-muted-foreground text-black">Duration:</span>
+    <span className="font-medium text-gray-800">
+      {formData.amount === 100 ? "1 Month" : "3 Months"}
+    </span>
+  </div>
+)}
+
 
                   {/* Quantity (only for Recommendation Letter) */}
                   {formData.serviceType === "recommendationLetter" && (
