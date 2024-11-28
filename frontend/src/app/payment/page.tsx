@@ -25,6 +25,7 @@ export default function Component() {
     reApplicationEssay: { 1: number };
     dingAnalysis: { 1: number };
     profileEvaluation: { 1: number };
+    mbaprofileaccelerator: { 1: number };
   } = {
     basic: { 1: 350 },
     advanced: { 1: 450 },
@@ -39,6 +40,7 @@ export default function Component() {
     reApplicationEssay: { 1: 150 },
     dingAnalysis: { 1: 150 },
     profileEvaluation: { 1: 100 }, 
+    mbaprofileaccelerator: { 1: 300 },
   };
 
   // Define initial form data and state
@@ -78,6 +80,9 @@ export default function Component() {
     } else if (serviceType === "profileEvaluation") {
       amount = pricingData.profileEvaluation[1]; // Profile Evaluation priced at 100
     }
+    else if (serviceType === "mbaprofileaccelerator") {
+      amount = pricingData.mbaprofileaccelerator[1];
+    }
     else if (serviceType === "essayEditing") {
       amount = (pricingData.essayEditing[words] || 0) * essays;
     } else if (serviceType === "essayWriting") {
@@ -94,7 +99,7 @@ export default function Component() {
   };
 
   // Define types for service type, package type, school count, quantity, num essays, and word count
-  type ServiceType = "comprehensive" | "mockInterview" | "resumeEditing" | "essayEditing" | "essayWriting" | "recommendationLetter" | "profilePresentation" | "scholarshipEssay" | "reApplicationEssay" | "dingAnalysis"| "profileEvaluation";
+  type ServiceType = "mbaprofileaccelerator" | "comprehensive" | "mockInterview" | "resumeEditing" | "essayEditing" | "essayWriting" | "recommendationLetter" | "profilePresentation" | "scholarshipEssay" | "reApplicationEssay" | "dingAnalysis"| "profileEvaluation";
   type PackageType = "basic" | "advanced" | "pro";
   type SchoolCount = "1" | "2" | "3" | "5" | "8" | "10";
   type Quantity = "1" | "2" | "3";
@@ -167,6 +172,7 @@ export default function Component() {
                       onChange={(e) => updateAmount(e.target.value as ServiceType, formData.schoolCount as SchoolCount, formData.packageType as PackageType, formData.quantity as Quantity, formData.numEssays as NumEssays, formData.wordCount as WordCount)}
                       className="w-full p-2 border text-gray-800 border-gray-300 rounded-lg"
                     >
+                      <option value="mbaprofileaccelerator">MBA Profile Accelerator</option>
                       <option value="comprehensive">Comprehensive Consulting</option>
                       <option value="mockInterview">Mock Interview</option>
                       <option value="resumeEditing">Resume Editing</option>

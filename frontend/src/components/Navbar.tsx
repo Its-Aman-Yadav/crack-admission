@@ -130,6 +130,9 @@ const Navbar: FC = () => {
               {/* Dropdown menu shown on hover */}
               <div className="absolute hidden group-hover:flex bg-white/95 backdrop-blur-md border border-gray-200 rounded-lg shadow-lg p-6 transition-all duration-300 ease-in-out -left-1/2 top-full pointer-events-auto">
                 <div className="flex flex-col space-y-6">
+                <Link href="/services/mba-profile-accelerator" className="text-gray-800 hover:text-blue-500 whitespace-nowrap">
+                    MBA Profile Accelerator
+                  </Link>
                   <Link href="/services/comprehensive-consulting" className="text-gray-800 hover:text-blue-500 whitespace-nowrap">
                     Comprehensive Consulting
                   </Link>
