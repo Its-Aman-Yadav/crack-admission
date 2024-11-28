@@ -455,7 +455,7 @@ const Navbar: FC = () => {
                 <div className="pl-4 space-y-2">
                   <Link
                     href="/services/mba-profile-accelerator"
-                    className="text-gray-800 hover:text-blue-500 whitespace-nowrap"
+                     className="block px-3 py-2 rounded-md text-base font-medium text-black"
                   >
                     MBA Profile Accelerator
                   </Link>
