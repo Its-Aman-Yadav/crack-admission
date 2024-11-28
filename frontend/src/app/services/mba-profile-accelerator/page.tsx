@@ -1,6 +1,44 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
+import { CheckCircle, Award, LineChart, Target } from "lucide-react";
+
+const deliverables = [
+  {
+    title: "Personalized Recommendations",
+    icon: <CheckCircle className="h-6 w-6 text-emerald-500" />,
+    items: [
+      "Extra-curriculars: Clubs, sports, artistic pursuits",
+      "Community Engagement: Volunteering, social initiatives",
+      "Certifications: Aligned with career goals",
+      "Workplace Projects: Lead impactful initiatives",
+      "Leadership Activities: Create opportunities in/outside work",
+    ],
+  },
+  {
+    title: "LinkedIn Profile Building",
+    icon: <Award className="h-6 w-6 text-blue-500" />,
+    items: [
+      "Optimize Profile: Highlight achievements and skills",
+      "Craft compelling posts and articles",
+      "Develop a consistent personal brand",
+    ],
+  },
+  {
+    title: "Progress Evaluation",
+    icon: <LineChart className="h-6 w-6 text-purple-500" />,
+    items: ["Monthly review of achievements", "Regular feedback on activities"],
+  },
+  {
+    title: "Profile Alignment to Goals",
+    icon: <Target className="h-6 w-6 text-red-500" />,
+    items: [
+      "Align efforts with target schools' requirements",
+      "Map achievements to your MBA story",
+    ],
+  },
+];
+
 import {
   Compass,
   Users,
@@ -69,6 +107,13 @@ const successStories = [
 ];
 
 const services = [
+  {
+    icon: ClipboardList,
+    title: "MBA Profile Accelerator",
+    description:
+      "Strategic guidance to enhance profile before MBA applications",
+    url: "/services/mba-profile-accelerator",
+  },
   {
     icon: Compass,
     title: "Comprehensive Consulting",
@@ -141,77 +186,6 @@ const services = [
   },
 ];
 
-// Minimalist Rush Hour component
-const RushHour = () => {
-  const [timeLeft, setTimeLeft] = useState(24 * 60 * 60); // 24 hours in seconds
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft((prevTime) => (prevTime > 0 ? prevTime - 1 : 0));
-      document.title = "MBA Profile Accelerator";
-    }, 1000);
-
-    return () => clearInterval(timer); // Cleanup timer on component unmount
-  }, []);
-
-  const formatTime = (seconds: any) => {
-    const hrs = Math.floor(seconds / 3600);
-    const mins = Math.floor((seconds % 3600) / 60);
-    const secs = seconds % 60;
-    return `${hrs.toString().padStart(2, "0")}:${mins
-      .toString()
-      .padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
-  };
-
-  return (
-    <>
-      <Head>
-        <title>MBA Profile Accelerator</title>
-        <meta
-          name="description"
-          content="Get expert guidance for your MBA application with Crack Admission's Comprehensive Consulting services. Tailored strategies, essay support, interview prep, and more!"
-        />
-        <meta
-          name="keywords"
-          content="Comprehensive Consulting, MBA Application, Essay Editing, Interview Preparation, Resume Editing, Recommendation Letters"
-        />
-        <meta name="robots" content="index, follow" />
-        <meta
-          property="og:title"
-          content="Comprehensive Consulting | Crack Admission"
-        />
-        <meta
-          property="og:description"
-          content="Explore Crack Admission's Comprehensive Consulting services to maximize your MBA application success. Tailored support for every stage of your application."
-        />
-        <meta
-          property="og:url"
-          content="https://crackadmission.com/services/mba-profile-accelerator"
-        />
-        <meta property="og:type" content="website" />
-      </Head>
-      <div className="mt-8 p-6 bg-gray-50 rounded-lg text-center">
-        <h2 className="text-2xl font-bold text-gray-800 mb-4">Get 30% Off!</h2>
-        <p className="text-gray-600 mb-4">
-          Hurry up! This offer is valid for the next:
-        </p>
-
-        {/* Countdown Timer */}
-        <div className="text-3xl font-bold text-blue-600 mb-4">
-          {formatTime(timeLeft)}
-        </div>
-
-        {/* Simple button */}
-        <Link href="/payment">
-          <button className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-all">
-            Apply 30% Discount
-          </button>
-        </Link>
-      </div>
-    </>
-  );
-};
-
 export default function Component() {
   return (
     <div className="w-full">
@@ -237,15 +211,6 @@ export default function Component() {
           </div>
         </div>
       </div>
-
-      {/* Hero Section */}
-      {/* <div className="bg-blue-500 text-white text-center py-6 px-4 md:px-8 mb-8">
-        <div className="max-w-6xl mx-auto">
-          <h1 className="text-lg md:text-xl lg:text-xl font-bold">
-            Get focused attention on all aspects of your application in one single package
-          </h1>
-        </div>
-      </div> */}
 
       {/* Main Section */}
       <div className="max-w-6xl mx-auto">
@@ -278,6 +243,39 @@ export default function Component() {
             </Link>
           </div>
         </div>
+
+        <section className="bg-gradient-to-b from-gray-50 to-white py-16 px-4">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-4xl font-bold text-center text-gray-900 mb-12">
+              Our Deliverables
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {deliverables.map((deliverable, index) => (
+                <div
+                  key={index}
+                  className="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg border border-gray-200"
+                >
+                  <div className="bg-gray-50 flex items-center space-x-4 p-6">
+                    {deliverable.icon}
+                    <h3 className="text-2xl font-semibold text-gray-800">
+                      {deliverable.title}
+                    </h3>
+                  </div>
+                  <div className="p-6">
+                    <ul className="space-y-3">
+                      {deliverable.items.map((item, itemIndex) => (
+                        <li key={itemIndex} className="flex items-start">
+                          <CheckCircle className="h-5 w-5 text-emerald-500 mr-2 mt-0.5 flex-shrink-0" />
+                          <span className="text-gray-700">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* How it Works Section */}
         <div className="container mx-auto px-4 py-16">
@@ -384,7 +382,6 @@ export default function Component() {
               </div>
             </div>
           </div>
-          <RushHour />
         </div>
 
         <h2 className="text-2xl font-bold text-center text-black mb-2">

@@ -5,6 +5,7 @@ import { Compass, Users, MonitorPlay, FileEdit, FileText, FileCheck, GraduationC
 import { FaUserCheck, FaSchool, FaPen, FaEdit, FaFileAlt, FaHandshake, FaComments, FaLinkedin } from "react-icons/fa";
 import { useState, useEffect } from "react"; // Import React hooks for the timer
 import Head from "next/head";
+import RushHour from "@/components/RushHour";
 
 const successStories = [
     {
@@ -47,6 +48,7 @@ const successStories = [
   
 
   const services = [
+    { icon: ClipboardList, title: "MBA Profile Accelerator", description: "Strategic guidance to enhance profile before MBA applications", url: "/services/mba-profile-accelerator" },
     { icon: Compass, title: "Comprehensive Consulting", description: "Consultants assist in drafting school-specific essays from scratch", url: "/services/comprehensive-consulting" },
     { icon: Users, title: "Profile Presentations", description: "Consultants draft school-specific essays from scratch", url: "/services/consulting/profilepresentations" },
     { icon: MonitorPlay, title: "Mock Interviews", description: "2 in-depth mock interviews to simulate the real experience", url: "/services/consulting/mockinterviews" },
@@ -116,67 +118,6 @@ const pricingData = [
   { schools: "Up to 8 Schools", package: "Pro", price: 2900 },
   { schools: "10 Schools", package: "Pro", price: 3400 },
 ];
-
-// Minimalist Rush Hour component
-const RushHour = () => {
-  const [timeLeft, setTimeLeft] = useState(24 * 60 * 60); // 24 hours in seconds
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft((prevTime) => (prevTime > 0 ? prevTime - 1 : 0));
-      document.title = "Comprehensive Consulting";
-    }, 1000);
-
-    return () => clearInterval(timer); // Cleanup timer on component unmount
-  }, []);
-
-  const formatTime = (seconds:any) => {
-    const hrs = Math.floor(seconds / 3600);
-    const mins = Math.floor((seconds % 3600) / 60);
-    const secs = seconds % 60;
-    return `${hrs.toString().padStart(2, "0")}:${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
-  };
-
-  return (
-    <>
-    <Head>
-    <title>Comprehensive Consulting</title>
-    <meta
-      name="description"
-      content="Get expert guidance for your MBA application with Crack Admission's Comprehensive Consulting services. Tailored strategies, essay support, interview prep, and more!"
-    />
-    <meta
-      name="keywords"
-      content="Comprehensive Consulting, MBA Application, Essay Editing, Interview Preparation, Resume Editing, Recommendation Letters"
-    />
-    <meta name="robots" content="index, follow" />
-    <meta property="og:title" content="Comprehensive Consulting | Crack Admission" />
-    <meta
-      property="og:description"
-      content="Explore Crack Admission's Comprehensive Consulting services to maximize your MBA application success. Tailored support for every stage of your application."
-    />
-    <meta property="og:url" content="https://crackadmission.com/services/comprehensive-consulting" />
-    <meta property="og:type" content="website" />
-  </Head>
-    <div className="mt-8 p-6 bg-gray-50 rounded-lg text-center">
-      <h2 className="text-2xl font-bold text-gray-800 mb-4">Get 30% Off!</h2>
-      <p className="text-gray-600 mb-4">Hurry up! This offer is valid for the next:</p>
-      
-      {/* Countdown Timer */}
-      <div className="text-3xl font-bold text-blue-600 mb-4">
-        {formatTime(timeLeft)}
-      </div>
-
-      {/* Simple button */}
-      <Link href="/payment">
-      <button className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-all">
-        Apply 30% Discount
-      </button>
-      </Link>
-    </div>
-    </>
-  );
-};
 
 export default function Component() {
   return (

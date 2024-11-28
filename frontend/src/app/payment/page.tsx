@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { useState } from "react";
 import { User, Mail, Phone } from "lucide-react";
 import Link from "next/link";
@@ -6,7 +6,6 @@ import Head from "next/head";
 import { useEffect } from "react";
 
 export default function Component() {
-
   useEffect(() => {
     document.title = "Payment";
   }, []);
@@ -39,7 +38,7 @@ export default function Component() {
     scholarshipEssay: { 1: 150 },
     reApplicationEssay: { 1: 150 },
     dingAnalysis: { 1: 150 },
-    profileEvaluation: { 1: 100 }, 
+    profileEvaluation: { 1: 100 },
     mbaprofileaccelerator: { 1: 100 },
   };
 
@@ -61,12 +60,21 @@ export default function Component() {
     quantity: Quantity,
     numEssays: NumEssays,
     wordCount: WordCount,
-    duration?: string 
+    duration?: string
   ) => {
-    const selectedPackage = serviceType === "comprehensive" && schoolCount !== "1" ? "pro" : packageType;
+    const selectedPackage =
+      serviceType === "comprehensive" && schoolCount !== "1"
+        ? "pro"
+        : packageType;
     const count = parseInt(schoolCount, 10);
-    const qty = parseInt(quantity, 10) as keyof typeof pricingData.recommendationLetter;
-    const words = parseInt(wordCount, 10) as keyof typeof pricingData.essayEditing;
+    const qty = parseInt(
+      quantity,
+      10
+    ) as keyof typeof pricingData.recommendationLetter;
+    const words = parseInt(
+      wordCount,
+      10
+    ) as keyof typeof pricingData.essayEditing;
     const essays = parseInt(numEssays, 10);
 
     let amount = 0;
@@ -74,38 +82,59 @@ export default function Component() {
       amount = pricingData[serviceType][1];
     } else if (serviceType === "recommendationLetter") {
       amount = pricingData.recommendationLetter[qty] || 0;
-    } else if (serviceType === "scholarshipEssay" || serviceType === "reApplicationEssay" ||      serviceType === "dingAnalysis") {
+    } else if (
+      serviceType === "scholarshipEssay" ||
+      serviceType === "reApplicationEssay" ||
+      serviceType === "dingAnalysis"
+    ) {
       amount = pricingData.scholarshipEssay[1]; // All these are priced at 150
-    }else if (serviceType === "profilePresentation") {
+    } else if (serviceType === "profilePresentation") {
       amount = pricingData.profilePresentation[1];
     } else if (serviceType === "profileEvaluation") {
       amount = pricingData.profileEvaluation[1]; // Profile Evaluation priced at 100
-    }
-    else if (serviceType === "mbaprofileaccelerator") {
+    } else if (serviceType === "mbaprofileaccelerator") {
       amount = pricingData.mbaprofileaccelerator[1];
       if (duration === "1 Month") {
         amount = 100; // $100 for 1 month
       } else if (duration === "3 Months") {
         amount = 300; // $300 for 3 months
       }
-    }
-    else if (serviceType === "essayEditing") {
+    } else if (serviceType === "essayEditing") {
       amount = (pricingData.essayEditing[words] || 0) * essays;
     } else if (serviceType === "essayWriting") {
       amount = (pricingData.essayWriting[words] || 0) * essays;
     } else if (selectedPackage === "pro") {
       amount = pricingData.pro[count as keyof typeof pricingData.pro] || 0;
-    } 
-    
-    else {
+    } else {
       amount = pricingData[selectedPackage][1];
     }
 
-    setFormData({ ...formData, serviceType, schoolCount, packageType: selectedPackage, quantity, numEssays, wordCount, amount });
+    setFormData({
+      ...formData,
+      serviceType,
+      schoolCount,
+      packageType: selectedPackage,
+      quantity,
+      numEssays,
+      wordCount,
+      amount,
+    });
   };
 
   // Define types for service type, package type, school count, quantity, num essays, and word count
-  type ServiceType = "mbaprofileaccelerator" | "comprehensive" | "mockInterview" | "resumeEditing" | "essayEditing" | "essayWriting" | "recommendationLetter" | "profilePresentation" | "scholarshipEssay" | "reApplicationEssay" | "dingAnalysis"| "profileEvaluation";
+  type ServiceType =
+    | "mbaprofileaccelerator"
+    | "comprehensive"
+    | "mockInterview"
+    | "resumeEditing"
+    | "essayEditing"
+    | "essayWriting"
+    | "recommendationLetter"
+    | "profilePresentation"
+    | "scholarshipEssay"
+    | "reApplicationEssay"
+    | "dingAnalysis"
+    | "profileEvaluation";
   type PackageType = "basic" | "advanced" | "pro";
   type SchoolCount = "1" | "2" | "3" | "5" | "8" | "10";
   type Quantity = "1" | "2" | "3";
@@ -123,7 +152,7 @@ export default function Component() {
   };
 
   return (
-     <>
+    <>
       <Head>
         <title>Payment</title>
         <meta
@@ -146,13 +175,20 @@ export default function Component() {
 
       <div className="bg-blue-50 py-12 mb-10 px-4">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold text-center p-3 mt-5 text-blue-500 mb-8">Payment</h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-center p-3 mt-5 text-blue-500 mb-8">
+            Payment
+          </h1>
           <div className="relative">
-            <div className="absolute -left-4 top-0 text-blue-500 text-6xl">"</div>
-            <div className="absolute -right-4 bottom-0 text-blue-500 text-6xl">"</div>
+            <div className="absolute -left-4 top-0 text-blue-500 text-6xl">
+              "
+            </div>
+            <div className="absolute -right-4 bottom-0 text-blue-500 text-6xl">
+              "
+            </div>
             <div className="border-t border-b border-blue-300 py-4">
               <p className="text-xl md:text-2xl text-gray-700 italic text-center px-8">
-                Be with someone who brings out the best in you. We are that someone
+                Be with someone who brings out the best in you. We are that
+                someone
               </p>
             </div>
           </div>
@@ -162,152 +198,267 @@ export default function Component() {
       <div className="min-h-screen">
         <div className="container mx-auto p-4 md:p-6 lg:p-8 max-w-5xl">
           <div className="flex justify-between items-center mb-6">
-            <h1 className="text-3xl font-bold text-black text-primary">Package Selection</h1>
+            <h1 className="text-3xl font-bold text-black text-primary">
+              Package Selection
+            </h1>
           </div>
           <div className="grid gap-6 md:grid-cols-[2fr,1fr]">
             <div className="p-4 border border-gray-300 rounded-lg shadow-sm">
-              <div className="text-2xl font-semibold text-black text-primary">Choose Your Package</div>
+              <div className="text-2xl font-semibold text-black text-primary">
+                Choose Your Package
+              </div>
               <div className="space-y-6 mt-4">
                 <div className="space-y-4">
                   {/* Service Type Selection */}
                   <div className="space-y-2">
-                    <label htmlFor="serviceType" className="text-sm font-medium text-gray-600 text-muted-foreground">Service Type</label>
+                    <label
+                      htmlFor="serviceType"
+                      className="text-sm font-medium text-gray-600 text-muted-foreground"
+                    >
+                      Service Type
+                    </label>
                     <select
                       id="serviceType"
                       value={formData.serviceType}
-                      onChange={(e) => updateAmount(e.target.value as ServiceType, formData.schoolCount as SchoolCount, formData.packageType as PackageType, formData.quantity as Quantity, formData.numEssays as NumEssays, formData.wordCount as WordCount)}
+                      onChange={(e) =>
+                        updateAmount(
+                          e.target.value as ServiceType,
+                          formData.schoolCount as SchoolCount,
+                          formData.packageType as PackageType,
+                          formData.quantity as Quantity,
+                          formData.numEssays as NumEssays,
+                          formData.wordCount as WordCount
+                        )
+                      }
                       className="w-full p-2 border text-gray-800 border-gray-300 rounded-lg"
                     >
-                      <option value="mbaprofileaccelerator">MBA Profile Accelerator</option>
-                      <option value="comprehensive">Comprehensive Consulting</option>
+                      <option value="mbaprofileaccelerator">
+                        MBA Profile Accelerator
+                      </option>
+                      <option value="comprehensive">
+                        Comprehensive Consulting
+                      </option>
                       <option value="mockInterview">Mock Interview</option>
                       <option value="resumeEditing">Resume Editing</option>
                       <option value="essayEditing">Essay Editing</option>
                       <option value="essayWriting">Essay Writing</option>
-                      <option value="recommendationLetter">Recommendation Letter</option>
-                      <option value="profilePresentation">Profile Presentation</option>
-                      <option value="scholarshipEssay">Scholarship Essay</option>
-                      <option value="reApplicationEssay">Re-Application Essay</option>
+                      <option value="recommendationLetter">
+                        Recommendation Letter
+                      </option>
+                      <option value="profilePresentation">
+                        Profile Presentation
+                      </option>
+                      <option value="scholarshipEssay">
+                        Scholarship Essay
+                      </option>
+                      <option value="reApplicationEssay">
+                        Re-Application Essay
+                      </option>
                       <option value="dingAnalysis">Ding Analysis</option>
-                      <option value="profileEvaluation">Profile Evaluation</option>
+                      <option value="profileEvaluation">
+                        Profile Evaluation
+                      </option>
                     </select>
                   </div>
 
                   {/* School Count (only for Comprehensive Consulting) */}
                   {formData.serviceType === "comprehensive" && (
                     <div className="space-y-2">
-                      <label htmlFor="schoolCount" className="text-sm font-medium text-gray-600 text-muted-foreground">Number of Schools</label>
+                      <label
+                        htmlFor="schoolCount"
+                        className="text-sm font-medium text-gray-600 text-muted-foreground"
+                      >
+                        Number of Schools
+                      </label>
                       <select
                         id="schoolCount"
                         value={formData.schoolCount}
-                        onChange={(e) => updateAmount(formData.serviceType as ServiceType, e.target.value as SchoolCount, formData.packageType as PackageType, formData.quantity as Quantity, formData.numEssays as NumEssays, formData.wordCount as WordCount)}
+                        onChange={(e) =>
+                          updateAmount(
+                            formData.serviceType as ServiceType,
+                            e.target.value as SchoolCount,
+                            formData.packageType as PackageType,
+                            formData.quantity as Quantity,
+                            formData.numEssays as NumEssays,
+                            formData.wordCount as WordCount
+                          )
+                        }
                         className="w-full p-2 border text-gray-800 border-gray-300 rounded-lg"
                       >
                         {[1, 2, 3, 5, 8, 10].map((num) => (
-                          <option key={num} value={num.toString()}>{num} School(s)</option>
+                          <option key={num} value={num.toString()}>
+                            {num} School(s)
+                          </option>
                         ))}
                       </select>
                     </div>
                   )}
 
                   {/* Package Type (only if schoolCount is 1 for comprehensive) */}
-                  {formData.serviceType === "comprehensive" && formData.schoolCount === "1" && (
+                  {formData.serviceType === "comprehensive" &&
+                    formData.schoolCount === "1" && (
+                      <div className="space-y-2">
+                        <label
+                          htmlFor="packageType"
+                          className="text-sm font-medium text-gray-600 text-muted-foreground"
+                        >
+                          Package Type
+                        </label>
+                        <select
+                          id="packageType"
+                          value={formData.packageType}
+                          onChange={(e) =>
+                            updateAmount(
+                              formData.serviceType as ServiceType,
+                              formData.schoolCount as SchoolCount,
+                              e.target.value as PackageType,
+                              formData.quantity as Quantity,
+                              formData.numEssays as NumEssays,
+                              formData.wordCount as WordCount
+                            )
+                          }
+                          className="w-full p-2 border text-gray-800 border-gray-300 rounded-lg"
+                        >
+                          <option value="basic">Basic</option>
+                          <option value="advanced">Advanced</option>
+                          <option value="pro">Pro</option>
+                        </select>
+                      </div>
+                    )}
+
+                  {formData.serviceType === "mbaprofileaccelerator" && (
                     <div className="space-y-2">
-                      <label htmlFor="packageType" className="text-sm font-medium text-gray-600 text-muted-foreground">Package Type</label>
+                      <label
+                        htmlFor="mbaprofileDuration"
+                        className="text-sm font-medium text-gray-600 text-muted-foreground"
+                      >
+                        Duration
+                      </label>
                       <select
-                        id="packageType"
-                        value={formData.packageType}
-                        onChange={(e) => updateAmount(formData.serviceType as ServiceType, formData.schoolCount as SchoolCount, e.target.value as PackageType, formData.quantity as Quantity, formData.numEssays as NumEssays, formData.wordCount as WordCount)}
+                        id="mbaprofileDuration"
+                        value={
+                          formData.amount === 100
+                            ? "1 Month"
+                            : formData.amount === 300
+                            ? "3 Months"
+                            : ""
+                        }
+                        onChange={(e) => {
+                          const selectedDuration = e.target.value;
+                          const newAmount =
+                            selectedDuration === "1 Month"
+                              ? 100
+                              : selectedDuration === "3 Months"
+                              ? 300
+                              : 0;
+
+                          // Update formData with the selected duration and amount
+                          setFormData({
+                            ...formData,
+                            amount: newAmount,
+                          });
+                        }}
                         className="w-full p-2 border text-gray-800 border-gray-300 rounded-lg"
                       >
-                        <option value="basic">Basic</option>
-                        <option value="advanced">Advanced</option>
-                        <option value="pro">Pro</option>
+                        <option value="1 Month">1 Month - $100</option>
+                        <option value="3 Months">3 Months - $300</option>
                       </select>
                     </div>
                   )}
 
-<div className="space-y-2">
-  <label
-    htmlFor="mbaprofileDuration"
-    className="text-sm font-medium text-gray-600 text-muted-foreground"
-  >
-    Duration
-  </label>
-  <select
-    id="mbaprofileDuration"
-    value={formData.serviceType === "mbaprofileaccelerator" ? formData.amount === 100 ? "1 Month" : "3 Months" : ""}
-    onChange={(e) =>
-      updateAmount(
-        formData.serviceType as ServiceType,
-        formData.schoolCount as SchoolCount,
-        formData.packageType as PackageType,
-        formData.quantity as Quantity,
-        formData.numEssays as NumEssays,
-        formData.wordCount as WordCount,
-        e.target.value
-      )
-    }
-    className="w-full p-2 border text-gray-800 border-gray-300 rounded-lg"
-  >
-    <option value="1 Month">1 Month - $100</option>
-    <option value="3 Months">3 Months - $300</option>
-  </select>
-</div>
-{formData.serviceType === "mbaprofileaccelerator" && (
-  <div className="flex justify-between items-center">
-    <span className="text-sm text-muted-foreground text-black">Duration:</span>
-    <span className="font-medium text-gray-800">
-      {formData.amount === 100 ? "1 Month" : "3 Months"}
-    </span>
-  </div>
-)}
-
-
                   {/* Quantity (only for Recommendation Letter) */}
                   {formData.serviceType === "recommendationLetter" && (
                     <div className="space-y-2">
-                      <label htmlFor="quantity" className="text-sm font-medium text-gray-600 text-muted-foreground">Quantity</label>
+                      <label
+                        htmlFor="quantity"
+                        className="text-sm font-medium text-gray-600 text-muted-foreground"
+                      >
+                        Quantity
+                      </label>
                       <select
                         id="quantity"
                         value={formData.quantity}
-                        onChange={(e) => updateAmount(formData.serviceType as ServiceType, formData.schoolCount as SchoolCount, formData.packageType as PackageType, e.target.value as Quantity, formData.numEssays as NumEssays, formData.wordCount as WordCount)}
+                        onChange={(e) =>
+                          updateAmount(
+                            formData.serviceType as ServiceType,
+                            formData.schoolCount as SchoolCount,
+                            formData.packageType as PackageType,
+                            e.target.value as Quantity,
+                            formData.numEssays as NumEssays,
+                            formData.wordCount as WordCount
+                          )
+                        }
                         className="w-full p-2 border text-gray-800 border-gray-300 rounded-lg"
                       >
                         {[1, 2, 3].map((qty) => (
-                          <option key={qty} value={qty.toString()}>{qty}</option>
+                          <option key={qty} value={qty.toString()}>
+                            {qty}
+                          </option>
                         ))}
                       </select>
                     </div>
                   )}
 
                   {/* Number of Essays and Word Count (for Essay Editing and Essay Writing) */}
-                  {(formData.serviceType === "essayEditing" || formData.serviceType === "essayWriting") && (
+                  {(formData.serviceType === "essayEditing" ||
+                    formData.serviceType === "essayWriting") && (
                     <>
                       <div className="space-y-2">
-                        <label htmlFor="numEssays" className="text-sm font-medium text-gray-600 text-muted-foreground">Number of Essays</label>
+                        <label
+                          htmlFor="numEssays"
+                          className="text-sm font-medium text-gray-600 text-muted-foreground"
+                        >
+                          Number of Essays
+                        </label>
                         <select
                           id="numEssays"
                           value={formData.numEssays}
-                          onChange={(e) => updateAmount(formData.serviceType as ServiceType, formData.schoolCount as SchoolCount, formData.packageType as PackageType, formData.quantity as Quantity, e.target.value as NumEssays, formData.wordCount as WordCount)}
+                          onChange={(e) =>
+                            updateAmount(
+                              formData.serviceType as ServiceType,
+                              formData.schoolCount as SchoolCount,
+                              formData.packageType as PackageType,
+                              formData.quantity as Quantity,
+                              e.target.value as NumEssays,
+                              formData.wordCount as WordCount
+                            )
+                          }
                           className="w-full p-2 border text-gray-800 border-gray-300 rounded-lg"
                         >
                           {[1, 2, 3].map((num) => (
-                            <option key={num} value={num.toString()}>{num} Essay(s)</option>
+                            <option key={num} value={num.toString()}>
+                              {num} Essay(s)
+                            </option>
                           ))}
                         </select>
                       </div>
 
                       <div className="space-y-2">
-                        <label htmlFor="wordCount" className="text-sm font-medium text-gray-600 text-muted-foreground">Word Count</label>
+                        <label
+                          htmlFor="wordCount"
+                          className="text-sm font-medium text-gray-600 text-muted-foreground"
+                        >
+                          Word Count
+                        </label>
                         <select
                           id="wordCount"
                           value={formData.wordCount}
-                          onChange={(e) => updateAmount(formData.serviceType as ServiceType, formData.schoolCount as SchoolCount, formData.packageType as PackageType, formData.quantity as Quantity, formData.numEssays as NumEssays, e.target.value as WordCount)}
+                          onChange={(e) =>
+                            updateAmount(
+                              formData.serviceType as ServiceType,
+                              formData.schoolCount as SchoolCount,
+                              formData.packageType as PackageType,
+                              formData.quantity as Quantity,
+                              formData.numEssays as NumEssays,
+                              e.target.value as WordCount
+                            )
+                          }
                           className="w-full p-2 border text-gray-800 border-gray-300 rounded-lg"
                         >
                           {[300, 500, 750, 1000].map((words) => (
-                            <option key={words} value={words.toString()}>{words} Words</option>
+                            <option key={words} value={words.toString()}>
+                              {words} Words
+                            </option>
                           ))}
                         </select>
                       </div>
@@ -318,7 +469,12 @@ export default function Component() {
                 {/* User Information */}
                 <div className="space-y-4">
                   <div className="space-y-2">
-                    <label htmlFor="fullName" className="text-sm font-medium text-gray-600 text-muted-foreground">Full Name</label>
+                    <label
+                      htmlFor="fullName"
+                      className="text-sm font-medium text-gray-600 text-muted-foreground"
+                    >
+                      Full Name
+                    </label>
                     <div className="relative">
                       <User className="absolute text-blue-400 left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
                       <input
@@ -330,7 +486,12 @@ export default function Component() {
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="email" className="text-sm font-medium text-gray-600 text-muted-foreground">Email Address</label>
+                    <label
+                      htmlFor="email"
+                      className="text-sm font-medium text-gray-600 text-muted-foreground"
+                    >
+                      Email Address
+                    </label>
                     <div className="relative">
                       <Mail className="absolute text-blue-400 left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
                       <input
@@ -343,7 +504,12 @@ export default function Component() {
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="mobile" className="text-sm font-medium text-gray-600 text-muted-foreground">Mobile Number</label>
+                    <label
+                      htmlFor="mobile"
+                      className="text-sm font-medium text-gray-600 text-muted-foreground"
+                    >
+                      Mobile Number
+                    </label>
                     <div className="relative">
                       <Phone className="absolute text-blue-400 left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
                       <input
@@ -360,26 +526,38 @@ export default function Component() {
 
             {/* Summary Section */}
             <div className="p-4 border border-gray-300 rounded-lg shadow-sm">
-              <div className="text-2xl text-black font-semibold text-primary">Summary</div>
+              <div className="text-2xl text-black font-semibold text-primary">
+                Summary
+              </div>
               <div className="space-y-6 mt-4">
                 <div className="space-y-4">
                   <div className="flex justify-between items-center">
-                    <span className="text-sm text-muted-foreground text-black">Service Type:</span>
+                    <span className="text-sm text-muted-foreground text-black">
+                      Service Type:
+                    </span>
                     <span className="font-medium text-gray-800">
-                      {formData.serviceType.charAt(0).toUpperCase() + formData.serviceType.slice(1)}
+                      {formData.serviceType.charAt(0).toUpperCase() +
+                        formData.serviceType.slice(1)}
                     </span>
                   </div>
                   {formData.serviceType === "comprehensive" && (
                     <>
                       <div className="flex justify-between items-center">
-                        <span className="text-sm text-black text-muted-foreground">Number of Schools</span>
-                        <span className="font-medium text-black">{formData.schoolCount}</span>
+                        <span className="text-sm text-black text-muted-foreground">
+                          Number of Schools
+                        </span>
+                        <span className="font-medium text-black">
+                          {formData.schoolCount}
+                        </span>
                       </div>
                       {formData.schoolCount === "1" && (
                         <div className="flex justify-between items-center">
-                          <span className="text-sm text-muted-foreground text-black">Package Type:</span>
+                          <span className="text-sm text-muted-foreground text-black">
+                            Package Type:
+                          </span>
                           <span className="font-medium text-gray-800">
-                            {formData.packageType.charAt(0).toUpperCase() + formData.packageType.slice(1)}
+                            {formData.packageType.charAt(0).toUpperCase() +
+                              formData.packageType.slice(1)}
                           </span>
                         </div>
                       )}
@@ -387,24 +565,39 @@ export default function Component() {
                   )}
                   {formData.serviceType === "recommendationLetter" && (
                     <div className="flex justify-between items-center">
-                      <span className="text-sm text-muted-foreground text-black">Quantity:</span>
-                      <span className="font-medium text-gray-800">{formData.quantity}</span>
+                      <span className="text-sm text-muted-foreground text-black">
+                        Quantity:
+                      </span>
+                      <span className="font-medium text-gray-800">
+                        {formData.quantity}
+                      </span>
                     </div>
                   )}
-                  {(formData.serviceType === "essayEditing" || formData.serviceType === "essayWriting") && (
+                  {(formData.serviceType === "essayEditing" ||
+                    formData.serviceType === "essayWriting") && (
                     <>
                       <div className="flex justify-between items-center">
-                        <span className="text-sm text-muted-foreground text-black">Number of Essays:</span>
-                        <span className="font-medium text-gray-800">{formData.numEssays}</span>
+                        <span className="text-sm text-muted-foreground text-black">
+                          Number of Essays:
+                        </span>
+                        <span className="font-medium text-gray-800">
+                          {formData.numEssays}
+                        </span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-sm text-muted-foreground text-black">Word Count:</span>
-                        <span className="font-medium text-gray-800">{formData.wordCount}</span>
+                        <span className="text-sm text-muted-foreground text-black">
+                          Word Count:
+                        </span>
+                        <span className="font-medium text-gray-800">
+                          {formData.wordCount}
+                        </span>
                       </div>
                     </>
                   )}
                   <div className="flex justify-between items-center pt-4 border-t">
-                    <span className="text-sm text-muted-foreground text-black">Amount</span>
+                    <span className="text-sm text-muted-foreground text-black">
+                      Amount
+                    </span>
                     <div>
                       <span className="font-bold text-lg text-black text-primary">
                         ${formData.amount.toFixed(2)}
@@ -416,9 +609,9 @@ export default function Component() {
                   </div>
                 </div>
                 <Link href="/payment/pay">
-                <button className="w-full p-4 font-medium text-white bg-blue-800 bg-primary rounded-lg transition-all duration-300 ease-in-out hover:scale-105">
-                  Pay Now
-                </button>
+                  <button className="w-full p-4 font-medium text-white bg-blue-800 bg-primary rounded-lg transition-all duration-300 ease-in-out hover:scale-105">
+                    Pay Now
+                  </button>
                 </Link>
               </div>
             </div>

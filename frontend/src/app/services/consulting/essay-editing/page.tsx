@@ -48,6 +48,7 @@ const successStories = [
   ];
 
   const services = [
+    { icon: ClipboardList, title: "MBA Profile Accelerator", description: "Strategic guidance to enhance profile before MBA applications", url: "/services/mba-profile-accelerator" },
     { icon: Compass, title: "Comprehensive Consulting", description: "Consultants assist in drafting school-specific essays from scratch", url: "/services/comprehensive-consulting" },
     { icon: Users, title: "Profile Presentations", description: "Consultants draft school-specific essays from scratch", url: "/services/consulting/profilepresentations" },
     { icon: MonitorPlay, title: "Mock Interviews", description: "2 in-depth mock interviews to simulate the real experience", url: "/services/consulting/mockinterviews" },
