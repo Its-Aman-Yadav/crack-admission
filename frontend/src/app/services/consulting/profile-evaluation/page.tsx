@@ -22,7 +22,7 @@ const successStories = [
       image: "/images/success/Aditya.png", // Initial Capital letters for image filename
       school: {
         name: "ISB",
-        logo: "/images/success/isb.png", // Lowercase letters for logo filename
+        logo: "/images/success/ISB.png", // Lowercase letters for logo filename
       },
     },
     {
@@ -31,7 +31,7 @@ const successStories = [
       image: "/images/success/Shantanu.jpeg", // Initial Capital letters for image filename
       school: {
         name: "Tepper School of Business",
-        logo: "/images/success/tepper.png", // Lowercase letters for logo filename
+        logo: "/images/success/TEPPER.png", // Lowercase letters for logo filename
       },
     },
     {

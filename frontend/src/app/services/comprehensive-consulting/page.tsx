@@ -28,7 +28,7 @@ const successStories = [
     {
       name: "Mahendra Muralidhar",
       field: "IT Services",
-      image: "/images/success/mahendra.png", // Replace with actual image path
+      image: "/images/success/Mahendra.png", // Replace with actual image path
       school: {
         name: "HEC Paris",
         logo: "/images/success/hec.png", // Replace with actual logo path
@@ -37,7 +37,7 @@ const successStories = [
     {
       name: "Odufa Abalu",
       field: "Banking",
-      image: "/images/success/oli.png", // Replace with actual image path
+      image: "/images/success/Oli.png", // Replace with actual image path
       school: {
         name: "Johnson School",
         logo: "/images/success/jhonson.png", // Replace with actual logo path

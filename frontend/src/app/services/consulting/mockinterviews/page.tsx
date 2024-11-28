@@ -26,10 +26,10 @@ const pricingData = [
 ];
 
 const successStories = [
-  { name: "Raghav Tandon", field: "Hospitality", image: "/images/success/raghav.png", school: { name: "S P Jain School of Global Management", logo: "/images/success/Schulich.png" } },
+  { name: "Raghav Tandon", field: "Hospitality", image: "/images/success/Raghav.png", school: { name: "S P Jain School of Global Management", logo: "/images/success/Schulich.png" } },
   { name: "Prashant Singh", field: "Banking", image: "/images/success/prashant.png", school: { name: "USC Marshall", logo: "/images/success/usc.png" } },
   { name: "Piyush Khullar", field: "Financial Services", image: "/images/success/piyush.png", school: { name: "IE Business School", logo: "/images/success/ie.png" } },
-  { name: "Sanyam Sengar", field: "Data Analytics", image: "/images/success/sanyam.png", school: { name: "ISB", logo: "/images/success/isb.png" } },
+  { name: "Sanyam Sengar", field: "Data Analytics", image: "/images/success/Sanyam.png", school: { name: "ISB", logo: "/images/success/ISB.png" } },
 ];
 
 const steps = [
