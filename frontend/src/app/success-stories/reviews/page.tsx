@@ -3,8 +3,6 @@
 import GoogleReviewsSection from '@/components/GoogleReview';
 import TestimonialSection from '@/components/Testimonial';
 import WhatsappReviewsSection from '@/components/WhatsappReview';
-import { useEffect, useState } from 'react';
-import Head from 'next/head';
 
 interface Video {
   id: number;
@@ -19,25 +17,53 @@ interface Review {
 }
 
 export default function ReviewSection() {
-  const [reviews, setReviews] = useState<Review[]>([]);
+  // Hardcoded data for reviews
+  const reviews: Review[] = [
+    {
+      id: 1,
+      VideoSection: [
+        {
+          id: 101,
+          link: 'https://youtu.be/LvecKtZv9GI',
+          Name: 'Apurv Upadhyay',
+          School: 'ISB PGP',
+        },
+        {
+          id: 102,
+          link: 'https://youtu.be/XP_poPwo_lE',
+          Name: 'Saheli Ghosh',
+          School: 'ISB PGP, HEC Paris',
+        },
+      ],
+    },
+    {
+      id: 2,
+      VideoSection: [
+        {
+          id: 103,
+          link: '/vaibhav.mp4', // Local video
+          Name: 'Vaibhav Chandel',
+          School: 'ISB PGP',
+        },
+        {
+          id: 104,
+          link: '/Umang.mp4', // Local video
+          Name: 'Umang Agarwal',
+          School: 'ISB PGP',
+        },
+        {
+          id: 105,
+          link: '/Ashutosh.mp4', // Local video
+          Name: 'Ashutosh',
+          School: 'IIM B EPGP',
+        },
+      ],
+    },
+  ];
 
-  useEffect(() => {
-    document.title = "Reviews"
-    const fetchReviews = async () => {
-      try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/reviews?populate[VideoSection]=*`);
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const data = await response.json();
-        setReviews(data.data);
-      } catch (error) {
-        console.error('Error fetching reviews:', error);
-      }
-    };
-
-    fetchReviews();
-  }, []);
+  const isYouTubeLink = (url: string) => {
+    return url.includes('youtube.com') || url.includes('youtu.be');
+  };
 
   const getYouTubeEmbedUrl = (url: string) => {
     try {
@@ -57,26 +83,7 @@ export default function ReviewSection() {
   };
 
   return (
-     <>
-      <Head>
-        <title>Reviews</title>
-        <meta
-          name="description"
-          content="Explore student reviews, video testimonials, and success stories. See how CrackAdmission has helped students achieve their dreams."
-        />
-        <meta
-          name="keywords"
-          content="CrackAdmission reviews, student testimonials, video reviews, success stories, MBA consulting reviews"
-        />
-        <meta name="author" content="CrackAdmission" />
-        <meta property="og:title" content="Reviews - CrackAdmission" />
-        <meta
-          property="og:description"
-          content="Discover authentic reviews from our students, video testimonials, and their success stories. CrackAdmission delivers unmatched MBA consulting services."
-        />
-        <meta property="og:url" content="https://crackadmission.com/reviews" />
-        <meta property="og:type" content="website" />
-      </Head>
+    <>
       <div className="bg-blue-50 py-12 mb-10 px-4">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold text-center mt-5 text-blue-500 mb-8">Reviews</h1>
@@ -91,21 +98,32 @@ export default function ReviewSection() {
           </div>
         </div>
       </div>
-      
+
       <section className="py-12">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-blue-600 mb-8">Student Reviews</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {reviews.map((review) =>
               review.VideoSection.map((video) => (
-                <div key={video.id} className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
+                <div
+                  key={video.id}
+                  className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
+                >
                   <div className="aspect-video">
-                    <iframe
-                      src={getYouTubeEmbedUrl(video.link)}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      className="w-full h-full"
-                    ></iframe>
+                    {isYouTubeLink(video.link) ? (
+                      <iframe
+                        src={getYouTubeEmbedUrl(video.link)}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        className="w-full h-full"
+                      ></iframe>
+                    ) : (
+                      <video
+                        controls
+                        className="w-full h-full"
+                        src={video.link}
+                      ></video>
+                    )}
                   </div>
                   <div className="p-4">
                     <div className="flex items-center space-x-4">
