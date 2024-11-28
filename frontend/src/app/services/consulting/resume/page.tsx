@@ -35,7 +35,7 @@ const successStories = [
       image: "/images/success/Prudhvi.png", // replace with the actual image path
       school: {
         name: "ISB",
-        logo: "/images/success/isb.png", // replace with the actual logo path
+        logo: "/images/success/ISB.png", // replace with the actual logo path
       },
     },
     {
@@ -44,7 +44,7 @@ const successStories = [
       image: "/images/success/Vatsal.png", // replace with the actual image path
       school: {
         name: "ISB",
-        logo: "/images/success/isb.png", // replace with the actual logo path
+        logo: "/images/success/ISB.png", // replace with the actual logo path
       },
     },
     {
@@ -59,7 +59,7 @@ const successStories = [
     {
       name: "Shouvick Ray",
       field: "Insurance",
-      image: "/images/success/ray.png", // replace with the actual image path
+      image: "/images/success/Ray.png", // replace with the actual image path
       school: {
         name: "XLRI",
         logo: "/images/success/iimc.png", // replace with the actual logo path

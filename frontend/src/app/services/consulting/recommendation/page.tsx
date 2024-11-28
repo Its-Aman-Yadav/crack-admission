@@ -10,7 +10,7 @@ const successStories = [
   {
     name: "Surya Tamada",
     field: "IT Consulting",
-    image: "/images/success/surya.png", // Replace with actual image path
+    image: "/images/success/Surya.png", // Replace with actual image path
     school: {
       name: "Oxford",
       logo: "/images/success/oxford.png", // Replace with actual logo path
@@ -22,13 +22,13 @@ const successStories = [
     image: "/images/success/prasanna.png", // Replace with actual image path
     school: {
       name: "ISB",
-      logo: "/images/success/isb.png", // Replace with actual logo path
+      logo: "/images/success/ISB.png", // Replace with actual logo path
     },
   },
   {
     name: "Sneha Nautiyal",
     field: "Financial Services",
-    image: "/images/success/sneha.png", // Replace with actual image path
+    image: "/images/success/Sneha.png", // Replace with actual image path
     school: {
       name: "EDHEC Business School",
       logo: "/images/success/edhec.png", // Replace with actual logo path
@@ -37,10 +37,10 @@ const successStories = [
   {
     name: "Himanshu",
     field: "Supply Chain",
-    image: "/images/success/himanshu.png", // Replace with actual image path
+    image: "/images/success/Himanshu.png", // Replace with actual image path
     school: {
       name: "IIM",
-      logo: "/images/success/iim.png", // Replace with actual logo path
+      logo: "/images/success/IIM.png", // Replace with actual logo path
     },
   },
 ];

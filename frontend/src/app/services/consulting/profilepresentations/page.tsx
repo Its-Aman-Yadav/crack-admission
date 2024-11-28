@@ -22,7 +22,7 @@ const successStories = [
       image: "/images/success/Vatsal.png", // Initial Capital letters for image filename
       school: {
         name: "ISB",
-        logo: "/images/success/isb.png", // Lowercase letters for logo filename
+        logo: "/images/success/ISB.png", // Lowercase letters for logo filename
       },
     },
     {
@@ -31,7 +31,7 @@ const successStories = [
       image: "/images/success/Ashutosh.png", // Initial Capital letters for image filename
       school: {
         name: "Indian Institute of Management",
-        logo: "/images/success/iim.png", // Lowercase letters for logo filename
+        logo: "/images/success/IIM.png", // Lowercase letters for logo filename
       },
     },
     {
@@ -40,7 +40,7 @@ const successStories = [
       image: "/images/success/Ishan.png", // Initial Capital letters for image filename
       school: {
         name: "ISB",
-        logo: "/images/success/isb.png", // Lowercase letters for logo filename
+        logo: "/images/success/ISB.png", // Lowercase letters for logo filename
       },
     },
   ];

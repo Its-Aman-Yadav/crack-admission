@@ -24,7 +24,7 @@ const successStories = [
       image: "/images/success/Revant.png", // Replace with actual image path
       school: {
         name: "ISB",
-        logo: "/images/success/isb.png", // Replace with actual logo path
+        logo: "/images/success/ISB.png", // Replace with actual logo path
       },
     },
     {
@@ -33,7 +33,7 @@ const successStories = [
       image: "/images/success/Debarati.png", // Replace with actual image path
       school: {
         name: "ISB",
-        logo: "/images/success/isb.png", // Replace with actual logo path
+        logo: "/images/success/ISB.png", // Replace with actual logo path
       },
     },
     {

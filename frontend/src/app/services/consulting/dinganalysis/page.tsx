@@ -22,7 +22,7 @@ const successStories = [
       image: "/images/success/Janakan.png", // Initial Capital letters for image filename
       school: {
         name: "ISB",
-        logo: "/images/success/isb.png", // Lowercase letters for logo filename
+        logo: "/images/success/ISB.png", // Lowercase letters for logo filename
       },
     },
     {
