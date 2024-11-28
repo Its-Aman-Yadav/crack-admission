@@ -247,7 +247,7 @@ export default function Component() {
         <section className="bg-gradient-to-b from-gray-50 to-white py-16 px-4">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-4xl font-bold text-center text-gray-900 mb-12">
-              Our Deliverables
+              What do you get
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {deliverables.map((deliverable, index) => (
