@@ -88,6 +88,12 @@ export default function WhatsappReviewsSection() {
       School: 'IIM C PGPEx',
       screenshot: '/whatsapp/Shouvick.jpg',
     },
+    {
+      id: 14,
+      Name: 'Anand Raj',
+      School: 'ISB',
+      screenshot: '/whatsapp/Anand.jpg',
+    },
   ];
 
   return (
