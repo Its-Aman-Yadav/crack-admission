@@ -41,7 +41,7 @@ export default function ReviewSection() {
       VideoSection: [
         {
           id: 103,
-          link: '/vaibhav.mp4', // Local video
+          link: '/Vaibhav.mp4', // Local video
           Name: 'Vaibhav Chandel',
           School: 'ISB PGP',
         },
