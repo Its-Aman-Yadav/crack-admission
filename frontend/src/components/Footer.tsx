@@ -25,6 +25,7 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="font-bold text-lg mb-4">Services</h3>
             <ul>
+            <li><Link href="/services/mba-profile-accelerator" className="hover:underline">MBA Profile Accelerator</Link></li>
               <li><Link href="/services/comprehensive-consulting" className="hover:underline">Comprehensive Consulting</Link></li>
               <li><Link href="/services/consulting/mockinterviews" className="hover:underline">Mock Interviews</Link></li>
               <li><Link href="/services/consulting/essay-editing" className="hover:underline">Essay Editing</Link></li>
