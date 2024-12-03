@@ -97,7 +97,7 @@ export default function Component() {
       try {
         while (hasMore) {
           const response = await fetch(
-            `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/success-stories?populate=*&pagination[page]=${page}&pagination[pageSize]=${pageSize}`
+            `http://3.108.126.204:1337/api/success-stories?populate=*&pagination[page]=${page}&pagination[pageSize]=${pageSize}`
           );
           const data = await response.json();
           const profiles = data.data.map((item: any) => {
@@ -111,7 +111,7 @@ export default function Component() {
             return {
               name: item.name,
               image: imageUrl.startsWith("/")
-                ? `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${imageUrl}`
+                ? `http://3.108.126.204:1337${imageUrl}`
                 : imageUrl,
               program: (item.program || "MBA").trim(),
               country: item.country || "Unknown",
