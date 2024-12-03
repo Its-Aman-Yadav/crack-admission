@@ -88,18 +88,21 @@ export default function Component() {
 
   useEffect(() => {
     document.title = "Success Stories";
+  
     const fetchAllProfiles = async () => {
       const allProfiles: Profile[] = [];
       let page = 1;
       const pageSize = 100;
       let hasMore = true;
-
+  
       try {
         while (hasMore) {
+          // Direct backend access
           const response = await fetch(
-            `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/success-stories?populate=*&pagination[page]=${page}&pagination[pageSize]=${pageSize}`
+            `http://3.108.126.204:1337/api/success-stories?populate=*&pagination[page]=${page}&pagination[pageSize]=${pageSize}`
           );
           const data = await response.json();
+  
           const profiles = data.data.map((item: any) => {
             const imageUrl =
               item.image?.formats?.large?.url ||
@@ -107,11 +110,11 @@ export default function Component() {
               item.image?.formats?.small?.url ||
               item.image?.formats?.thumbnail?.url ||
               "/placeholder.svg?height=400&width=400";
-
+  
             return {
               name: item.name,
               image: imageUrl.startsWith("/")
-                ? `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${imageUrl}`
+                ? `http://3.108.126.204:1337${imageUrl}`
                 : imageUrl,
               program: (item.program || "MBA").trim(),
               country: item.country || "Unknown",
@@ -119,12 +122,12 @@ export default function Component() {
               linkedin: item.linkedin || "#",
             };
           });
-
+  
           allProfiles.push(...profiles);
           hasMore = profiles.length === pageSize;
           page++;
         }
-
+  
         setProfiles(allProfiles);
       } catch (error) {
         console.error("Error fetching profiles:", error);
@@ -132,10 +135,10 @@ export default function Component() {
         setLoading(false);
       }
     };
-
+  
     fetchAllProfiles();
   }, []);
-
+  
   // Filter profiles based on selected program and school
   const filteredProfiles = profiles.filter((profile) => {
     const programMatch =
