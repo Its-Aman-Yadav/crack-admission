@@ -25,7 +25,7 @@ interface Article {
 
 const fetchArticles = async (): Promise<Article[]> => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/articles?populate=*`,
+   `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/articles?populate=*&pagination[pageSize]=1000`,
     {
       cache: "no-store",
     }
@@ -178,13 +178,12 @@ const BlogPage: React.FC = () => {
                   />
 
                   <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-end p-4">
-                    <div className="absolute top-4 left-4 bg-blue-500 rounded-full px-3 py-1 text-white text-xs font-medium shadow-md">
+                    {/* < className="absolute top-4 left-4 bg-blue-500 rounded-full px-3 py-1 text-white text-xs font-medium shadow-md"> */}
                       {/* {new Date(post.publishedAt).toLocaleDateString("en-GB", {
                         day: "2-digit",
                         month: "long",
                         year: "numeric",
                       })} */}
-                    </div>
                     <h3 className="text-white text-lg font-semibold leading-snug mb-2">
                       {post.title}
                     </h3>
