@@ -169,7 +169,7 @@ const BlogPage: React.FC = () => {
                   <img
                     src={post.cover.url}
                     alt={post.title}
-                    className="w-full h-38 object-cover transition-transform duration-300 transform group-hover:scale-105"
+                    className="w-full h-45 object-cover transition-transform duration-300 transform group-hover:scale-105"
                   />
 
                   {/* Text Content */}
