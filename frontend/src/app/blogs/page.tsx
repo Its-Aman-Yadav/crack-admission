@@ -164,7 +164,7 @@ const BlogPage: React.FC = () => {
           {filteredArticles.length > 0 ? (
             filteredArticles.map((post) => (
               <Link key={post.id} href={`/blogs/${post.slug}`}>
-                <div className="group rounded-lg border border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow duration-300 cursor-pointer overflow-hidden h-96">
+                <div className="group rounded-lg border border-gray-400 bg-white shadow-sm hover:shadow-md transition-shadow duration-300 cursor-pointer overflow-hidden h-96">
                   {/* Image */}
                   <img
                     src={post.cover.url}
