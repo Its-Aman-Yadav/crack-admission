@@ -84,11 +84,11 @@ const BlogSection: React.FC = () => {
                   {post.title}
                 </h3>
                 {/* Tags */}
-                {post.tags?.name && (
+                {/* {post.tags?.name && (
                   <span className="bg-blue-100 text-blue-800 text-xs font-medium rounded-full px-3 py-1 inline-block mt-2">
                     {post.tags.name}
                   </span>
-                )}
+                )} */}
               </div>
             </div>
           </Link>
