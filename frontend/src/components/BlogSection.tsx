@@ -25,7 +25,7 @@ interface Article {
 // Fetch the data
 const fetchArticles = async (): Promise<Article[]> => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/articles?populate=*`,
+    `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/articles?populate=*&pagination[limit]=100`,
     { cache: "no-store" }
   );
   const data = await response.json();
@@ -38,11 +38,13 @@ const BlogSection: React.FC = () => {
   useEffect(() => {
     const getArticles = async () => {
       const fetchedArticles = await fetchArticles();
+      console.log("Fetched Articles:", fetchedArticles);
       // Sort articles by published date (most recent first)
       const sortedArticles = fetchedArticles.sort((a, b) => {
-        return (
-          new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
-        );
+        const dateA = new Date(a.publishedAt).getTime();
+        const dateB = new Date(b.publishedAt).getTime();
+        console.log("Comparing Dates:", { dateA, dateB });
+        return dateB - dateA;
       });
       // Take only the top 3 articles
       setArticles(sortedArticles.slice(0, 3));
