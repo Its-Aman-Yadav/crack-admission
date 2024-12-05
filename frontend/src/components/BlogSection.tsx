@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { FiArrowRight } from "react-icons/fi"; // Importing arrow icon
-import "@fontsource/inter"; // Import Inter font
+import "@fontsource/poppins"; // Import Poppins font
 
 // Define types for the article data
 interface Cover {
@@ -51,7 +51,7 @@ const BlogSection: React.FC = () => {
   }, []);
 
   return (
-    <section className="py-16 bg-white font-inter">
+    <section className="py-16 bg-white font-poppins">
       {/* Heading Section */}
       <div className="container mx-auto text-center mb-12">
         <h2 className="text-4xl font-bold mb-4 leading-snug text-gray-900">
