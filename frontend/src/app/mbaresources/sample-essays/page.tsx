@@ -21,7 +21,7 @@ export default function Component() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/essays?populate=*`
+         `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/essays?populate=*&pagination[pageSize]=100`
         );
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
