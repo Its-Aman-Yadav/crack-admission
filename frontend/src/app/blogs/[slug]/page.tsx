@@ -107,7 +107,7 @@ export default function BlogPost() {
           />
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center">
-              <h1 className="text-4xl font-bold text-black mt-4 px-4">
+              <h1 className="text-4xl font-bold text-white mt-4 px-4">
                 {article.title}
               </h1>
             </div>

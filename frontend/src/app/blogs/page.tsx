@@ -132,16 +132,16 @@ const BlogPage: React.FC = () => {
           </div>
         </div>
 
-        <div className="flex justify-center mb-8 space-x-4">
+        <div className="flex flex-wrap justify-center mb-8 gap-4">
           {/* Search by title */}
           <input
             type="text"
             placeholder="Search blogs..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="border rounded-l-md px-4 py-2 w-1/3 text-gray-900 bg-white"
+            className="border px-4 py-2 text-gray-900 bg-white w-full md:w-1/3"
           />
-          <button className="bg-blue-600 text-white rounded-r-md px-4 flex items-center">
+          <button className="bg-blue-600 text-white px-4 py-2 flex items-center w-full md:w-auto">
             <FiSearch className="mr-2" /> Search
           </button>
 
@@ -149,7 +149,7 @@ const BlogPage: React.FC = () => {
           <select
             value={selectedTag}
             onChange={(e) => setSelectedTag(e.target.value)}
-            className="border rounded-md px-4 py-2 text-gray-900 bg-white"
+            className="border px-4 py-2 text-gray-900 bg-white w-full md:w-auto"
           >
             <option value="">All Tags</option>
             {uniqueTags.map((tag) => (
@@ -159,6 +159,7 @@ const BlogPage: React.FC = () => {
             ))}
           </select>
         </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 md:px-20">
           {filteredArticles.length > 0 ? (
             filteredArticles.map((post) => (
@@ -179,7 +180,7 @@ const BlogPage: React.FC = () => {
                     <h3 className="text-gray-600 text-lg font-semibold leading-tight">
                       {post.title}
                     </h3>
-                     {/* {post.tags?.name && (
+                    {/* {post.tags?.name && (
                       <span className="bg-blue-100 text-blue-800 text-xs font-medium rounded-full px-3 py-1 mt-auto">
                         {post.tags.name}
                       </span>
