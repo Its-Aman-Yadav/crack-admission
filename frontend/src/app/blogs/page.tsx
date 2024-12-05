@@ -179,11 +179,11 @@ const BlogPage: React.FC = () => {
                     <h3 className="text-gray-800 text-lg font-semibold leading-tight">
                       {post.title}
                     </h3>
-                     {post.tags?.name && (
+                     {/* {post.tags?.name && (
                       <span className="bg-blue-100 text-blue-800 text-xs font-medium rounded-full px-3 py-1 mt-auto">
                         {post.tags.name}
                       </span>
-                    )}
+                    )} */}
                   </div>
                 </div>
               </Link>
