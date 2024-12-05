@@ -167,47 +167,47 @@ const BlogPage: React.FC = () => {
           </select>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 md:px-20">
-          {filteredArticles.length > 0 ? (
-            filteredArticles.map((post) => (
-              <Link key={post.id} href={`/blogs/${post.slug}`}>
-                <div className="relative group rounded-lg overflow-hidden border border-gray-200 bg-white shadow-sm hover:shadow-lg transition-shadow duration-300 cursor-pointer">
-                  {/* Image */}
-                  <img
-                    src={post.cover.url}
-                    alt={post.title}
-                    className="w-full h-80 object-cover transition-transform duration-300 transform group-hover:scale-105"
-                  />
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 md:px-20">
+  {filteredArticles.length > 0 ? (
+    filteredArticles.map((post) => (
+      <Link key={post.id} href={`/blogs/${post.slug}`}>
+        <div className="group rounded-lg border border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow duration-300 cursor-pointer overflow-hidden">
+          {/* Image */}
+          <img
+            src={post.cover.url}
+            alt={post.title}
+            className="w-full h-60 object-cover transition-transform duration-300 transform group-hover:scale-105"
+          />
 
-                  {/* Category or Tag Badge */}
-                  {post.tags && (
-                    <div className="absolute top-4 left-4 bg-blue-100 text-blue-600 rounded-full px-3 py-1 text-xs font-medium shadow">
-                      {post.tags.name}
-                    </div>
-                  )}
+          {/* Text Content */}
+          <div className="p-4">
+            {/* Title */}
+            <h3 className="text-gray-800 text-lg font-semibold leading-tight mb-2">
+              {post.title}
+            </h3>
 
-                  {/* Text Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex flex-col justify-end p-4">
-                    <h3 className="text-white text-lg font-semibold leading-snug mb-2">
-                      {post.title}
-                    </h3>
-                  </div>
+            {/* Description */}
+            {/* <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+              {post.description || 'A short description of the article will go here.'}
+            </p> */}
 
-                  {/* Arrow Icon */}
-                  <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="text-blue-500 bg-white rounded-full p-2 shadow-lg">
-                      <FiArrowRight />
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            ))
-          ) : (
-            <div className="text-center col-span-full text-lg text-gray-500">
-              No blogs found...
-            </div>
-          )}
+            {/* Category/Tag Badge */}
+            {post.tags && (
+              <div className="inline-block bg-blue-100 text-blue-600 text-xs font-medium rounded-full px-3 py-1 shadow">
+                {post.tags.name}
+              </div>
+            )}
+          </div>
         </div>
+      </Link>
+    ))
+  ) : (
+    <div className="text-center col-span-full text-lg text-gray-500">
+      No blogs found...
+    </div>
+  )}
+</div>
+
       </section>
     </>
   );
