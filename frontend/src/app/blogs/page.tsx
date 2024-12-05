@@ -25,7 +25,7 @@ interface Article {
 
 const fetchArticles = async (): Promise<Article[]> => {
   const response = await fetch(
-   `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/articles?populate=*&pagination[pageSize]=1000`,
+    `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/articles?populate=*&pagination[pageSize]=1000`,
     {
       cache: "no-store",
     }
@@ -50,10 +50,11 @@ const fetchArticles = async (): Promise<Article[]> => {
     publishedAt: article.publishedAt,
     cover: {
       url:
-      article.cover && article.cover.formats
-      ? `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${article.cover.formats.medium?.url || article.cover.url}`
-      : "/path/to/default-image.jpg", // Fallback image path
-      
+        article.cover && article.cover.formats
+          ? `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${
+              article.cover.formats.medium?.url || article.cover.url
+            }`
+          : "/path/to/default-image.jpg", // Fallback image path
     },
     tags: article.tags ? { name: article.tags.name } : null,
   }));
@@ -170,35 +171,31 @@ const BlogPage: React.FC = () => {
           {filteredArticles.length > 0 ? (
             filteredArticles.map((post) => (
               <Link key={post.id} href={`/blogs/${post.slug}`}>
-                <div className="relative group rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer">
+                <div className="relative group rounded-lg overflow-hidden border border-gray-200 bg-white shadow-sm hover:shadow-lg transition-shadow duration-300 cursor-pointer">
+                  {/* Image */}
                   <img
                     src={post.cover.url}
                     alt={post.title}
                     className="w-full h-80 object-cover transition-transform duration-300 transform group-hover:scale-105"
                   />
 
-                  <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-end p-4">
-                    {/* < className="absolute top-4 left-4 bg-blue-500 rounded-full px-3 py-1 text-white text-xs font-medium shadow-md"> */}
-                      {/* {new Date(post.publishedAt).toLocaleDateString("en-GB", {
-                        day: "2-digit",
-                        month: "long",
-                        year: "numeric",
-                      })} */}
+                  {/* Category or Tag Badge */}
+                  {post.tags && (
+                    <div className="absolute top-4 left-4 bg-blue-100 text-blue-600 rounded-full px-3 py-1 text-xs font-medium shadow">
+                      {post.tags.name}
+                    </div>
+                  )}
+
+                  {/* Text Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex flex-col justify-end p-4">
                     <h3 className="text-white text-lg font-semibold leading-snug mb-2">
                       {post.title}
                     </h3>
-
-                    {/* Tags Display */}
-                    {post.tags && (
-                      <p className="text-white text-sm mt-2">
-                        <span className="font-semibold">Tags:</span>{" "}
-                        {post.tags.name}
-                      </p>
-                    )}
                   </div>
 
-                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="text-white text-2xl">
+                  {/* Arrow Icon */}
+                  <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="text-blue-500 bg-white rounded-full p-2 shadow-lg">
                       <FiArrowRight />
                     </div>
                   </div>
