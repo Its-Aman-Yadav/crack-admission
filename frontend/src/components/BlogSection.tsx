@@ -67,7 +67,7 @@ const BlogSection: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4 md:px-20">
         {articles.map((post) => (
           <Link key={post.id} href={`/blogs/${post.slug}`}>
-            <div className="group rounded-lg border border-gray-200 bg-white shadow-sm hover:shadow-lg transition-shadow duration-300 cursor-pointer overflow-hidden h-96">
+            <div className="group rounded-lg border border-gray-400 bg-white shadow-sm hover:shadow-lg transition-shadow duration-300 cursor-pointer overflow-hidden h-96">
               {/* Image */}
               <img
                 src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${post.cover.url}`}
