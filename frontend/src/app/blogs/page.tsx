@@ -35,13 +35,6 @@ const fetchArticles = async (): Promise<Article[]> => {
     throw new Error(`HTTP error! Status: ${response.status}`);
   }
 
-  console.log(
-    "Authorization Header:",
-    `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`
-  );
-  console.log("API URL:", process.env.NEXT_PUBLIC_STRAPI_API_URL);
-  console.log("API Token:", process.env.NEXT_PUBLIC_STRAPI_API_TOKEN);
-
   const data = await response.json();
   return data.data.map((article: any) => ({
     id: article.id,
@@ -167,20 +160,20 @@ const BlogPage: React.FC = () => {
           </select>
         </div>
 
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 md:px-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 md:px-20">
   {filteredArticles.length > 0 ? (
     filteredArticles.map((post) => (
       <Link key={post.id} href={`/blogs/${post.slug}`}>
-        <div className="group rounded-lg border border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow duration-300 cursor-pointer overflow-hidden">
+        <div className="group rounded-lg border border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow duration-300 cursor-pointer overflow-hidden h-96">
           {/* Image */}
           <img
             src={post.cover.url}
             alt={post.title}
-            className="w-full h-60 object-cover transition-transform duration-300 transform group-hover:scale-105"
+            className="w-full h-48 object-cover transition-transform duration-300 transform group-hover:scale-105"
           />
 
           {/* Text Content */}
-          <div className="p-4">
+          <div className="p-4 h-[calc(100%-12rem)] flex flex-col justify-between">
             {/* Title */}
             <h3 className="text-gray-800 text-lg font-semibold leading-tight mb-2">
               {post.title}
@@ -192,9 +185,13 @@ const BlogPage: React.FC = () => {
             </p> */}
 
             {/* Category/Tag Badge */}
-            {post.tags && (
+            {post.tags?.name ? (
               <div className="inline-block bg-blue-100 text-blue-600 text-xs font-medium rounded-full px-3 py-1 shadow">
                 {post.tags.name}
+              </div>
+            ) : (
+              <div className="inline-block bg-gray-100 text-gray-500 text-xs font-medium rounded-full px-3 py-1 shadow">
+                No Tag
               </div>
             )}
           </div>
@@ -207,6 +204,7 @@ const BlogPage: React.FC = () => {
     </div>
   )}
 </div>
+
 
       </section>
     </>
