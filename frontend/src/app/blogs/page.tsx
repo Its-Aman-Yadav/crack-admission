@@ -161,51 +161,46 @@ const BlogPage: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 md:px-20">
-  {filteredArticles.length > 0 ? (
-    filteredArticles.map((post) => (
-      <Link key={post.id} href={`/blogs/${post.slug}`}>
-        <div className="group rounded-lg border border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow duration-300 cursor-pointer overflow-hidden h-96">
-          {/* Image */}
-          <img
-            src={post.cover.url}
-            alt={post.title}
-            className="w-full h-48 object-cover transition-transform duration-300 transform group-hover:scale-105"
-          />
+          {filteredArticles.length > 0 ? (
+            filteredArticles.map((post) => (
+              <Link key={post.id} href={`/blogs/${post.slug}`}>
+                <div className="group rounded-lg border border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow duration-300 cursor-pointer overflow-hidden h-96">
+                  {/* Image */}
+                  <img
+                    src={post.cover.url}
+                    alt={post.title}
+                    className="w-full h-48 object-cover transition-transform duration-300 transform group-hover:scale-105"
+                  />
 
-          {/* Text Content */}
-          <div className="p-4 h-[calc(100%-12rem)] flex flex-col justify-between">
-            {/* Title */}
-            <h3 className="text-gray-800 text-lg font-semibold leading-tight mb-2">
-              {post.title}
-            </h3>
+                  {/* Text Content */}
+                  <div className="p-4 h-[calc(100%-12rem)] flex flex-col justify-between">
+                    {/* Title */}
+                    <h3 className="text-gray-800 text-lg font-semibold leading-tight mb-2">
+                      {post.title}
+                    </h3>
 
-            {/* Description */}
-            {/* <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+                    {/* Description */}
+                    {/* <p className="text-gray-600 text-sm mb-4 line-clamp-3">
               {post.description || 'A short description of the article will go here.'}
             </p> */}
 
-            {/* Category/Tag Badge */}
-            {post.tags?.name ? (
-              <div className="inline-block bg-blue-100 text-blue-600 text-xs font-medium rounded-full px-3 py-1 shadow">
-                {post.tags.name}
-              </div>
-            ) : (
-              <div className="inline-block bg-gray-100 text-gray-500 text-xs font-medium rounded-full px-3 py-1 shadow">
-                No Tag
-              </div>
-            )}
-          </div>
+                    {/* Category/Tag Badge */}
+                    {post.tags && (
+                      <div className="inline-block bg-blue-100 text-blue-600 text-xs font-medium rounded-full px-3 py-1 shadow">
+                        {post.tags.name}
+                      </div>
+                    ) 
+                    }
+                  </div>
+                </div>
+              </Link>
+            ))
+          ) : (
+            <div className="text-center col-span-full text-lg text-gray-500">
+              No blogs found...
+            </div>
+          )}
         </div>
-      </Link>
-    ))
-  ) : (
-    <div className="text-center col-span-full text-lg text-gray-500">
-      No blogs found...
-    </div>
-  )}
-</div>
-
-
       </section>
     </>
   );
