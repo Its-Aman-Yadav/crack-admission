@@ -179,11 +179,6 @@ const BlogPage: React.FC = () => {
                       {post.title}
                     </h3>
 
-                    {/* Description */}
-                    {/* <p className="text-gray-600 text-sm mb-4 line-clamp-3">
-              {post.description || 'A short description of the article will go here.'}
-            </p> */}
-
                     {/* Category/Tag Badge */}
                     {post.tags?.name && (
                       <span className="bg-blue-100 text-blue-800 text-xs font-medium rounded-full px-3 py-1 inline-block">
