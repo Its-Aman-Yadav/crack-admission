@@ -8,6 +8,9 @@ import Head from 'next/head';
 
 interface Cover {
   formats?: {
+    thumbnail?: {
+      url: string;
+    };
     medium?: {
       url: string;
     };
@@ -72,9 +75,12 @@ export default function BlogPost() {
   if (error) return <p className="text-center text-red-500 mt-8">{error}</p>;
   if (!article) return <p className="text-center mt-8">Loading...</p>;
 
+  // Determine the correct image URL
   const imageUrl =
     article.cover?.formats?.medium?.url
       ? `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${article.cover.formats.medium.url}`
+      : article.cover?.formats?.thumbnail?.url
+      ? `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${article.cover.formats.thumbnail.url}`
       : '/fallback-image.jpg'; // Fallback image if no cover is provided
 
   return (
