@@ -64,27 +64,28 @@ const BlogSection: React.FC = () => {
       </div>
 
       {/* Blog Post Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4 md:px-20">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 md:px-20">
         {articles.map((post) => (
           <Link key={post.id} href={`/blogs/${post.slug}`}>
-            <div className="group rounded-lg border border-gray-400 bg-white shadow-sm hover:shadow-lg transition-shadow duration-300 cursor-pointer overflow-hidden h-96">
-              {/* Image */}
-              <img
-                src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${post.cover.url}`}
-                alt={post.title}
-                className="w-full h-48 object-cover transition-transform duration-300 transform group-hover:scale-105"
-              />
+            <div className="group border border-gray-300 bg-white shadow-sm hover:shadow-md transition-shadow duration-300 cursor-pointer overflow-hidden h-[24rem]">
+              {/* Image Section */}
+              <div className="h-[70%] overflow-hidden">
+                <img
+                  src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${post.cover.url}`}
+                  alt={post.title}
+                  className="w-full h-full object-cover transition-transform duration-300 transform group-hover:scale-105"
+                />
+              </div>
 
               {/* Text Content */}
-              <div className="p-4 h-[calc(100%-12rem)] flex flex-col justify-between">
+              <div className="p-4 h-[30%] flex flex-col justify-between">
                 {/* Title */}
-                <h3 className="text-gray-800 text-lg font-semibold leading-tight mb-2">
+                <h3 className="text-gray-600 text-lg font-semibold leading-tight">
                   {post.title}
                 </h3>
-
                 {/* Tags */}
                 {post.tags?.name && (
-                  <span className="bg-blue-100 text-blue-800 text-xs font-medium rounded-full px-3 py-1 inline-block">
+                  <span className="bg-blue-100 text-blue-800 text-xs font-medium rounded-full px-3 py-1 inline-block mt-2">
                     {post.tags.name}
                   </span>
                 )}
