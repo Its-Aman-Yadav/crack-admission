@@ -103,7 +103,7 @@ export default function BlogPost() {
           />
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center">
-              {article.publishedAt && (
+              {/* {article.publishedAt && (
                 <span className="bg-blue-600 text-white px-3 py-1 text-sm font-semibold rounded-full">
                   {new Date(article.publishedAt).toLocaleDateString('en-GB', {
                     day: '2-digit',
@@ -111,7 +111,7 @@ export default function BlogPost() {
                     year: 'numeric',
                   })}
                 </span>
-              )}
+              )} */}
               <h1 className="text-4xl font-bold text-black mt-4 px-4">
                 {article.title}
               </h1>

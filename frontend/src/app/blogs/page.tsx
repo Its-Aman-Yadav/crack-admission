@@ -164,24 +164,24 @@ const BlogPage: React.FC = () => {
           {filteredArticles.length > 0 ? (
             filteredArticles.map((post) => (
               <Link key={post.id} href={`/blogs/${post.slug}`}>
-                <div className="group rounded-lg border border-gray-400 bg-white shadow-sm hover:shadow-md transition-shadow duration-300 cursor-pointer overflow-hidden h-96">
+                <div className="group rounded-lg border border-gray-300 bg-white shadow-sm hover:shadow-md transition-shadow duration-300 cursor-pointer overflow-hidden">
                   {/* Image */}
                   <img
                     src={post.cover.url}
                     alt={post.title}
-                    className="w-full h-48 object-cover transition-transform duration-300 transform group-hover:scale-105"
+                    className="w-full h-52 object-cover transition-transform duration-300 transform group-hover:scale-105"
                   />
 
                   {/* Text Content */}
-                  <div className="p-4 h-[calc(100%-12rem)] flex flex-col justify-between">
+                  <div className="p-4 flex flex-col h-[calc(100%-13rem)]">
                     {/* Title */}
-                    <h3 className="text-gray-800 text-lg font-semibold leading-tight mb-2">
+                    <h3 className="text-gray-800 text-lg font-bold leading-tight mb-2">
                       {post.title}
                     </h3>
 
                     {/* Category/Tag Badge */}
                     {post.tags?.name && (
-                      <span className="bg-blue-100 text-blue-800 text-xs font-medium rounded-full px-3 py-1 inline-block">
+                      <span className="bg-blue-100 text-blue-800 text-xs font-medium rounded-full px-3 py-1 mt-auto">
                         {post.tags.name}
                       </span>
                     )}
