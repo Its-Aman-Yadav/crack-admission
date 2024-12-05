@@ -40,11 +40,12 @@ export default function BlogPost() {
     const fetchArticle = async () => {
       try {
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/articles?filters[slug][$eq]=${slug}&populate=*`,
+          `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/articles?filters[slug][$eq]=${slug}&populate[cover][formats]=*`,
           { cache: 'no-store' }
         );
         const data = await response.json();
-
+        console.log('API Response:', data); // Debug the API response
+    
         if (data.data.length > 0) {
           const fetchedArticle = data.data[0];
           setArticle({
@@ -64,6 +65,7 @@ export default function BlogPost() {
         setError('Error fetching blog');
       }
     };
+    
 
     fetchArticle();
   }, [slug]);

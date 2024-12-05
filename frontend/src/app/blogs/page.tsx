@@ -176,7 +176,7 @@ const BlogPage: React.FC = () => {
                   {/* Text Content */}
                   <div className="p-4 h-[30%] flex flex-col justify-between">
                     {/* Title */}
-                    <h3 className="text-gray-800 text-lg font-semibold leading-tight">
+                    <h3 className="text-gray-600 text-lg font-semibold leading-tight">
                       {post.title}
                     </h3>
                      {/* {post.tags?.name && (
