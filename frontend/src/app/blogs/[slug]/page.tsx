@@ -7,8 +7,8 @@ import Image from 'next/image';
 import Head from 'next/head';
 
 interface Cover {
-  formats: {
-    medium: {
+  formats?: {
+    medium?: {
       url: string;
     };
   };
@@ -19,17 +19,13 @@ interface Block {
   body: string;
 }
 
-interface Tag {
-  name: string;
-}
-
 interface Article {
   id: number;
   title: string;
   slug: string;
   publishedAt: string | null;
   blocks: Block[];
-  cover: Cover;
+  cover: Cover | null;
   metaDescription: string;
 }
 
@@ -57,7 +53,7 @@ export default function BlogPost() {
             slug: fetchedArticle.slug,
             publishedAt: fetchedArticle.publishedAt,
             blocks: fetchedArticle.blocks || [],
-            cover: fetchedArticle.cover || { formats: { medium: { url: '' } } },
+            cover: fetchedArticle.cover || null,
             metaDescription: fetchedArticle.metaDescription || '',
           });
         } else {
@@ -75,6 +71,11 @@ export default function BlogPost() {
   if (error) return <p className="text-center text-red-500 mt-8">{error}</p>;
   if (!article) return <p className="text-center mt-8">Loading...</p>;
 
+  const imageUrl =
+    article.cover?.formats?.medium?.url
+      ? `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${article.cover.formats.medium.url}`
+      : '/fallback-image.jpg'; // Fallback image if no cover is provided
+
   return (
     <>
       <Head>
@@ -91,11 +92,7 @@ export default function BlogPost() {
         {/* Header Section */}
         <header className="relative w-screen h-[300px] mb-8 left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
           <Image
-            src={
-              article.cover?.formats?.medium?.url
-                ? `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${article.cover?.formats?.medium?.url}`
-                : '/fallback-image.jpg'
-            }
+            src={imageUrl}
             alt={article.title}
             layout="fill"
             objectFit="cover"
@@ -103,15 +100,6 @@ export default function BlogPost() {
           />
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center">
-              {/* {article.publishedAt && (
-                <span className="bg-blue-600 text-white px-3 py-1 text-sm font-semibold rounded-full">
-                  {new Date(article.publishedAt).toLocaleDateString('en-GB', {
-                    day: '2-digit',
-                    month: 'long',
-                    year: 'numeric',
-                  })}
-                </span>
-              )} */}
               <h1 className="text-4xl font-bold text-black mt-4 px-4">
                 {article.title}
               </h1>
