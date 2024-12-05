@@ -185,12 +185,11 @@ const BlogPage: React.FC = () => {
             </p> */}
 
                     {/* Category/Tag Badge */}
-                    {post.tags && (
-                      <div className="inline-block bg-blue-100 text-blue-600 text-xs font-medium rounded-full px-3 py-1 shadow">
+                    {post.tags?.name && (
+                      <span className="bg-blue-100 text-blue-600 text-xs font-medium rounded-full px-3 py-1 shadow inline-block">
                         {post.tags.name}
-                      </div>
-                    ) 
-                    }
+                      </span>
+                    )}
                   </div>
                 </div>
               </Link>
