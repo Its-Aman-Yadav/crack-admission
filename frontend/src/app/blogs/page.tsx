@@ -4,7 +4,7 @@ import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { FiArrowRight, FiSearch } from "react-icons/fi";
-import "@fontsource/poppins";
+import "@fontsource/inter";
 
 interface Cover {
   url: string;
@@ -110,7 +110,7 @@ const BlogPage: React.FC = () => {
         />
         <meta name="author" content="CrackAdmission" />
       </Head>
-      <section className="py-16 bg-white font-poppins">
+      <section className="py-16 bg-white font-inter">
         <div className="bg-blue-50 py-12 mb-10 px-4">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold text-center p-3 text-blue-500 mb-8">
@@ -139,9 +139,9 @@ const BlogPage: React.FC = () => {
             placeholder="Search blogs..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="border px-4 py-2 w-1/3 text-gray-900 bg-white"
+            className="border rounded-l-md px-4 py-2 w-1/3 text-gray-900 bg-white"
           />
-          <button className="bg-blue-600 text-white px-4 flex items-center">
+          <button className="bg-blue-600 text-white rounded-r-md px-4 flex items-center">
             <FiSearch className="mr-2" /> Search
           </button>
 
@@ -149,7 +149,7 @@ const BlogPage: React.FC = () => {
           <select
             value={selectedTag}
             onChange={(e) => setSelectedTag(e.target.value)}
-            className="border px-4 py-2 text-gray-900 bg-white"
+            className="border rounded-md px-4 py-2 text-gray-900 bg-white"
           >
             <option value="">All Tags</option>
             {uniqueTags.map((tag) => (
@@ -164,7 +164,7 @@ const BlogPage: React.FC = () => {
           {filteredArticles.length > 0 ? (
             filteredArticles.map((post) => (
               <Link key={post.id} href={`/blogs/${post.slug}`}>
-                <div className="group border border-gray-300 bg-white shadow-sm hover:shadow-md transition-shadow duration-300 cursor-pointer overflow-hidden">
+                <div className="group rounded-lg border border-gray-300 bg-white shadow-sm hover:shadow-md transition-shadow duration-300 cursor-pointer overflow-hidden">
                   {/* Image */}
                   <img
                     src={post.cover.url}
@@ -178,6 +178,13 @@ const BlogPage: React.FC = () => {
                     <h3 className="text-gray-800 text-lg font-bold leading-tight mb-2">
                       {post.title}
                     </h3>
+
+                    {/* Category/Tag Badge */}
+                    {/* {post.tags?.name && (
+                      <span className="bg-blue-100 text-blue-800 text-xs font-medium rounded-full px-3 py-1 mt-auto">
+                        {post.tags.name}
+                      </span>
+                    )} */}
                   </div>
                 </div>
               </Link>
