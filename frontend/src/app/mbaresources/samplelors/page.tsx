@@ -23,7 +23,7 @@ export default function ScholarshipList() {
       setLoading(true);
       try {
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/lors?populate=*`
+          `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/lors?populate=*&pagination[pageSize]=100`
         );
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
