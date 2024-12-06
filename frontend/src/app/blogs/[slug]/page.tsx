@@ -14,7 +14,7 @@ interface Cover {
       url: string;
     };
   };
-  url?: string; // Direct URL in case no formats are available
+  url?: string; // Direct URL for fallback
 }
 
 interface Block {
@@ -80,20 +80,20 @@ export default function BlogPost() {
     : '/path/to/default-image.jpg'; // Fallback image if no cover is provided
 
   return (
-    <article className="max-w-3xl mx-auto py-16 px-4">
+    <article className="max-w-3xl mx-auto py-20 px-4">
       {/* Title Section */}
-      <header className="mb-8 text-center">
-        <h1 className="text-4xl font-bold text-gray-800 mb-4">{article.title}</h1>
+      <header className="mb-12 text-center">
+        <h1 className="text-4xl font-bold text-gray-800 mb-6">{article.title}</h1>
       </header>
 
       {/* Cover Image Section */}
       {imageUrl && (
-        <div className="mb-8">
+        <div className="mb-12">
           <Image
             src={imageUrl}
             alt={article.title}
-            width={800}
-            height={400}
+            width={720} // Adjusted width for better clarity
+            height={360} // Proportional height
             className="w-full h-auto rounded-md shadow-sm"
           />
         </div>
