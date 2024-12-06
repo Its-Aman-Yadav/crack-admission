@@ -64,7 +64,7 @@ export default function Component() {
     
 
     console.log("SUCCESS!", result.text);
-    alert("Message sent successfully!");
+    alert("Message sent successfully!, We will contact you soon 💪");
     setIsSubmitting(false);
   } catch (error) {
     console.error("FAILED...", error);
