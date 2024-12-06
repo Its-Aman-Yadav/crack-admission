@@ -25,8 +25,35 @@ export default function Component() {
     }
 
     setIsSubmitting(true);
+
+    const formData = new FormData(form.current);
+    const jsonData: Record<string, string> = {};
+    formData.forEach((value, key) => {
+      jsonData[key] = value.toString();
+    });
    
   try {
+
+    const sheetDbResponse = await fetch(
+      "https://sheetdb.io/api/v1/djgoewtd7oqlx",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          data: [jsonData], // SheetDB expects the `data` array
+        }),
+      }
+    );
+
+    if (!sheetDbResponse.ok) {
+      throw new Error("Failed to send data to SheetDB");
+    }
+
+    const sheetDbResult = await sheetDbResponse.json();
+    console.log("SheetDB Response:", sheetDbResult);
     // Send form data to EmailJS
     const result = await emailjs.sendForm(
       process.env.NEXT_PUBLIC_SERVICE_ID as string, // Replace with your EmailJS Service ID
@@ -45,36 +72,6 @@ export default function Component() {
     setIsSubmitting(false);
   }
 
- // Prepare data for Google Sheet
-    const formData = new FormData(form.current);
-    const jsonData: Record<string, string> = {};
-    formData.forEach((value, key) => {
-      jsonData[key] = value.toString();
-    });
-
-    // Check if the Google Sheet URL is defined
-    const googleSheetUrl = process.env.NEXT_PUBLIC_GOOGLE_SHEET_URL;
-    if (!googleSheetUrl) {
-      console.error("Google Sheet URL is not defined. Check your environment variables.");
-      alert("Failed to submit data. Please contact support.");
-      return;
-    }
-
-    // Send form data to Google Sheet
-    const response = await fetch(googleSheetUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(jsonData),
-    });
-
-    if (!response.ok) {
-      throw new Error("Failed to submit data to Google Sheets");
-    }
-
-    console.log("Data stored in Google Sheets successfully!");
-    alert("Message sent successfully! Data has been stored in Google Sheets.")
 
   setIsSubmitting(false);
 };
