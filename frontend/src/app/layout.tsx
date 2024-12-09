@@ -18,7 +18,7 @@ const geistMono = localFont({
 
 // Metadata for the site
 export const metadata: Metadata = {
-  title: "Crack Admission",
+  title: "Crack Admission: MBA Admission Consulting Experts",
   description:
     "Achieve your MBA dreams with Crack Admission's personalized consulting services. We specialize in comprehensive application strategies for top business schools like Stanford, INSEAD, Wharton, and more.",
   keywords:
@@ -55,7 +55,6 @@ export default function RootLayout({
           name="keywords"
           content="MBA consulting, business school applications, MBA essays, GMAT, GRE, Stanford, INSEAD, Wharton, Harvard, MBA interview prep, scholarship essays"
         />
-        <title>Crack Admission: MBA Admission Consulting Experts</title>
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
