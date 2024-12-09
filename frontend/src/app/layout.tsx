@@ -55,7 +55,7 @@ export default function RootLayout({
           name="keywords"
           content="MBA consulting, business school applications, MBA essays, GMAT, GRE, Stanford, INSEAD, Wharton, Harvard, MBA interview prep, scholarship essays"
         />
-        <title>Crack Admission: MBA Consulting Experts</title>
+        <title>Crack Admission: MBA Admission Consulting Experts</title>
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
