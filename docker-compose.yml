@@ -16,7 +16,7 @@ services:
       - "1337:1337"
     environment:
       DATABASE_CLIENT: "sqlite"
-      DATABASE_FILENAME: "/data/data.db" # Using a path in the container to match volume mount
+      DATABASE_FILENAME: "/data/data.db"
       NODE_ENV: "production"
     volumes:
       - strapi-data:/data
